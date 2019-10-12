@@ -6,7 +6,7 @@ import kotlin.collections.forEachIndexed
 import kotlin.sequences.Sequence
 import kotlinx.cinterop.*
 
-fun Collection<String>.asMultiString() : ByteArray {
+internal fun Collection<String>.asMultiString() : ByteArray {
     val buf = mutableListOf<Byte>()
     for (group in this) {
         group.encodeToByteArray(0, group.length, true).toCollection(buf)
@@ -21,7 +21,7 @@ fun Collection<String>.asMultiString() : ByteArray {
     return buf.toByteArray()
 }
 
-fun ByteArray.toMultiString(): Sequence<String> {
+internal fun ByteArray.toMultiString(): Sequence<String> {
     val array = this
     return sequence {
         var start = 0

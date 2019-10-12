@@ -1,54 +1,56 @@
 package au.id.micolous.kotlin.pcsc
 
 import au.id.micolous.kotlin.pcsc.internal.*
-import kotlin.collections.MutableList
 import kotlinx.cinterop.*
 import platform.posix.*
 
 class Context private constructor(private var handle: SCARDCONTEXT?) {
-    enum class Scope(internal val dwScope: uint32_t) {
-        User(SCARD_SCOPE_USER.toUInt()),
-        Terminal(SCARD_SCOPE_TERMINAL.toUInt()),
-        System(SCARD_SCOPE_SYSTEM.toUInt())
-    }
-
-    enum class ShareMode(internal val dwShareMode: uint32_t) {
-        Shared(SCARD_SHARE_SHARED.toUInt()),
-        Exclusive(SCARD_SHARE_EXCLUSIVE.toUInt()),
-        Direct(SCARD_SHARE_DIRECT.toUInt())
-    }
 
     // SCardReleaseContext
     fun release() {
+        val handle = handle ?: return
         wrapPCSCErrors {
-            SCardReleaseContext(handle!!)
+            SCardReleaseContext(handle)
         }
-        handle = null
+        this.handle = null
     }
 
     // SCardIsValidContext
     fun isValid() : Boolean {
-        return wrapPCSCErrors(falseValue = SCARD_E_INVALID_HANDLE) {
-            SCardIsValidContext(handle!!)
+        return when (val handle = handle) {
+            null -> false
+            else -> wrapPCSCErrors(falseValue = SCARD_E_INVALID_HANDLE) {
+                SCardIsValidContext(handle)
+            }
         }
+    }
+
+    /** Returns the handle associated with this context, or raises an exception if invalid. */
+    private fun nonNullHandle(): SCARDCONTEXT {
+        val handle = handle
+        require(handle != null) { "Context is invalid" }
+        return handle
     }
 
     // SCardListReaders
     fun listReaders(groups: List<String>? = null) : List<String> {
+        val handle = nonNullHandle()
         return groups?.asMultiString().useNullablePinned { mszGroups -> memScoped {
             val pcchReaders = alloc<uint32_tVar>()
 
             // Figure out how much space we need for the buffer
             val hasReaders = wrapPCSCErrors(falseValue = SCARD_E_NO_READERS_AVAILABLE) {
-                SCardListReaders(handle!!, mszGroups?.addressOf(0), null, pcchReaders.ptr)
+                SCardListReaders(handle, mszGroups?.addressOf(0), null, pcchReaders.ptr)
             }
 
-            if (hasReaders) {
-                val readers = ByteArray(pcchReaders.value.toInt())
+            val neededLength = pcchReaders.value.toInt()
+            // At least 3 bytes are needed to carry a reader name (1 byte) and 2 null terminators
+            if (hasReaders && neededLength >= 3) {
+                val readers = ByteArray(neededLength)
                 readers.usePinned { mszReaders ->
                     wrapPCSCErrors {
                         SCardListReaders(
-                            handle!!,
+                            handle,
                             mszGroups?.addressOf(0),
                             mszReaders.addressOf(0),
                             pcchReaders.ptr
@@ -64,19 +66,33 @@ class Context private constructor(private var handle: SCARDCONTEXT?) {
     }
 
     // SCardConnect
-    fun connect(reader: String, shareMode: ShareMode, preferredProtcols: uint32_t) : Any? {
+    fun connect(reader: String, shareMode: ShareMode, preferredProtcols: Set<Protocol>?) : Pair<Card, Protocol?> {
+        val protocolMask = preferredProtcols?.toUInt() ?: 0u
+        val handle = nonNullHandle()
 
-        return null
+        return memScoped {
+            val hCard = alloc<SCARDHANDLEVar>()
+            val dwActiveProtocol = alloc<uint32_tVar>()
+
+            wrapPCSCErrors {
+                SCardConnect(handle, reader, shareMode.v, protocolMask, hCard.ptr, dwActiveProtocol.ptr)
+            }
+
+            Pair(Card(hCard.value), dwActiveProtocol.value.toProtocol())
+        }
     }
+
+    fun connect(reader: String, shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any) : Pair<Card, Protocol?>
+        = connect(reader, shareMode, setOf(preferredProtocol))
 
     companion object {
 
         // SCardEstablishContext
-        fun establish(scope: Scope) : Context {
+        fun establish(scope: Scope = Scope.User) : Context {
             return Context(memScoped {
                 val phContext = alloc<SCARDCONTEXTVar>()
                 wrapPCSCErrors {
-                    SCardEstablishContext(scope.dwScope, null, null, phContext.ptr)
+                    SCardEstablishContext(scope.v, null, null, phContext.ptr)
                 }
                 phContext.value
             })
