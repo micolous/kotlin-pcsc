@@ -38,17 +38,19 @@ kotlin {
                 }
             }
         }
-
-        compilations["test"].dependencies {
-            implementation(kotlin("test-common"))
-            implementation(kotlin("test-annotations-common"))
-        }
     }
 
     sourceSets {
         commonMain {
             dependencies {
                 api("org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion")
+            }
+        }
+
+        commonTest {
+            dependencies {
+                api(kotlin("test-common"))
+                api(kotlin("test-annotations-common"))
             }
         }
     }

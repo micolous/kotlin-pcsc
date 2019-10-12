@@ -3,19 +3,19 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import platform.posix.*
 
-enum class Scope(internal val v: uint32_t) {
+actual enum class Scope(internal val v: uint32_t) {
     User(SCARD_SCOPE_USER.toUInt()),
     Terminal(SCARD_SCOPE_TERMINAL.toUInt()),
     System(SCARD_SCOPE_SYSTEM.toUInt())
 }
 
-enum class ShareMode(internal val v: uint32_t) {
+actual enum class ShareMode(internal val v: uint32_t) {
     Shared(SCARD_SHARE_SHARED.toUInt()),
     Exclusive(SCARD_SHARE_EXCLUSIVE.toUInt()),
     Direct(SCARD_SHARE_DIRECT.toUInt())
 }
 
-enum class Protocol(internal val v: uint32_t) {
+actual enum class Protocol(internal val v: uint32_t) {
     Unset(SCARD_PROTOCOL_UNSET.toUInt()),
     Any(SCARD_PROTOCOL_ANY.toUInt()),
     T0(SCARD_PROTOCOL_T0.toUInt()),
@@ -33,14 +33,14 @@ internal fun Set<Protocol>.toUInt(): uint32_t {
     return map { it.v }.reduce { acc, it -> acc or it }
 }
 
-enum class DisconnectDisposition(internal val v: uint32_t) {
+actual enum class DisconnectDisposition(internal val v: uint32_t) {
     Leave(SCARD_LEAVE_CARD.toUInt()),
     Reset(SCARD_RESET_CARD.toUInt()),
     Unpower(SCARD_UNPOWER_CARD.toUInt()),
     Eject(SCARD_EJECT_CARD.toUInt())
 }
 
-enum class Initialization(internal val v: uint32_t) {
+actual enum class Initialization(internal val v: uint32_t) {
     Leave(SCARD_LEAVE_CARD.toUInt()),
     Reset(SCARD_RESET_CARD.toUInt()),
     Unpower(SCARD_UNPOWER_CARD.toUInt())
