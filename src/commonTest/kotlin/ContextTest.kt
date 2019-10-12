@@ -3,6 +3,7 @@ package au.id.micolous.kotlin.pcsc.test
 import au.id.micolous.kotlin.pcsc.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -31,7 +32,7 @@ class ContextTest {
     @Test
     fun testListReaders() {
         val context = Context.establish()
-        assertEquals(listOf("Yubico Yubikey 4 U2F+CCID"), context.listReaders())
+        assertNotEquals(0, context.listReaders().size)
         context.release()
     }
 

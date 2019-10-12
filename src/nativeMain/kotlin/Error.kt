@@ -3,8 +3,6 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import platform.posix.int32_t
 
-data class Error(val errorCode: Int) : Throwable("PCSCError: $errorCode")
-
 internal fun wrapPCSCErrors(
     trueValue: Int = SCARD_S_SUCCESS,
     falseValue: Int? = null,

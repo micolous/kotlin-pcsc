@@ -1,14 +1,19 @@
-language = Objective-C
 package = au.id.micolous.kotlin.pcsc.internal
-modules = PCSC
-compilerOpts = -framework PCSC
-linkerOpts = -framework PCSC
-
 noStringConversion = SCardListReaders
 
-# headers = winscard.h
-# headerFilter = winscard.h pcsclite.h
-# compilerOpts.osx = -framework PCSCContext
-# linkerOpts.osx = -framework PCSCContext
-# linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
-# linkerOpts.mingw = -lWinSCard
+# To be able to use PCSC.framework, we need to pretend we're using Objective-C.
+language.osx = Objective-C
+modules.osx = PCSC
+compilerOpts.osx = -framework PCSC
+linkerOpts.osx = -framework PCSC
+
+# Other platforms work nicer...
+language.linux = C
+headers.linux = winscard.h
+linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
+headerFilter.linux = winscard.h pcsclite.h
+
+language.mingw = C
+headers.mingw = winscard.h
+linkerOpts.mingw = -lWinSCard
+headerFilter.mingw = winscard.h pcsclite.h

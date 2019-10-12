@@ -1,6 +1,4 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-val kotlinVersion = "1.3.41"
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform") version "1.3.41"
@@ -10,48 +8,53 @@ repositories {
     mavenCentral()
 }
 
+val kotlinVersion = "1.3.41"
 val mingwPath = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")
+
+dependencies {
+    commonMainApi(kotlin("stdlib-common"))
+    commonTestImplementation(kotlin("test-common"))
+    commonTestImplementation(kotlin("test-annotations-common"))
+}
 
 kotlin {
     // Determine host preset.
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
 
-    // Create a target for the host platform.
-    val hostTarget = when {
-        hostOs == "Mac OS X" -> macosX64("pcsc")
-        hostOs == "Linux" -> linuxX64("pcsc")
-        isMingwX64 -> mingwX64("pcsc")
-        else -> throw GradleException("Host OS '$hostOs' is not supported in Kotlin/Native $project.")
-    }
+    // linuxArm32Hfp()  // Raspberry Pi
+    // linuxX64()
+    macosX64()  // (no cross compiler)
+    // mingwX86()  // Windows
+    // mingwX64()  // Windows x64 (no cross compiler)
 
-    hostTarget.apply {
-        compilations["main"].cinterops {
-            val winscard by creating {
-                when (preset) {
+    sourceSets {
+        val nativeMain by creating {
+            dependsOn(getByName("commonMain"))
+        }
 
-                    presets["macosX64"] -> {
+        fun KotlinNativeTarget.buildNative() {
+            compilations["main"].apply {
+                defaultSourceSet {
+                    dependsOn(nativeMain)
+                }
 
-                    }
-                    presets["linuxX64"] -> includeDirs.headerFilterOnly("/usr/include")
-                    presets["mingwX64"] -> includeDirs.headerFilterOnly(mingwPath.resolve("include"))
+                cinterops {
+                    val winscard by creating { }
+                }
+            }
+
+            compilations["test"].apply {
+                defaultSourceSet {
+                    dependsOn(getByName("commonTest"))
                 }
             }
         }
-    }
 
-    sourceSets {
-        commonMain {
-            dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion")
-            }
-        }
-
-        commonTest {
-            dependencies {
-                api(kotlin("test-common"))
-                api(kotlin("test-annotations-common"))
-            }
-        }
+        // linuxArm32Hfp().buildNative()
+        // linuxX64().buildNative()
+        macosX64().buildNative()
+        // mingwX86().buildNative()
+        // mingwX64().buildNative()
     }
 }
