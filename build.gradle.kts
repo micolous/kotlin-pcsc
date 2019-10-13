@@ -1,11 +1,14 @@
+import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform") version "1.3.41"
+    id("org.jetbrains.dokka") version "0.10.0"
 }
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 val kotlinVersion = "1.3.41"
@@ -56,5 +59,12 @@ kotlin {
         macosX64().buildNative()
         // mingwX86().buildNative()
         // mingwX64().buildNative()
+    }
+}
+
+tasks {
+    val dokka by getting(DokkaTask::class) {
+        outputFormat = "html"
+        outputDirectory = "$buildDir/dokka"
     }
 }

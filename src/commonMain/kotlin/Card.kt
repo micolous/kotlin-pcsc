@@ -18,13 +18,45 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+/**
+ * Interface for all smartcard operations (`SCARDHANDLE`).
+ *
+ * @see Context.connect
+ */
 expect class Card {
+    /**
+     * The [Protocol] in use for communication with this [Card], or `null` if unknown.
+     *
+     * This is equivalent to the `pdwActiveProtocol` return value from `SCardConnect`
+     * and `SCardReconnect`.
+     *
+     * @see [Context.connect]
+     * @see [reconnect]
+     */
     var protocol: Protocol? get
 
-    // SCardDisconnect
+    /**
+     * Disconnects from the given card.
+     *
+     * Equivalent to `SCardDisconnect`.
+     *
+     * @param disposition State to leave the card in when disconnecting.
+     * Defaults to doing nothing ([DisconnectDisposition.Leave]).
+     */
     fun disconnect(disposition: DisconnectDisposition = DisconnectDisposition.Leave)
 
-    // SCardReconnect
+    /**
+     * Disconnects and reconnects to the given card with new parameters.
+     *
+     * The new protocol in use will be available as [protocol].
+     *
+     * Equivalent to `SCardReconnect`.
+     *
+     * @param initialization An [Initialization] procedure to perform when
+     * disconnecting from the card.
+     *
+     * @see [Context.connect]
+     */
     fun reconnect(
         shareMode: ShareMode,
         preferredProtcols: Set<Protocol>?,
@@ -35,5 +67,13 @@ expect class Card {
     fun transmit(buffer: ByteArray) : ByteArray
 }
 
+/**
+ * Disconnects and reconnects to the given card with new parameters.
+ *
+ * @param preferredProtocol Single preferred protocol to use.
+ * If not specified, defaults to [Protocol.Any].
+ *
+ * @see [Card.reconnect]
+ */
 fun Card.reconnect(shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any, initialization: Initialization)
         = reconnect(shareMode, setOf(preferredProtocol), initialization)
