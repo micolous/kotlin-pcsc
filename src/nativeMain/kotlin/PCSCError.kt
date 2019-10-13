@@ -19,22 +19,16 @@
 package au.id.micolous.kotlin.pcsc
 
 import au.id.micolous.kotlin.pcsc.internal.*
+import kotlinx.cinterop.*
 import platform.posix.int32_t
 
 internal fun wrapPCSCErrors(
-    trueValue: Int = SCARD_S_SUCCESS,
-    falseValue: Int? = null,
+    trueValue: UInt = SCARD_S_SUCCESS.toUInt(),
+    falseValue: UInt? = null,
     f: () -> int32_t): Boolean {
-    return when (val errorCode = f()) {
+    return when (val errorCode = f().toUInt()) {
         trueValue -> true
         falseValue -> false
-        else -> throw PCSCError(errorCode.toLong())
+        else -> throw PCSCError.fromCode(errorCode.toLong())
     }
-}
-
-internal fun wrapPCSCErrors(
-    trueValue: Int = SCARD_S_SUCCESS,
-    falseValue: UInt,
-    f: () -> int32_t) : Boolean {
-    return wrapPCSCErrors(trueValue, falseValue.toInt(), f)
 }

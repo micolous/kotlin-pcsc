@@ -63,7 +63,17 @@ expect class Card {
         initialization: Initialization
     )
 
-    // SCardTransmit
+    /**
+     * Transmits an APDU to the card, and returns the response.
+     *
+     * Equivalent to `SCardTransmit`. `pioSendPci` is automatically populated
+     * based on [protocol].
+     *
+     * @param buffer APDU bytes to send to the card.
+     * @returns APDU bytes received from the card.
+     * @throws NotImplementedError if [protocol] is not supported
+     * @throws PCSCError
+     */
     fun transmit(buffer: ByteArray) : ByteArray
 }
 
