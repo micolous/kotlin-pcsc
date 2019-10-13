@@ -1,4 +1,21 @@
-
+/*
+ * Sample.kt
+ * Implementation of PC/SC Sample Application using kotlin-pcsc
+ *
+ * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import au.id.micolous.kotlin.pcsc.*
 
 /** Converts signed [Int] values into a [ByteArray] */
@@ -9,13 +26,28 @@ fun ByteArray.toHex(): String = map {
     it.toUByte().toString(16).padStart(2, '0').padEnd(3, ' ')
 }.fold(StringBuilder(), StringBuilder::append).dropLast(1).toString()
 
+/** APDU: SELECT `A00000006203010C0601` */
 val cmd1 = byteArrayOf(
     0x00, 0xA4, 0x04, 0x00, 0x0A, 0xA0, 0x00, 0x00, 0x00, 0x62, 0x03, 0x01,
     0x0C, 0x06, 0x01
 )
 
+/** APDU: CLA=00, INS=00, P1=00, P2=00 */
 val cmd2 = byteArrayOf(0x00, 0x00, 0x00, 0x00)
 
+/**
+ * Example program for using PC/SC API with kotlin-pcsc.
+ *
+ * This program:
+ *
+ * 1. Connects to the first found smartcard reader
+ * 2. Sends [cmd1] APDU: `00 A4 04 00 0A A0 00 00 00 62 03 01 0C 06 01`
+ * 3. Displays result
+ * 4. Sends [cmd2] APDU: `00 00 00 00`
+ * 5. Displays result
+ *
+ * Reference: https://ludovicrousseau.blogspot.com/2010/04/pcsc-sample-in-different-languages.html
+ */
 fun main() {
     println("Sample for using PC/SC with kotlin-pcsc")
     println()
