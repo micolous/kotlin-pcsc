@@ -1,6 +1,8 @@
 package au.id.micolous.kotlin.pcsc
 
 expect class Card {
+    var protocol: Protocol? get
+
     // SCardDisconnect
     fun disconnect(disposition: DisconnectDisposition = DisconnectDisposition.Leave)
 
@@ -9,8 +11,11 @@ expect class Card {
         shareMode: ShareMode,
         preferredProtcols: Set<Protocol>?,
         initialization: Initialization
-    ): Protocol?
+    )
+
+    // SCardTransmit
+    fun transmit(buffer: ByteArray) : ByteArray
 }
 
-fun Card.reconnect(shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any, initialization: Initialization) : Protocol?
-            = reconnect(shareMode, setOf(preferredProtocol), initialization)
+fun Card.reconnect(shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any, initialization: Initialization)
+        = reconnect(shareMode, setOf(preferredProtocol), initialization)

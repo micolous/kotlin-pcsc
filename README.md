@@ -15,6 +15,7 @@ Currently only tested on macOS with Kotlin/Native.
 * SCardConnect -> Context.connect
 * SCardDisconnect -> Card.disconnect
 * SCardReconnect -> Card.reconnect
+* SCardTransmit -> Card.transmit
 
 ## TODO:
 
@@ -23,7 +24,6 @@ Currently only tested on macOS with Kotlin/Native.
 * SCardBeginTransaction
 * SCardEndTransaction
 * SCardCancel
-* SCardTransmit
 
 ### Status inquiry
 

@@ -40,10 +40,10 @@ class ContextTest {
     fun testConnectToFirstReader() {
         val context = Context.establish()
         val firstReader = context.listReaders()[0]
-        val (card, protocol) = context.connect(firstReader, ShareMode.Direct, Protocol.Any)
-        assertNotNull(protocol)
-        val protocol2 = card.reconnect(ShareMode.Direct, initialization = Initialization.Leave)
-        assertNotNull(protocol2)
+        val card = context.connect(firstReader, ShareMode.Direct, Protocol.Any)
+        assertNotNull(card.protocol)
+        card.reconnect(ShareMode.Direct, initialization = Initialization.Leave)
+        assertNotNull(card.protocol)
         card.disconnect()
         context.release()
     }

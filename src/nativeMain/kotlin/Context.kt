@@ -66,7 +66,7 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
     }
 
     // SCardConnect
-    actual fun connect(reader: String, shareMode: ShareMode, preferredProtcols: Set<Protocol>?) : Pair<Card, Protocol?> {
+    actual fun connect(reader: String, shareMode: ShareMode, preferredProtcols: Set<Protocol>?) : Card {
         val protocolMask = preferredProtcols?.toUInt() ?: 0u
         val handle = nonNullHandle()
 
@@ -78,7 +78,7 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
                 SCardConnect(handle, reader, shareMode.v, protocolMask, hCard.ptr, dwActiveProtocol.ptr)
             }
 
-            Pair(Card(hCard.value), dwActiveProtocol.value.toProtocol())
+            Card(hCard.value, dwActiveProtocol.value.toProtocol())
         }
     }
 

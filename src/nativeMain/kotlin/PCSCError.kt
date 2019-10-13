@@ -10,7 +10,7 @@ internal fun wrapPCSCErrors(
     return when (val errorCode = f()) {
         trueValue -> true
         falseValue -> false
-        else -> throw Error(errorCode)
+        else -> throw PCSCError(errorCode.toLong())
     }
 }
 
