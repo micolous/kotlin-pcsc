@@ -16,7 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:JvmName("SampleKt")
 import au.id.micolous.kotlin.pcsc.*
+import kotlin.jvm.JvmName
 
 /** Converts signed [Int] values into a [ByteArray] */
 fun byteArrayOf(vararg i: Int) : ByteArray = i.map(Int::toByte).toByteArray()

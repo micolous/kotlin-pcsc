@@ -50,7 +50,9 @@ class ContextTest {
     @Test
     fun testListReaders() {
         val context = Context.establish()
-        assertNotEquals(0, context.listReaders().size)
+        val readers = context.listReaders()
+        println("readers: $readers")
+        assertNotEquals(0, readers.size)
         context.release()
     }
 

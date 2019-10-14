@@ -31,6 +31,8 @@ kotlin {
     // mingwX86()  // Windows
     // mingwX64()  // Windows x64 (no cross compiler)
 
+    jvm("jna")
+
     sourceSets {
         val nativeMain by creating {
             dependsOn(getByName("commonMain"))
@@ -59,6 +61,27 @@ kotlin {
         macosX64().buildNative()
         // mingwX86().buildNative()
         // mingwX64().buildNative()
+
+        jvm("jna").apply {
+            compilations["main"].apply {
+                defaultSourceSet {
+                    dependsOn(getByName("commonMain"))
+                }
+                dependencies {
+                    api(kotlin("stdlib-jdk8"))
+                    api("net.java.dev.jna:jna:4.0.0")
+                }
+            }
+
+            compilations["test"].apply {
+                defaultSourceSet {
+                    dependsOn(getByName("commonTest"))
+                }
+                dependencies {
+                    implementation(kotlin("test-junit"))
+                }
+            }
+        }
     }
 }
 

@@ -18,24 +18,22 @@
  */
 package au.id.micolous.kotlin.pcsc
 
-import au.id.micolous.kotlin.pcsc.internal.*
-import kotlinx.cinterop.*
-import platform.posix.*
-
 actual class Card internal constructor(
-    private val handle: SCARDHANDLE,
+    private val handle: SCardHandle,
     actual var protocol: Protocol?) {
 
     // SCardDisconnect
     actual fun disconnect(disposition: DisconnectDisposition) {
+        /*
         wrapPCSCErrors {
             SCardDisconnect(handle, disposition.v)
-        }
+        } */
         protocol = null
     }
 
     // SCardReconnect
     actual fun reconnect(shareMode: ShareMode, preferredProtcols: Set<Protocol>?, initialization: Initialization) {
+        /*
         val protocolMask = preferredProtcols?.toUInt() ?: 0u
 
         protocol = memScoped {
@@ -47,10 +45,12 @@ actual class Card internal constructor(
 
             dwActiveProtocol.value.toProtocol()
         }
+         */
     }
 
     // SCardTransmit
     actual fun transmit(buffer: ByteArray) : ByteArray {
+        /*
         // Copy the send buffer to insulate it from the library.
         val mySendBuffer = buffer.toUByteArray()
         val cbSendLength = mySendBuffer.size.toUInt()
@@ -74,5 +74,9 @@ actual class Card internal constructor(
 
             bRecvBuffer.sliceArray(0..pcbRecvLength.value.toInt()).toByteArray()
         }}
+
+         */
+        // TODO
+        return buffer.reversedArray()
     }
 }
