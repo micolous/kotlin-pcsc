@@ -23,10 +23,10 @@ import kotlinx.cinterop.*
 import platform.posix.int32_t
 
 internal fun wrapPCSCErrors(
-    trueValue: UInt = SCARD_S_SUCCESS.toUInt(),
-    falseValue: UInt? = null,
-    f: () -> int32_t): Boolean {
-    return when (val errorCode = f().toUInt()) {
+    trueValue: SCARDSTATUS = SCARD_S_SUCCESS.convert(),
+    falseValue: SCARDSTATUS? = null,
+    f: () -> SCARDSTATUS): Boolean {
+    return when (val errorCode = f()) {
         trueValue -> true
         falseValue -> false
         else -> throw PCSCError.fromCode(errorCode.toLong())

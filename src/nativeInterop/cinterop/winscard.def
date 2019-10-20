@@ -9,11 +9,27 @@ linkerOpts.osx = -framework PCSC
 
 # Other platforms work nicer...
 language.linux = C
-headers.linux = winscard.h
+depends.linux = posix
+headers.linux = PCSC/wintypes.h PCSC/pcsclite.h PCSC/reader.h PCSC/winscard.h
+compilerOpts.linux = -pthread -I/usr/include/PCSC -I/usr/include -I/usr/include/x86_64-linux-gnu
 linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
-headerFilter.linux = winscard.h pcsclite.h
+headerFilter.linux = PCSC/**
 
 language.mingw = C
 headers.mingw = winscard.h
 linkerOpts.mingw = -lWinSCard
 headerFilter.mingw = winscard.h pcsclite.h
+
+---
+
+#if defined(__APPLE__)
+#error foo
+typedef int32_t SCARDSTATUS;
+typedef uint32_t DWORD;
+
+#elif defined(__linux__)
+typedef LONG SCARDSTATUS;
+
+#else
+// TODO
+#endif

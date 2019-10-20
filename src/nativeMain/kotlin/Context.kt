@@ -54,7 +54,7 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
     actual fun listReaders(groups: List<String>?) : List<String> {
         val handle = nonNullHandle()
         return groups?.asMultiString().useNullablePinned { mszGroups -> memScoped {
-            val pcchReaders = alloc<uint32_tVar>()
+            val pcchReaders = alloc<DWORDVar>()
 
             // Figure out how much space we need for the buffer
             val hasReaders = wrapPCSCErrors(falseValue = SCARD_E_NO_READERS_AVAILABLE) {
@@ -85,12 +85,12 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
 
     // SCardConnect
     actual fun connect(reader: String, shareMode: ShareMode, preferredProtcols: Set<Protocol>?) : Card {
-        val protocolMask = preferredProtcols?.toUInt() ?: 0u
+        val protocolMask: DWORD = preferredProtcols?.toDWord() ?: 0u
         val handle = nonNullHandle()
 
         return memScoped {
             val hCard = alloc<SCARDHANDLEVar>()
-            val dwActiveProtocol = alloc<uint32_tVar>()
+            val dwActiveProtocol = alloc<DWORDVar>()
 
             wrapPCSCErrors {
                 SCardConnect(handle, reader, shareMode.v, protocolMask, hCard.ptr, dwActiveProtocol.ptr)

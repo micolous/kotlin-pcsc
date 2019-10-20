@@ -40,3 +40,10 @@ Currently only tested on macOS with Kotlin/Native.
 
 * SCardListReaderGroups
 
+## Building
+
+* Linux requires: `libpcsclite1 libpcsclite-dev`
+
+## Running
+
+* Linux requires: `libpcsclite1 pcscd`

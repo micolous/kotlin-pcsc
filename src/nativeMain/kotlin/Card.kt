@@ -36,10 +36,10 @@ actual class Card internal constructor(
 
     // SCardReconnect
     actual fun reconnect(shareMode: ShareMode, preferredProtcols: Set<Protocol>?, initialization: Initialization) {
-        val protocolMask = preferredProtcols?.toUInt() ?: 0u
+        val protocolMask: DWORD = preferredProtcols?.toDWord() ?: 0u
 
         protocol = memScoped {
-            val dwActiveProtocol = alloc<uint32_tVar>()
+            val dwActiveProtocol = alloc<DWORDVar>()
 
             wrapPCSCErrors {
                 SCardReconnect(handle, shareMode.v, protocolMask, initialization.v, dwActiveProtocol.ptr)
@@ -53,7 +53,7 @@ actual class Card internal constructor(
     actual fun transmit(buffer: ByteArray) : ByteArray {
         // Copy the send buffer to insulate it from the library.
         val mySendBuffer = buffer.toUByteArray()
-        val cbSendLength = mySendBuffer.size.toUInt()
+        val cbSendLength: DWORD = mySendBuffer.size.convert()
 
         val pioSendPci = when (protocol) {
             Protocol.T0 -> SCARD_PCI_T0
@@ -65,8 +65,8 @@ actual class Card internal constructor(
 
         return memScoped { mySendBuffer.usePinned { pbSendBuffer ->
             val bRecvBuffer = UByteArray(MAX_BUFFER_SIZE)
-            val pcbRecvLength = alloc<uint32_tVar>()
-            pcbRecvLength.value = bRecvBuffer.size.toUInt()
+            val pcbRecvLength = alloc<DWORDVar>()
+            pcbRecvLength.value = bRecvBuffer.size.convert()
 
             bRecvBuffer.usePinned { pbRecvBuffer -> wrapPCSCErrors {
                 SCardTransmit(handle, pioSendPci, pbSendBuffer.addressOf(0), cbSendLength, null, pbRecvBuffer.addressOf(0), pcbRecvLength.ptr)

@@ -19,47 +19,48 @@
 package au.id.micolous.kotlin.pcsc
 
 import au.id.micolous.kotlin.pcsc.internal.*
+import kotlinx.cinterop.*
 import platform.posix.*
 
-actual enum class Scope(internal val v: uint32_t) {
-    User(SCARD_SCOPE_USER.toUInt()),
-    Terminal(SCARD_SCOPE_TERMINAL.toUInt()),
-    System(SCARD_SCOPE_SYSTEM.toUInt())
+actual enum class Scope(internal val v: DWORD) {
+    User(SCARD_SCOPE_USER.convert<DWORD>()),
+    Terminal(SCARD_SCOPE_TERMINAL.convert<DWORD>()),
+    System(SCARD_SCOPE_SYSTEM.convert<DWORD>())
 }
 
-actual enum class ShareMode(internal val v: uint32_t) {
-    Shared(SCARD_SHARE_SHARED.toUInt()),
-    Exclusive(SCARD_SHARE_EXCLUSIVE.toUInt()),
-    Direct(SCARD_SHARE_DIRECT.toUInt())
+actual enum class ShareMode(internal val v: DWORD) {
+    Shared(SCARD_SHARE_SHARED.convert<DWORD>()),
+    Exclusive(SCARD_SHARE_EXCLUSIVE.convert<DWORD>()),
+    Direct(SCARD_SHARE_DIRECT.convert<DWORD>())
 }
 
-actual enum class Protocol(internal val v: uint32_t) {
-    Unset(SCARD_PROTOCOL_UNSET.toUInt()),
-    Any(SCARD_PROTOCOL_ANY.toUInt()),
-    T0(SCARD_PROTOCOL_T0.toUInt()),
-    T1(SCARD_PROTOCOL_T1.toUInt()),
-    T15(SCARD_PROTOCOL_T15.toUInt()),
-    Raw(SCARD_PROTOCOL_RAW.toUInt()),
-    Undefined(SCARD_PROTOCOL_UNDEFINED.toUInt());
+actual enum class Protocol(internal val v: DWORD) {
+    Unset(SCARD_PROTOCOL_UNSET.convert<DWORD>()),
+    Any(SCARD_PROTOCOL_ANY.convert<DWORD>()),
+    T0(SCARD_PROTOCOL_T0.convert<DWORD>()),
+    T1(SCARD_PROTOCOL_T1.convert<DWORD>()),
+    T15(SCARD_PROTOCOL_T15.convert<DWORD>()),
+    Raw(SCARD_PROTOCOL_RAW.convert<DWORD>()),
+    Undefined(SCARD_PROTOCOL_UNDEFINED.convert<DWORD>());
 }
 
-internal fun uint32_t.toProtocol(): Protocol? {
+internal fun DWORD.toProtocol(): Protocol? {
     return Protocol.values().find { it.v == this }
 }
 
-internal fun Set<Protocol>.toUInt(): uint32_t {
+internal fun Set<Protocol>.toDWord(): DWORD {
     return map { it.v }.reduce { acc, it -> acc or it }
 }
 
-actual enum class DisconnectDisposition(internal val v: uint32_t) {
-    Leave(SCARD_LEAVE_CARD.toUInt()),
-    Reset(SCARD_RESET_CARD.toUInt()),
-    Unpower(SCARD_UNPOWER_CARD.toUInt()),
-    Eject(SCARD_EJECT_CARD.toUInt())
+actual enum class DisconnectDisposition(internal val v: DWORD) {
+    Leave(SCARD_LEAVE_CARD.convert<DWORD>()),
+    Reset(SCARD_RESET_CARD.convert<DWORD>()),
+    Unpower(SCARD_UNPOWER_CARD.convert<DWORD>()),
+    Eject(SCARD_EJECT_CARD.convert<DWORD>())
 }
 
-actual enum class Initialization(internal val v: uint32_t) {
-    Leave(SCARD_LEAVE_CARD.toUInt()),
-    Reset(SCARD_RESET_CARD.toUInt()),
-    Unpower(SCARD_UNPOWER_CARD.toUInt())
+actual enum class Initialization(internal val v: DWORD) {
+    Leave(SCARD_LEAVE_CARD.convert<DWORD>()),
+    Reset(SCARD_RESET_CARD.convert<DWORD>()),
+    Unpower(SCARD_UNPOWER_CARD.convert<DWORD>())
 }

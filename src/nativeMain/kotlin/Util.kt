@@ -18,6 +18,7 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+import au.id.micolous.kotlin.pcsc.internal.*
 import kotlin.collections.Collection
 import kotlin.collections.MutableList
 import kotlin.collections.forEachIndexed
