@@ -4,9 +4,17 @@ work-in-progress bindings for the PC/SC API in Kotlin.
 
 This takes some small liberties with the PC/SC API to make it object oriented.
 
-## Implemented:
+## Test / support matrix
 
-Currently only tested on macOS with Kotlin/Native.
+Platform           | PC/SC Implementation | JNA (JRE)  | Native
+------------------ | -------------------- | ---------- | ------
+Linux x86_64       | pcsclite             | :o:        | :o:
+macOS 10.14 x86_64 | `PCSC.framework`     | :o:        | :o:
+Windows 10 x86_64  | `WinSCard.dll`       | :question: | :x:
+
+:warning: Cross-compiling Native targets is not supported.
+
+## Implemented:
 
 * SCardEstablishContext -> Context.establish
 * SCardIsValidContext -> Context.isValid
@@ -48,6 +56,12 @@ Currently only tested on macOS with Kotlin/Native.
   latest version of Xcode.
 
 * Windows: Not working yet
+
+## Tests
+
+`ContextTest` requires a connected PC/SC compatible reader, and a card connected to it.
+
+TODO: Make this work even if there is no card attached.
 
 ## Running
 
