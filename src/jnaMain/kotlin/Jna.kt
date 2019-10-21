@@ -61,13 +61,13 @@ internal class Handle(value: Long = 0) : KIntegerType(HANDLE_SIZE, value) {
 
 internal class HandleByReference : ByReference(HANDLE_SIZE) {
     var value: Long
-        get() = when (DWORD_SIZE) {
+        get() = when (HANDLE_SIZE) {
             4 -> pointer.getInt(0).toLong()
             8 -> pointer.getLong(0)
             else -> throw NotImplementedError("HANDLE_SIZE = $HANDLE_SIZE")
         }
 
-        set(value) = when (DWORD_SIZE) {
+        set(value) = when (HANDLE_SIZE) {
             4 -> pointer.setInt(0, value.toInt())
             8 -> pointer.setLong(0, value)
             else -> throw NotImplementedError("HANDLE_SIZE = $HANDLE_SIZE")
