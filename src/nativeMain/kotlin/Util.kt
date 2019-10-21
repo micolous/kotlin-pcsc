@@ -18,33 +18,7 @@
  */
 package au.id.micolous.kotlin.pcsc
 
-import au.id.micolous.kotlin.pcsc.internal.*
-import kotlin.collections.Collection
-import kotlin.collections.MutableList
-import kotlin.collections.forEachIndexed
-import kotlin.sequences.Sequence
 import kotlinx.cinterop.*
-
-internal fun ByteArray.toMultiString(): Sequence<String> {
-    val array = this
-    return sequence {
-        var start = 0
-
-        for (index in array.indices) {
-            if (array[index] == 0.toByte()) {
-                // terminator
-                if (index == start) {
-                    // final terminator
-                    break
-                }
-
-                // Return the substring
-                yield(array.decodeToString(start, index))
-                start = index + 1
-            }
-        }
-    }
-}
 
 inline fun <T : Any, R> T?.useNullablePinned(block: (Pinned<T>?) -> R): R {
     if (this == null) {

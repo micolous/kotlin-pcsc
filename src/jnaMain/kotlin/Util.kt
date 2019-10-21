@@ -20,53 +20,8 @@ package au.id.micolous.kotlin.pcsc
 
 import java.nio.ByteBuffer
 
-/*
-internal fun Collection<String>.asMultiString() : ByteBuffer {
-    // We're unlikely to have multi-byte characters as an input; but just in case, allow up to
-    // 4 per character in the source string.
-    val buf = ByteBuffer.allocate(map { (it.length * 4) + 1 }.sum() + 1)
-    for (group in this) {
-        buf.put(group.toByteArray())
-
-        // Null terminator for entry
-        buf.put(0)
-    }
-
-    // Null terminator for list
-    buf.put(0)
-
-    var finalLength = buf.position()
-    return buf
-}
- */
-
 internal fun ByteBuffer.getMultiString(length: Int): Sequence<String> {
-    val buffer = this
-    val offset = position()
-    return sequence {
-        var start = 0
-
-        while (buffer.hasRemaining() && (buffer.position() - offset) < length) {
-            val index = buffer.position()
-            if (buffer.get() == 0.toByte()) {
-                // Terminator
-                if (index == start) {
-                    // final terminator
-                    break
-                }
-
-                // Return the substring
-                buffer.position(start)
-                val arr = ByteArray(index - start)
-                buffer.get(arr)
-                yield(String(arr, 0, arr.size))
-
-                // Move to next byte
-                buffer.get()
-                start = index + 1
-            }
-        }
-    }
+    return getByteArray(length).toMultiString()
 }
 
 internal fun ByteBuffer.getByteArray(length: Int): ByteArray {

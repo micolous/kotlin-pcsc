@@ -40,3 +40,32 @@ internal fun Collection<String>.asMultiString() : ByteArray {
 
     return buf.toByteArray()
 }
+
+private const val ZERO: Byte = 0
+
+internal fun ByteArray.toMultiString(
+    off: Int = 0, len: Int = (size - off)): Sequence<String> {
+    require(off >= 0) { "off must be greater than or equal to 0" }
+    require(len >= 0) { "len must be greater than or equal to 0" }
+    require(off <= size) { "off must be less than or equal to $size" }
+    require((off + len) <= size) { "length must be less than or equal to ${size - off}" }
+
+    val array = this
+    return sequence {
+        var start = off
+
+        for (index in (off..off + len)) {
+            if (array[index] == ZERO) {
+                // terminator
+                if (index == start) {
+                    // final terminator
+                    break
+                }
+
+                // Return the substring
+                yield(array.decodeToString(start, index, true))
+                start = index + 1
+            }
+        }
+    }
+}
