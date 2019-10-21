@@ -96,9 +96,9 @@ Then unplug and replug the device.
 
 ## FAQ
 
-#### How does this relate to `java.smartcard`?
+#### How does this relate to javax.smartcardio?
 
-This is _entirely different_ to the `java.smartcard` which was included in Java 8 and earlier.
+This is _entirely different_ to the `javax.smartcardio` which was included in Java 8 and earlier.
 It does not support these APIs at all, even when they are available.
 
 If you want to use that API, take a look at [jnasmartcardio][]. This project's JNA implementation
