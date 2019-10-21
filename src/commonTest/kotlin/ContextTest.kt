@@ -42,6 +42,7 @@ class ContextTest {
 
     @Test
     fun testTerminalContext() {
+        // TODO: Fails on Windows
         val context = Context.establish(Scope.Terminal)
         assertTrue(context.isValid())
         context.release()
@@ -60,6 +61,7 @@ class ContextTest {
     fun testConnectToFirstReader() {
         val context = Context.establish()
         val firstReader = context.listReaders()[0]
+        // TODO: Windows: fails with E_NOT_READY
         val card = context.connect(firstReader, ShareMode.Direct, Protocol.Any)
         assertNotNull(card.protocol)
         card.reconnect(ShareMode.Direct, initialization = Initialization.Leave)
