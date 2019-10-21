@@ -96,27 +96,27 @@ Then unplug and replug the device.
 
 ## FAQ
 
-* **How does this relate to `java.smartcard`?**
+#### How does this relate to `java.smartcard`?
 
-  This is _entirely different_ to the `java.smartcard` which was included in Java 8 and earlier.
-  It does not support these APIs at all, even when they are available.
+This is _entirely different_ to the `java.smartcard` which was included in Java 8 and earlier.
+It does not support these APIs at all, even when they are available.
 
-  If you want to use that API, take a look at [jnasmartcardio][]. This project's JNA implementation
-  was inspired by it.
+If you want to use that API, take a look at [jnasmartcardio][]. This project's JNA implementation
+was inspired by it.
 
-* **What about mobile (Android / iOS) support?**
+#### What about mobile (Android / iOS) support?
 
-  This is explicitly _not_ in scope for this project.
+This is explicitly _not_ in scope for this project.
 
-  Most mobile devices do not offer a PC/SC-compatible API. The few devices that _do_ run a regular
-  enough Linux userland that you should be able to build using that.
+Most mobile devices do not offer a PC/SC-compatible API. The few devices that _do_ run a regular
+enough Linux userland that you should be able to build using that.
 
-* **How do I use this to connect to FeliCa / MIFARE / etc?**
+#### How do I use this to connect to FeliCa / MIFARE / etc?
 
-  You'll need to provide your own implementation of those protocols. PC/SC only provides a very low
-  level interface, and you'll be sending `ByteArray` to the ICC and getting `ByteArray` back.
+You'll need to provide your own implementation of those protocols. PC/SC only provides a very low
+level interface, and you'll be sending `ByteArray` to the ICC and getting `ByteArray` back.
 
-  We don't even parse the APDUs for you...
+We don't even parse the APDUs for you...
 
 [JNA]: https://github.com/java-native-access/jna
 [jnasmartcardio]: https://github.com/jnasmartcardio/jnasmartcardio
