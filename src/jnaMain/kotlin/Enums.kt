@@ -54,15 +54,19 @@ internal fun Set<Protocol>.toLong(): Long {
     return map { it.v }.reduce { acc, it -> acc or it }
 }
 
-actual enum class DisconnectDisposition(internal val v: Long) {
+actual enum class DisconnectDisposition(private val l: Long) {
     Leave(0),
     Reset(1),
     Unpower(2),
     Eject(3);
+
+    internal val v = Dword(l)
 }
 
-actual enum class Initialization(internal val v: Long) {
+actual enum class Initialization(private val l: Long) {
     Leave(0),
     Reset(1),
-    Unpower(2)
+    Unpower(2);
+
+    internal val v = Dword(l)
 }

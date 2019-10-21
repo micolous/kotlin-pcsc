@@ -18,42 +18,38 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+import java.nio.ByteBuffer
+
 actual class Card internal constructor(
     private val handle: SCardHandle,
     actual var protocol: Protocol?) {
 
     // SCardDisconnect
     actual fun disconnect(disposition: DisconnectDisposition) {
-        /*
         wrapPCSCErrors {
-            SCardDisconnect(handle, disposition.v)
-        } */
+            LIB.value.SCardDisconnect(handle, disposition.v)
+        }
         protocol = null
     }
 
     // SCardReconnect
     actual fun reconnect(shareMode: ShareMode, preferredProtcols: Set<Protocol>?, initialization: Initialization) {
-        /*
-        val protocolMask = preferredProtcols?.toUInt() ?: 0u
+        val protocolMask = Dword(preferredProtcols?.toLong() ?: 0)
 
-        protocol = memScoped {
-            val dwActiveProtocol = alloc<uint32_tVar>()
-
-            wrapPCSCErrors {
-                SCardReconnect(handle, shareMode.v, protocolMask, initialization.v, dwActiveProtocol.ptr)
-            }
-
-            dwActiveProtocol.value.toProtocol()
+        val pdwActiveProtocol = DwordByReference()
+        wrapPCSCErrors {
+            LIB.value.SCardReconnect(handle, shareMode.v, protocolMask, initialization.v, pdwActiveProtocol)
         }
-         */
+
+        protocol = pdwActiveProtocol.value.toLong().toProtocol()
+
     }
 
     // SCardTransmit
     actual fun transmit(buffer: ByteArray) : ByteArray {
-        /*
         // Copy the send buffer to insulate it from the library.
-        val mySendBuffer = buffer.toUByteArray()
-        val cbSendLength = mySendBuffer.size.toUInt()
+        val mySendBuffer = buffer.copyOf()
+        val cbSendLength = Dword(mySendBuffer.size.toLong())
 
         val pioSendPci = when (protocol) {
             Protocol.T0 -> SCARD_PCI_T0
@@ -61,22 +57,16 @@ actual class Card internal constructor(
             Protocol.Raw -> SCARD_PCI_RAW
             // TODO: Implement other protocols
             else -> throw NotImplementedError("Protocol $protocol")
+        }.value
+
+        val pbRecvBuffer = ByteBuffer.allocateDirect(MAX_BUFFER_SIZE)
+        val pcbRecvLength = DwordByReference(Dword(pbRecvBuffer.limit().toLong()))
+
+        wrapPCSCErrors {
+            LIB.value.SCardTransmit(handle, pioSendPci, mySendBuffer, cbSendLength, null, pbRecvBuffer, pcbRecvLength)
         }
 
-        return memScoped { mySendBuffer.usePinned { pbSendBuffer ->
-            val bRecvBuffer = UByteArray(MAX_BUFFER_SIZE)
-            val pcbRecvLength = alloc<uint32_tVar>()
-            pcbRecvLength.value = bRecvBuffer.size.toUInt()
-
-            bRecvBuffer.usePinned { pbRecvBuffer -> wrapPCSCErrors {
-                SCardTransmit(handle, pioSendPci, pbSendBuffer.addressOf(0), cbSendLength, null, pbRecvBuffer.addressOf(0), pcbRecvLength.ptr)
-            }}
-
-            bRecvBuffer.sliceArray(0..pcbRecvLength.value.toInt()).toByteArray()
-        }}
-
-         */
-        // TODO
-        return buffer.reversedArray()
+        pbRecvBuffer.position(0)
+        return pbRecvBuffer.getByteArray(pcbRecvLength.value.toInt())
     }
 }

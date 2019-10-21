@@ -82,3 +82,9 @@ internal fun ByteBuffer.getMultiString(length: Int): Sequence<String> {
         }
     }
 }
+
+internal fun ByteBuffer.getByteArray(length: Int): ByteArray {
+    val out = ByteArray(length)
+    get(out)
+    return out
+}

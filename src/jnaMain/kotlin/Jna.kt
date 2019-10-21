@@ -2,6 +2,7 @@ package au.id.micolous.kotlin.pcsc
 
 import com.sun.jna.*
 import com.sun.jna.ptr.ByReference
+import java.lang.reflect.Method
 import java.nio.ByteBuffer
 
 private const val LIB_WIN32 = "WinSCard.dll"
@@ -82,8 +83,8 @@ internal typealias SCardHandle = Handle
 internal typealias SCardHandleByReference = HandleByReference
 
 internal class SCardIoRequest(p: Pointer? = null) : Structure(p) {
-    var dwProtocol = Dword()
-    var cbPciLength = Dword()
+    @JvmField var dwProtocol = Dword()
+    @JvmField var cbPciLength = Dword()
 
     override fun getFieldOrder(): MutableList<Any?> {
         return mutableListOf("dwProtocol", "cbPciLength")
@@ -101,20 +102,61 @@ private fun getSCardIoRequest(v: String) = lazy {
     }
 }
 
+private object MacOSFunctionMap: FunctionMapper {
+    override fun getFunctionName(library: NativeLibrary, method: Method): String {
+        return when (val name = method.name!!) {
+            // SCardControl132 implements "standard" SCardControl signature in pcsc-lite 1.3.2 and
+            // later. Older versions had a different signature.
+            //
+            // winscard.h in PCSC.framework has a #define for this.
+            "SCardControl" -> "SCardControl132"
+            else -> name
+        }
+    }
+}
+
+private object WindowsFunctionMap: FunctionMapper {
+    override fun getFunctionName(library: NativeLibrary, method: Method): String {
+        return when (val name = method.name!!) {
+            // Remap all method calls to the ASCII versions.
+            "SCardListReaderGroups",
+            "SCardListReaders",
+            "SCardGetStatusChange",
+            "SCardConnect",
+            "SCardStatus" -> name + "A"
+
+            else -> name
+        }
+    }
+}
+
 @Suppress("FunctionName")
 internal interface WinscardLibrary: Library {
-    fun SCardEstablishContext(dwScope: Dword, pvReserved1: Pointer?, pvReserved2: Pointer?, phContext: SCardContextByReference): SCardResult
+    fun SCardEstablishContext(dwScope: Dword, pvReserved1: Pointer?, pvReserved2: Pointer?,
+                              phContext: SCardContextByReference): SCardResult
     fun SCardReleaseContext(hContext: SCardContext): SCardResult
     fun SCardIsValidContext(hContext: SCardContext): SCardResult
-    fun SCardConnect(hContext: SCardContext, szReader: String, dwShareMode: Dword, dwPreferredProtocols: Dword, phCard: SCardHandleByReference, pdwActiveProtocol: DwordByReference): SCardResult
-    fun SCardListReaders(hContext: SCardContext, mszGroups: ByteArray?, mszReaders: ByteBuffer?, pcchReaders: DwordByReference): SCardResult
+    fun SCardListReaders(hContext: SCardContext, mszGroups: ByteArray?, mszReaders: ByteBuffer?,
+                         pcchReaders: DwordByReference): SCardResult
+    fun SCardConnect(hContext: SCardContext, szReader: String, dwShareMode: Dword,
+                     dwPreferredProtocols: Dword, phCard: SCardHandleByReference,
+                     pdwActiveProtocol: DwordByReference): SCardResult
+    fun SCardReconnect(hCard: SCardHandle, dwShareMode: Dword, dwPreferredProtocols: Dword,
+                       dwInitialization: Dword, pdwActiveProtocol: DwordByReference): SCardResult
+    fun SCardDisconnect(hCard: SCardHandle, dwDisposition: Dword): SCardResult
+    fun SCardTransmit(hCard: SCardHandle, pioSendPci: SCardIoRequest, pbSendBuffer: ByteArray,
+                      cbSendLength: Dword, pioRecvPci: SCardIoRequest?, pbRecvBuffer: ByteBuffer,
+                      pcbRecvLength: DwordByReference): SCardResult
 
 
 }
 
 internal val LIB = lazy {
     val options = mutableMapOf<String, Any>()
-    // TODO function mapper
+    when {
+        Platform.isMac() -> options[Library.OPTION_FUNCTION_MAPPER] = MacOSFunctionMap
+        Platform.isWindows() -> options[Library.OPTION_FUNCTION_MAPPER] = WindowsFunctionMap
+    }
 
     Native.loadLibrary(LIB_NAME, WinscardLibrary::class.java, options) as WinscardLibrary
 }
@@ -123,4 +165,4 @@ private val NATIVE_LIB = lazy { NativeLibrary.getInstance(LIB_NAME)!! }
 internal val SCARD_PCI_T0 = getSCardIoRequest("g_rgSCardT0Pci")
 internal val SCARD_PCI_T1 = getSCardIoRequest("g_rgSCardT1Pci")
 internal val SCARD_PCI_RAW = getSCardIoRequest("g_rgSCardRawPci")
-
+internal const val MAX_BUFFER_SIZE = 264

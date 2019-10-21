@@ -34,11 +34,15 @@ kotlin {
             }
         }
     }
+
+    this.sourceSets.all {
+        languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
+    }
 }
 
 afterEvaluate {
     val jnaFatJar by tasks.creating(Jar::class) {
-        dependsOn("jnaMainClasses")
+        dependsOn("jnaJar")
         group = "jar"
         manifest.attributes["Main-Class"] = "SampleKt"
         val deps = configurations["jnaRuntimeClasspath"].filter {
