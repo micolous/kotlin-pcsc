@@ -67,10 +67,17 @@ kotlin {
             dependsOn(getByName("commonMain"))
         }
 
+        val nativeMacosMain by creating {
+            dependsOn(nativeMain)
+        }
+
         fun KotlinNativeTarget.buildNative() {
             compilations["main"].apply {
                 defaultSourceSet {
-                    dependsOn(nativeMain)
+                    dependsOn(when (preset) {
+                        presets["macosX64"] -> nativeMacosMain
+                        else -> nativeMain
+                    })
                 }
 
                 cinterops {

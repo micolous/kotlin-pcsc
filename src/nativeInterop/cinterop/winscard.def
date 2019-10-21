@@ -23,7 +23,6 @@ headerFilter.mingw = winscard.h pcsclite.h
 ---
 
 #if defined(__APPLE__)
-#error foo
 typedef int32_t SCARDSTATUS;
 typedef uint32_t DWORD;
 

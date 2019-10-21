@@ -32,3 +32,25 @@ internal fun wrapPCSCErrors(
         else -> throw PCSCError.fromCode(errorCode.toLong())
     }
 }
+
+/*
+ * This definition of `wrapPCSCErrors` is needed for macOS:
+ *
+ * - `SCARDSTATUS` is `int32_t` (which matches the return type of all `SCard*` functions
+ * - `SCARD_S_*` macros are interpreted by Kotlin C/Interop as `uint32_t`.
+ *
+ * So we convert all error constants to their "signed" form...
+ */
+inline internal fun wrapPCSCErrors(
+    trueValue: SCARDSTATUS = SCARD_S_SUCCESS.convert(),
+    falseValue: UInt? = null,
+    noinline f: () -> SCARDSTATUS): Boolean =
+    wrapPCSCErrors(trueValue, falseValue?.convert<SCARDSTATUS>(), f)
+
+/*
+ * This definition of `wrapPCSCErrors` is needed to work around overload resolution ambigity for
+ * bare calls with only a `f` parameter introduced by the (previous) macOS work-around.
+ */
+inline internal fun wrapPCSCErrors(
+    noinline f: () -> SCARDSTATUS): Boolean =
+    wrapPCSCErrors(falseValue = (null as SCARDSTATUS?), f = f)
