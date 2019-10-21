@@ -23,10 +23,11 @@ headerFilter.mingw = winscard.h pcsclite.h
 ---
 
 #if defined(__APPLE__)
-typedef int32_t SCARDSTATUS;
-typedef uint32_t DWORD;
+// typedefs declared here don't show up. They are instead defined in:
+// src/nativeMacosMain/kotlin/PlatformTypes.kt
 
 #elif defined(__linux__)
+// Return type for all SCard* functions
 typedef LONG SCARDSTATUS;
 
 #else
