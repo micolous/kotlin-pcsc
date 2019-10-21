@@ -82,6 +82,7 @@ internal typealias SCardContextByReference = HandleByReference
 internal typealias SCardHandle = Handle
 internal typealias SCardHandleByReference = HandleByReference
 
+// SCARD_IO_REQUEST
 internal class SCardIoRequest(p: Pointer? = null) : Structure(p) {
     @JvmField var dwProtocol = Dword()
     @JvmField var cbPciLength = Dword()
@@ -92,6 +93,24 @@ internal class SCardIoRequest(p: Pointer? = null) : Structure(p) {
 
     override fun toString(): String {
         return "${javaClass.name}{dwProtocol: $dwProtocol, cbPciLength: $cbPciLength}"
+    }
+
+    companion object {
+        private fun build(dwProtocol: Dword): SCardIoRequest {
+            return SCardIoRequest().apply {
+                this.dwProtocol = dwProtocol
+                this.cbPciLength = Dword(this.size().toLong())
+            }
+        }
+
+        fun getForProtocol(protocol: Protocol?): SCardIoRequest =
+            when (val p = protocol ?: Protocol.Undefined) {
+                Protocol.T0 -> SCARD_PCI_T0.value
+                Protocol.T1 -> SCARD_PCI_T1.value
+                Protocol.Raw -> SCARD_PCI_RAW.value
+
+                else -> build(Dword(p.v))
+            }
     }
 }
 

@@ -1,6 +1,6 @@
 /*
  * Card.kt
- * Native implementation of SCARDHANDLE PC/SC operations
+ * JNA implementation of SCARDHANDLE PC/SC operations
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
  *
@@ -51,13 +51,7 @@ actual class Card internal constructor(
         val mySendBuffer = buffer.copyOf()
         val cbSendLength = Dword(mySendBuffer.size.toLong())
 
-        val pioSendPci = when (protocol) {
-            Protocol.T0 -> SCARD_PCI_T0
-            Protocol.T1 -> SCARD_PCI_T1
-            Protocol.Raw -> SCARD_PCI_RAW
-            // TODO: Implement other protocols
-            else -> throw NotImplementedError("Protocol $protocol")
-        }.value
+        val pioSendPci = SCardIoRequest.getForProtocol(protocol)
 
         val pbRecvBuffer = ByteBuffer.allocateDirect(MAX_BUFFER_SIZE)
         val pcbRecvLength = DwordByReference(Dword(pbRecvBuffer.limit().toLong()))

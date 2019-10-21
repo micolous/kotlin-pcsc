@@ -1,6 +1,6 @@
 /*
  * Context.kt
- * Native implementation of PC/SC API enumerations
+ * JNA implementation of PC/SC API enumerations
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
  *

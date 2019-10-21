@@ -125,6 +125,10 @@ kotlin {
             }
         }
     }
+
+    sourceSets.all {
+        languageSettings.useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
+    }
 }
 
 tasks {

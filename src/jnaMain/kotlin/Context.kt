@@ -1,6 +1,6 @@
 /*
  * Context.kt
- * Native implementation of SCARDCONTEXT PC/SC operations
+ * JNA implementation of SCARDCONTEXT PC/SC operations
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
  *
@@ -76,7 +76,7 @@ actual class Context private constructor(private var handle: SCardContext?) {
             readers.position(0)
             readers.getMultiString(neededLength).toList()
         } else {
-            listOf("foo")
+            emptyList()
         }
     }
 

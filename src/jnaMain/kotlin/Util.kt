@@ -1,6 +1,6 @@
 /*
  * Util.kt
- * Native utility functions for JNA interop
+ * JNA utility functions for native interop
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
  *
@@ -20,20 +20,6 @@ package au.id.micolous.kotlin.pcsc
 
 import java.nio.ByteBuffer
 
-internal fun Collection<String>.asMultiString() : ByteArray {
-    val buf = mutableListOf<Byte>()
-    for (group in this) {
-        group.toByteArray().toCollection(buf)
-
-        // Null terminator for entry
-        buf.add(0)
-    }
-
-    // Null terminator for list
-    buf.add(0)
-
-    return buf.toByteArray()
-}
 /*
 internal fun Collection<String>.asMultiString() : ByteBuffer {
     // We're unlikely to have multi-byte characters as an input; but just in case, allow up to

@@ -78,7 +78,7 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
 
                 readers.toMultiString().toList()
             } else {
-                listOf("foo")
+                emptyList()
             }
         }}
     }
