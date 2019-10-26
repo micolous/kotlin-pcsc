@@ -75,4 +75,18 @@ actual class Card internal constructor(
             bRecvBuffer.sliceArray(0..pcbRecvLength.value.toInt()).toByteArray()
         }}
     }
+
+    // SCardBeginTransaction
+    actual fun beginTransaction() {
+        wrapPCSCErrors {
+            SCardBeginTransaction(handle)
+        }
+    }
+
+    // SCardEndTransaction
+    actual fun endTransaction(disposition: DisconnectDisposition) {
+        wrapPCSCErrors {
+            SCardEndTransaction(handle, disposition.v)
+        }
+    }
 }

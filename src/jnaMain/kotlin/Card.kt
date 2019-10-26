@@ -63,4 +63,18 @@ actual class Card internal constructor(
         pbRecvBuffer.position(0)
         return pbRecvBuffer.getByteArray(pcbRecvLength.value.toInt())
     }
+
+    // SCardBeginTransaction
+    actual fun beginTransaction() {
+        wrapPCSCErrors {
+            LIB.value.SCardBeginTransaction(handle)
+        }
+    }
+
+    // SCardEndTransaction
+    actual fun endTransaction(disposition: DisconnectDisposition) {
+        wrapPCSCErrors {
+            LIB.value.SCardEndTransaction(handle, disposition.v)
+        }
+    }
 }

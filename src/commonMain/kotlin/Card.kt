@@ -75,6 +75,25 @@ expect class Card {
      * @throws PCSCError
      */
     fun transmit(buffer: ByteArray) : ByteArray
+
+    /**
+     * Starts a new transaction on the card.
+     *
+     * Equivalent to `SCardBeginTransaction`.
+     * @throws PCSCError
+     */
+    fun beginTransaction()
+
+    /**
+     * Ends a previousl declared transaction.
+     *
+     * Equivalent to `SCardEndTransaction`.
+     *
+     * @param disposition State to leave the card in when disconnecting.
+     * Defaults to doing nothing ([DisconnectDisposition.Leave]).
+     * @throws PCSCError
+     */
+    fun endTransaction(disposition: DisconnectDisposition = DisconnectDisposition.Leave)
 }
 
 /**
