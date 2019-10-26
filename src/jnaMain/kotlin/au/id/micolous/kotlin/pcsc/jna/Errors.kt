@@ -1,5 +1,5 @@
 /*
- * PCSCError.kt
+ * Errors.kt
  * Error handling helpers for JNA PC/SC API
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
@@ -16,8 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@file:JvmName("PCSCErrorActual")
-package au.id.micolous.kotlin.pcsc
+package au.id.micolous.kotlin.pcsc.jna
+
+import au.id.micolous.kotlin.pcsc.*
 
 internal fun wrapPCSCErrors(
     trueValue: PCSCErrorCode = PCSCErrorCode.S_SUCCESS,

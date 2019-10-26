@@ -1,6 +1,6 @@
 /*
- * PCSCError.kt
- * Error class for PC/SC API
+ * PCSCErrorCode.kt
+ * Error code enumeration for PC/SC API
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
  *
@@ -18,27 +18,9 @@
  */
 package au.id.micolous.kotlin.pcsc
 
-data class PCSCError private constructor(
-    val code: Long,
-    /** Canonical enumeration for this error condition */
-    val error: PCSCErrorCode?) : Throwable() {
-    internal constructor(error: PCSCErrorCode) : this(error.code, error)
-
-    override val message: String
-        get() = error?.message ?: "UNKNOWN (0x${code.toString(16)})"
-
-    override fun toString() = "PCSCError: $message"
-
-    companion object {
-        /** Converts a numeric error code to a [PCSCError] */
-        internal fun fromCode(errorCode: Long) : PCSCError {
-            return errorCode.toPCSCErrorCode()?.let {
-                PCSCError(it)
-            } ?: PCSCError(errorCode, null)
-        }
-    }
-}
-
+/**
+ * Enumeration to doscribe error states in the PC/SC API.
+ */
 enum class PCSCErrorCode(
     /** Numeric error code */
     val code: Long,
@@ -227,8 +209,6 @@ enum class PCSCErrorCode(
     /** `0x8010006F`: No PIN was presented to the smart card */
     W_CARD_NOT_AUTHENTICATED(0x8010006FL, "No PIN was presented to the smart card");
 
+    /** An error message for human consumption */
     val message: String = "${toString()} (0x${code.toString(16)}): $description"
 }
-
-private fun Long.toPCSCErrorCode(): PCSCErrorCode? =
-    PCSCErrorCode.values().find { it.code == this }

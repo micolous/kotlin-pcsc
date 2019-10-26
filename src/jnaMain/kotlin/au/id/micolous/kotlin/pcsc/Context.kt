@@ -18,6 +18,7 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+import au.id.micolous.kotlin.pcsc.jna.*
 import java.nio.ByteBuffer
 
 actual class Context private constructor(private var handle: SCardContext?) {
