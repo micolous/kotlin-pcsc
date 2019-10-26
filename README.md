@@ -20,6 +20,8 @@ Windows 10 x86_64  | `WinSCard.dll`       | :question:    | :x:
 
 ## API:
 
+API documentation can be built with: `./gradlew dokka`
+
 This takes some small liberties with the PC/SC API to make it object oriented.
 
 ### Implemented:

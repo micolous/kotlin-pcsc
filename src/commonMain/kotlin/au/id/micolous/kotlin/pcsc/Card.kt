@@ -85,7 +85,7 @@ expect class Card {
     fun beginTransaction()
 
     /**
-     * Ends a previousl declared transaction.
+     * Ends a previously declared transaction.
      *
      * Equivalent to `SCardEndTransaction`.
      *

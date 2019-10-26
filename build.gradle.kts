@@ -135,5 +135,32 @@ tasks {
     val dokka by getting(DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
+        multiplatform {
+            val global by creating {
+                perPackageOption {
+                    prefix = "au.id.micolous.kotlin.pcsc.jna"
+                    suppress = true
+                }
+                perPackageOption {
+                    prefix = "au.id.micolous.kotlin.pcsc.native"
+                    suppress = true
+                }
+                perPackageOption {
+                    prefix = "au.id.micolous.kotlin.pcsc.internal"
+                    suppress = true
+                }
+            }
+
+            register("common") {
+                targets = listOf("jna", "native")
+                platform = "common"
+            }
+
+
+            // val common by creating {}
+            //val linuxX64 by creating {}
+            //val macosX64 by creating {}
+
+        }
     }
 }
