@@ -21,6 +21,7 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
 import platform.posix.int32_t
+import platform.posix.uint32_t
 
 internal fun wrapPCSCErrors(
     trueValue: SCARDSTATUS = SCARD_S_SUCCESS.convert(),
@@ -29,6 +30,9 @@ internal fun wrapPCSCErrors(
     return when (val errorCode = f()) {
         trueValue -> true
         falseValue -> false
+
+        // Error handler
+        is int32_t -> throw PCSCError.fromCode(errorCode.convert<uint32_t>().toLong())
         else -> throw PCSCError.fromCode(errorCode.toLong())
     }
 }
