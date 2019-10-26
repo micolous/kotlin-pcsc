@@ -40,12 +40,15 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardReconnect -> Card.reconnect
 * SCardTransmit -> Card.transmit
 
-### TODO:
-
 #### Transactions and transmission
 
 * SCardBeginTransaction
 * SCardEndTransaction
+
+### TODO:
+
+#### Transactions and transmission
+
 * SCardCancel
 
 #### Status inquiry
