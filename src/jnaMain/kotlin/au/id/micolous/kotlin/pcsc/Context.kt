@@ -42,11 +42,12 @@ actual class Context private constructor(private var handle: SCardContext?) {
         }
     }
 
-    /** Returns the handle associated with this context, or raises an exception if invalid. */
-    private fun nonNullHandle(): SCardContext {
-        val handle = handle
-        require(handle != null) { "Context is invalid" }
-        return handle
+    // SCardCancel
+    actual fun cancel() {
+        val handle = nonNullHandle()
+        wrapPCSCErrors {
+            LIB.value.SCardCancel(handle)
+        }
     }
 
     // SCardListReaders
@@ -94,6 +95,13 @@ actual class Context private constructor(private var handle: SCardContext?) {
         }
 
         return Card(phCard.handle, pdwActiveProtocol.value.toLong().toProtocol())
+    }
+
+    /** Returns the handle associated with this context, or raises an exception if invalid. */
+    private fun nonNullHandle(): SCardContext {
+        val handle = handle
+        require(handle != null) { "Context is invalid" }
+        return handle
     }
 
     actual companion object {

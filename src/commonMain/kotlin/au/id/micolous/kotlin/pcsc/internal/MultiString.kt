@@ -43,6 +43,21 @@ internal fun Collection<String>.asMultiString() : ByteArray {
 
 private const val ZERO: Byte = 0
 
+/**
+ * Decodes a [ByteArray] containing a "multi-string" (`msz`) into a [Sequence] of [String].
+ *
+ * The input is a list of null terminated strings, that is then terminated with a null byte.
+ *
+ * If there is no final terminating byte, but the end of the [ByteArray] was reached, this method
+ * will not return an error.
+ *
+ * If no [off] and [len] parameters are specified, the entire length of the [ByteArray] is decoded.
+ *
+ * Text input is presumed to be encoded as UTF-8.
+ *
+ * @param off Offset of where the multi-string data starts, in bytes
+ * @param len Length of the multi-string, in bytes
+ */
 internal fun ByteArray.toMultiString(
     off: Int = 0, len: Int = (size - off)): Sequence<String> {
     require(off >= 0) { "off must be greater than or equal to 0" }

@@ -32,6 +32,7 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardIsValidContext -> Context.isValid
 * SCardReleaseContext -> Context.release
 * SCardListReaders -> Context.listReaders
+* SCardCancel -> Context.cancel
 
 #### Cards / ICC
 
@@ -39,17 +40,10 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardDisconnect -> Card.disconnect
 * SCardReconnect -> Card.reconnect
 * SCardTransmit -> Card.transmit
-
-#### Transactions and transmission
-
-* SCardBeginTransaction
-* SCardEndTransaction
+* SCardBeginTransaction -> Card.beginTransaction
+* SCardEndTransaction -> Card.endTransaction
 
 ### TODO:
-
-#### Transactions and transmission
-
-* SCardCancel
 
 #### Status inquiry
 

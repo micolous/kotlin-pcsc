@@ -186,6 +186,7 @@ internal interface WinscardLibrary: Library {
                       pcbRecvLength: DwordByReference): SCardResult
     fun SCardBeginTransaction(hCard: SCardHandle): SCardResult
     fun SCardEndTransaction(hCard: SCardHandle, dwDisposition: Dword): SCardResult
+    fun SCardCancel(hContext: SCardContext): SCardResult
 
 
 }

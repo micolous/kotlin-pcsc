@@ -44,11 +44,12 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
         }
     }
 
-    /** Returns the handle associated with this context, or raises an exception if invalid. */
-    private fun nonNullHandle(): SCARDCONTEXT {
-        val handle = handle
-        require(handle != null) { "Context is invalid" }
-        return handle
+    // SCardCancel
+    actual fun cancel() {
+        val handle = nonNullHandle()
+        wrapPCSCErrors {
+            SCardCancel(handle)
+        }
     }
 
     // SCardListReaders
@@ -99,6 +100,13 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
 
             Card(hCard.value, dwActiveProtocol.value.toProtocol())
         }
+    }
+
+    /** Returns the handle associated with this context, or raises an exception if invalid. */
+    private fun nonNullHandle(): SCARDCONTEXT {
+        val handle = handle
+        require(handle != null) { "Context is invalid" }
+        return handle
     }
 
     actual companion object {

@@ -39,6 +39,15 @@ expect class Context {
     fun isValid() : Boolean
 
     /**
+     * Terminates all outstanding actions within this [Context].
+     *
+     * Equivalent to `SCardCancel`.
+     *
+     * @throws PCSCError
+     */
+    fun cancel()
+
+    /**
      * Lists all readers available in this [Context].
      *
      * Equivalent to `SCardListReaders`.

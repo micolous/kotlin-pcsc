@@ -20,6 +20,13 @@ package au.id.micolous.kotlin.pcsc
 
 import kotlinx.cinterop.*
 
+/**
+ * Similar to [usePinned], but handles null values.
+ *
+ * If [this] is `null`, then [block] will be executed with a parameter of `null`.
+ *
+ * If [this] is non-`null`, then [block] will be executed with a [Pinned] version of [this].
+ */
 inline fun <T : Any, R> T?.useNullablePinned(block: (Pinned<T>?) -> R): R {
     if (this == null) {
         return block(null)
