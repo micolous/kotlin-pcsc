@@ -19,6 +19,7 @@
 package au.id.micolous.kotlin.pcsc
 
 import au.id.micolous.kotlin.pcsc.internal.*
+import au.id.micolous.kotlin.pcsc.native.*
 import kotlinx.cinterop.*
 import platform.posix.*
 

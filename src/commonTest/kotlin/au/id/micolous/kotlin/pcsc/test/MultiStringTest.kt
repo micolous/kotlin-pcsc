@@ -25,6 +25,7 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
+@kotlin.ExperimentalUnsignedTypes
 class MultiStringTest {
     /** Converts signed [Int] values into a [ByteArray] */
     private fun byteArrayOf(vararg i: Int) : ByteArray = i.map(Int::toByte).toByteArray()

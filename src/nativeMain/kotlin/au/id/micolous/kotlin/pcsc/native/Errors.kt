@@ -1,5 +1,5 @@
 /*
- * PCSCError.kt
+ * Errors.kt
  * Error handling helpers for native PC/SC API
  *
  * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
@@ -16,8 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package au.id.micolous.kotlin.pcsc
+package au.id.micolous.kotlin.pcsc.native
 
+import au.id.micolous.kotlin.pcsc.*
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
 import platform.posix.int32_t
