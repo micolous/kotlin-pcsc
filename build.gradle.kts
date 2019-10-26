@@ -152,7 +152,7 @@ tasks {
             }
 
             register("common") {
-                targets = listOf("jna", "native")
+                targets = listOf("all")
                 platform = "common"
             }
 
