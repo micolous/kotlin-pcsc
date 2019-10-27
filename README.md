@@ -22,44 +22,6 @@ Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
 
 API documentation can be built with: `./gradlew dokka`
 
-This takes some small liberties with the PC/SC API to make it object oriented.
-
-This library has a few tools to make working with PC/SC's data structures easier.
-
-The `commonMain` module contains the "public" API. Anything that **only** appears in `jnaMain`,
-`nativeMain`, `nativeMacosMain` or `nativeWindowsMain` is an internal implementation detail, and
-subject to change without warning.
-
-### Implemented:
-
-#### Context management
-
-* SCardEstablishContext -> Context.establish
-* SCardIsValidContext -> Context.isValid
-* SCardReleaseContext -> Context.release
-* SCardListReaders -> Context.listReaders
-* SCardCancel -> Context.cancel
-
-#### Cards / ICC
-
-* SCardConnect -> Context.connect
-* SCardDisconnect -> Card.disconnect
-* SCardReconnect -> Card.reconnect
-* SCardTransmit -> Card.transmit
-* SCardBeginTransaction -> Card.beginTransaction
-* SCardEndTransaction -> Card.endTransaction
-* SCardStatus -> Card.status
-* SCardControl -> Card.control
-* SCardGetAttrib -> Card.getAttrib
-
-### TODO:
-
-* SCardCancelTransaction
-* SCardGetStatusChange
-* SCardListReaderGroups
-* SCardSetAttrib
-* SCardSetTimeout
-
 ## Build and test
 
 **Note:** Running tests requires a connected PC/SC reader, and a card connected to it.
