@@ -50,4 +50,6 @@ internal interface WinscardLibrary: Library {
     fun SCardControl(hCard: SCardHandle, dwControlCode: Dword, pbSendBuffer: ByteArray?,
                      cbSendLength: Dword, pbRecvBuffer: ByteBuffer?, cbRecvLength: Dword,
                      lpBytesReturned: DwordByReference) : SCardResult
+    fun SCardGetAttrib(hCard: SCardHandle, dwAttrId: Dword, pbAttr: ByteBuffer?,
+                       pcbAttrLen: DwordByReference) : SCardResult
 }

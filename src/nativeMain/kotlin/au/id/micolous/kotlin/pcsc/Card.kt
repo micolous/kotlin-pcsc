@@ -169,5 +169,32 @@ actual class Card internal constructor(
         }
     }
 
+    // SCardGetAttrib
+    actual fun getAttrib(attribute: Long) : ByteArray? {
+        val dwAttrId: DWORD = attribute.convert()
+        return memScoped {
+            // Figure out how much space we need for the buffer, and if the attribute is supported
+            val pcbAttrLen = alloc<DWORDVar>()
+            if (!wrapPCSCErrors(falseValue = SCARD_E_UNEXPECTED) {
+                SCardGetAttrib(handle, dwAttrId, null, pcbAttrLen.ptr)
+            }) {
+                // Unsupported function
+                return null
+            }
+
+            val neededLength = pcbAttrLen.value.toInt()
+            if (neededLength == 0) {
+                // Don't need any buffer for this, return empty array now.
+                return ByteArray(0)
+            }
+
+            val bAttr = UByteArray(neededLength)
+            bAttr.usePinned { pbAttr -> wrapPCSCErrors {
+                SCardGetAttrib(handle, dwAttrId, pbAttr.addressOf(0), pcbAttrLen.ptr)
+            }}
+
+            bAttr.sliceArray(0 until pcbAttrLen.value.toInt()).toByteArray()
+        }
+    }
 
 }

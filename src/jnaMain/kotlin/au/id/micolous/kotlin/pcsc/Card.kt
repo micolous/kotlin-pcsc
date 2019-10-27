@@ -150,7 +150,8 @@ actual class Card internal constructor(
         require(recvBufferSize >= 0) { "recvBufferSize must be >= 0" }
         val bSendBuffer = sendBuffer?.copyOf()
         val cbSendLength = Dword(bSendBuffer?.size?.toLong() ?: 0)
-        val bRecvBuffer = if (recvBufferSize == 0) null else ByteBuffer.allocateDirect(recvBufferSize)
+        val bRecvBuffer =
+            if (recvBufferSize == 0) null else ByteBuffer.allocateDirect(recvBufferSize)
         val cbRecvLength = Dword(recvBufferSize.toLong())
         val lpBytesReturned = DwordByReference()
 
@@ -169,6 +170,37 @@ actual class Card internal constructor(
         return bRecvBuffer?.run {
             position(0)
             getByteArray(lpBytesReturned.value.toInt())
+        }
+    }
+
+    // SCardGetAttrib
+    actual fun getAttrib(attribute: Long): ByteArray? {
+        val dwAttrId: Dword = Dword(attribute)
+
+        // Figure out how much space we need for the buffer, and if the attribute is supported
+        val pcbAttrLen = DwordByReference()
+        if (!wrapPCSCErrors(falseValue = PCSCErrorCode.E_UNEXPECTED) {
+                LIB.value.SCardGetAttrib(handle, dwAttrId, null, pcbAttrLen)
+            }) {
+            // Unsupported function
+            return null
+        }
+
+        val neededLength = pcbAttrLen.value.toInt()
+        if (neededLength == 0) {
+            // Don't need any buffer for this, return empty array now.
+            return ByteArray(0)
+        }
+
+        val bAttr = ByteBuffer.allocateDirect(neededLength)!!
+
+        wrapPCSCErrors {
+            LIB.value.SCardGetAttrib(handle, dwAttrId, bAttr, pcbAttrLen)
+        }
+
+        return bAttr.run {
+            position(0)
+            getByteArray(pcbAttrLen.value.toInt())
         }
     }
 }

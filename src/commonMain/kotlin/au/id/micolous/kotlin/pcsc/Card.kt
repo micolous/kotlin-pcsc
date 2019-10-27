@@ -118,6 +118,15 @@ expect class Card {
      * [recvBufferSize] == 0
      */
     fun control(controlCode: Long, sendBuffer: ByteArray? = null, recvBufferSize: Int = 0): ByteArray?
+
+    /**
+     * Gets an attribute from the device.
+     *
+     * Equivalent to `SCardGetAttrib`.
+     *
+     * @return Attribute data, or `null` if the attribute is not supported.
+     */
+    fun getAttrib(attribute: Long): ByteArray?
 }
 
 /**
@@ -130,3 +139,5 @@ expect class Card {
  */
 fun Card.reconnect(shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any, initialization: Initialization)
         = reconnect(shareMode, setOf(preferredProtocol), initialization)
+
+fun Card.getAttrib(cls: Int, tag: Int) = getAttrib((cls.toLong() shl 16) or (tag.toLong() and 0xffffL))

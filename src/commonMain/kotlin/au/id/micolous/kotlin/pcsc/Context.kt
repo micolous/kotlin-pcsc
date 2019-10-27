@@ -94,4 +94,3 @@ expect class Context {
  */
 fun Context.connect(reader: String, shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any) : Card
         = connect(reader, shareMode, setOf(preferredProtocol))
-
