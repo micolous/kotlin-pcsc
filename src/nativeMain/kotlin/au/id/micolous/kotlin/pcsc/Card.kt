@@ -22,7 +22,6 @@ import au.id.micolous.kotlin.pcsc.internal.*
 import au.id.micolous.kotlin.pcsc.native.*
 import kotlinx.cinterop.*
 import platform.posix.*
-import platform.windows.*
 
 actual class Card internal constructor(
     private val handle: SCARDHANDLE,

@@ -16,10 +16,11 @@ linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
 headerFilter.linux = PCSC/**
 
 language.mingw = C
-headers.mingw = winscard.h winsmcard.h
+depends.mingw = posix
+headers.mingw = scarderr.h winscard.h winsmcrd.h
 compilerOpts.mingw = -DUNICODE -DWINVER=0x0601 -D_WIN32_WINNT=0x0601 -DWINAPI_FAMILY=3
 linkerOpts.mingw = -lWinSCard
-headerFilter.mingw = winscard.h winsmcard.h
+headerFilter.mingw = scarderr.h winscard.h winsmcrd.h
 
 ---
 

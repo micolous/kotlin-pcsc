@@ -21,7 +21,6 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
 import platform.posix.*
-import platform.windows.*
 
 actual enum class Scope(internal val v: DWORD) {
     User(SCARD_SCOPE_USER.convert<DWORD>()),

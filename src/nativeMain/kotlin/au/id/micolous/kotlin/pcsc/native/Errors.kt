@@ -23,7 +23,6 @@ import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
 import platform.posix.int32_t
 import platform.posix.uint32_t
-import platform.windows.*
 
 internal fun wrapPCSCErrors(
     trueValue: SCARDSTATUS = SCARD_S_SUCCESS.convert(),
