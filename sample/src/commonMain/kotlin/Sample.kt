@@ -73,7 +73,6 @@ fun main() {
         val card = context.connect(reader, ShareMode.Shared, setOf(Protocol.T0, Protocol.T1))
 
         when (card.protocol) {
-            null -> println("Unknown protocol!")
             Protocol.T0 -> println("Connected with T=0")
             Protocol.T1 -> println("Connected with T=1")
             else -> println("Protocol: ${card.protocol}")

@@ -1,6 +1,6 @@
-# kotlin-pcsc
+# [kotlin-pcsc][]
 
-Work-in-progress bindings for the PC/SC API (winscard) in Kotlin.
+Work-in-progress bindings for the PC/SC API ([winscard][]) in Kotlin.
 
 This was developed to enable a cleaner interface for the PC version of [Metrodroid][] (a public
 transit card reader).
@@ -10,19 +10,25 @@ This is a [Kotlin Multiplatform][multi] project, which supports building using:
 * **[JNA][]** on JVM (builds a single library for anything [JNA][] supports)
 * **Native** for Kotlin/Native apps
 
-Platform           | PC/SC Implementation | [JNA][] (JRE) | Native
------------------- | -------------------- | ------------- | ------
-Linux x86_64       | pcsclite             | :o:           | :o:
-macOS 10.14 x86_64 | `PCSC.framework`     | :o:           | :o:
-Windows 10 x86_64  | `WinSCard.dll`       | :question:    | :x:
+Platform           | PC/SC Implementation     | [JNA][] (JRE) | Native
+------------------ | ------------------------ | ------------- | ------
+Linux x86_64       | [pcsclite][]             | :o:           | :o:
+macOS 10.14 x86_64 | `PCSC.framework`         | :o:           | :o:
+Windows 10 x86_64  | [WinSCard.dll][winscard] | :question:    | :x:
 
-:warning: Cross-compiling **Native** targets is not supported.
+> :warning: Cross-compiling **Native** targets is not supported.
 
 ## API:
 
 API documentation can be built with: `./gradlew dokka`
 
 This takes some small liberties with the PC/SC API to make it object oriented.
+
+This library has a few tools to make working with PC/SC's data structures easier.
+
+The `commonMain` module contains the "public" API. Anything that **only** appears in `jnaMain`,
+`nativeMain`, `nativeMacosMain` or `nativeWindowsMain` is an internal implementation detail, and
+subject to change without warning.
 
 ### Implemented:
 
@@ -65,6 +71,9 @@ All targets require JDK 9 or later to be installed (for Gradle).
 ```
 ./gradlew :jnaMainClasses :jnaTest
 ```
+
+This builds for all platforms, as the prebuilt `net.java.dev.jna` package already includes
+platform-specific JNI helpers.  You don't need any cross-compiling or special machine for that.
 
 ### Native targets
 #### Linux
@@ -111,7 +120,7 @@ Then unplug and replug the device.
 
 #### Is there an example of use?
 
-Yes!  See the `sample` directory.
+Yes!  See [the `sample` directory of this repository](./sample/).
 
 This supports building on all target platforms, and includes a `jnaFatJar` task, which pulls in all
 dependencies to a single JAR file.
@@ -140,5 +149,8 @@ We don't even parse the APDUs for you...
 
 [JNA]: https://github.com/java-native-access/jna
 [jnasmartcardio]: https://github.com/jnasmartcardio/jnasmartcardio
+[kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 [Metrodroid]: https://github.com/metrodroid/metrodroid
 [multi]: https://kotlinlang.org/docs/reference/multiplatform.html
+[pcsclite]: https://pcsclite.apdu.fr/
+[winscard]: https://docs.microsoft.com/en-us/windows/win32/api/winscard/
