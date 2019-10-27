@@ -131,7 +131,8 @@ actual class Card internal constructor(
         return CardStatus(
             readerNames = readerNames.getMultiString(pcchReaderLen.value.toInt()).toList(),
             // SCARD_UNKNOWN == 0 on Windows
-            unknown = state == SCARD_UNKNOWN,
+            unknown = ((SCARD_UNKNOWN == 0L && state == SCARD_UNKNOWN) ||
+                    (SCARD_UNKNOWN != 0L && (state and SCARD_UNKNOWN) == SCARD_UNKNOWN)),
             // These are all written as bitmasks to be compatible with pcsclite and Windows
             absent = (state and SCARD_ABSENT) == SCARD_ABSENT,
             present = (state and SCARD_PRESENT) == SCARD_PRESENT,
