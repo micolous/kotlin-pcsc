@@ -100,6 +100,7 @@ expect class Card {
      *
      * Equivalent to `SCardStatus`.
      *
+     * @see CardStatus
      * @throws PCSCError
      */
     fun status(): CardStatus
