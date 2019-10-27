@@ -42,12 +42,12 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardTransmit -> Card.transmit
 * SCardBeginTransaction -> Card.beginTransaction
 * SCardEndTransaction -> Card.endTransaction
+* SCardStatus -> Card.status
 
 ### TODO:
 
 #### Status inquiry
 
-* SCardStatus
 * SCardGetStatusChange
 
 #### Control and attributes

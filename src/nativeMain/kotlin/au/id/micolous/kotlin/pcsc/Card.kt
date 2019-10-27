@@ -90,4 +90,53 @@ actual class Card internal constructor(
             SCardEndTransaction(handle, disposition.v)
         }
     }
+
+    // SCardStatus
+    actual fun status(): CardStatus {
+        return memScoped {
+            val pcchReaderLen = alloc<DWORDVar>()
+            val pcbAtrLen = alloc<DWORDVar>()
+
+            // Figure out how much space we need for the buffer
+            wrapPCSCErrors(falseValue = SCARD_E_INSUFFICIENT_BUFFER) {
+                SCardStatus(handle, null, pcchReaderLen.ptr, null, null, null, pcbAtrLen.ptr)
+            }
+
+            // We now have correct buffer sizes
+            val readerNames = ByteArray(pcchReaderLen.value.toInt())
+            val atr = UByteArray(pcbAtrLen.value.toInt())
+            val pdwState = alloc<DWORDVar>()
+            val pdwProtocol = alloc<DWORDVar>()
+
+            readerNames.usePinned { mszReaderNames -> atr.usePinned { pbAtr ->
+                wrapPCSCErrors {
+                    SCardStatus(
+                        handle,
+                        mszReaderNames.addressOf(0),
+                        pcchReaderLen.ptr,
+                        pdwState.ptr,
+                        pdwProtocol.ptr,
+                        pbAtr.addressOf(0),
+                        pcbAtrLen.ptr
+                    )
+                }
+            }}
+
+            val state = pdwState.value
+            CardStatus(
+                readerNames = readerNames.toMultiString().toList(),
+                // SCARD_UNKNOWN == 0 on Windows
+                unknown = state == SCARD_UNKNOWN.convert<DWORD>(),
+                // These are all written as bitmasks to be compatible with pcsclite and Windows
+                absent = (state and SCARD_ABSENT.convert<DWORD>()) == SCARD_ABSENT.convert<DWORD>(),
+                present = (state and SCARD_PRESENT.convert<DWORD>()) == SCARD_PRESENT.convert<DWORD>(),
+                swallowed = (state and SCARD_SWALLOWED.convert<DWORD>()) == SCARD_SWALLOWED.convert<DWORD>(),
+                powered = (state and SCARD_POWERED.convert<DWORD>()) == SCARD_POWERED.convert<DWORD>(),
+                negotiable = (state and SCARD_NEGOTIABLE.convert<DWORD>()) == SCARD_NEGOTIABLE.convert<DWORD>(),
+                specific = (state and SCARD_SPECIFIC.convert<DWORD>()) == SCARD_SPECIFIC.convert<DWORD>(),
+                protocol = pdwProtocol.value.toProtocol(),
+                atr = atr.toByteArray()
+            )
+        }
+    }
 }

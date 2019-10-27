@@ -94,6 +94,15 @@ expect class Card {
      * @throws PCSCError
      */
     fun endTransaction(disposition: DisconnectDisposition = DisconnectDisposition.Leave)
+
+    /**
+     * Gets the current status of a smart card in this reader.
+     *
+     * Equivalent to `SCardStatus`.
+     *
+     * @throws PCSCError
+     */
+    fun status(): CardStatus
 }
 
 /**

@@ -79,6 +79,11 @@ fun main() {
             else -> println("Protocol: ${card.protocol}")
         }
 
+        println("Requesting status (SCardStatus)...")
+        val status = card.status()
+        println("Status: $status")
+        println()
+
         println("Transmit: ${cmd1.toHex()}")
         val resp1 = card.transmit(cmd1)
         println("Response: ${resp1.toHex()}")

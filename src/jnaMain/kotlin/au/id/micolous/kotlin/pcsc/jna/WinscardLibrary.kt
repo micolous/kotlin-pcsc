@@ -43,6 +43,8 @@ internal interface WinscardLibrary: Library {
     fun SCardBeginTransaction(hCard: SCardHandle): SCardResult
     fun SCardEndTransaction(hCard: SCardHandle, dwDisposition: Dword): SCardResult
     fun SCardCancel(hContext: SCardContext): SCardResult
-
-
+    fun SCardStatus(hCard: SCardHandle, mszReaderName: ByteBuffer?,
+                    pcchReaderLen: DwordByReference, pdwState: DwordByReference?,
+                    pdwProtocol: DwordByReference?, pbAtr: ByteBuffer?,
+                    pcbAtrLen: DwordByReference) : SCardResult
 }

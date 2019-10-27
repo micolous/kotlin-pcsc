@@ -71,3 +71,11 @@ actual enum class Initialization(private val l: Long) {
 
     internal val v = Dword(l)
 }
+
+internal val SCARD_UNKNOWN = if (Platform.isWindows()) 0L else 0x0001L
+internal val SCARD_ABSENT = if (Platform.isWindows()) 1L else 0x0002L
+internal val SCARD_PRESENT = if (Platform.isWindows()) 2L else 0x0004L
+internal val SCARD_SWALLOWED = if (Platform.isWindows()) 3L else 0x0008L
+internal val SCARD_POWERED = if (Platform.isWindows()) 4L else 0x0010L
+internal val SCARD_NEGOTIABLE = if (Platform.isWindows()) 5L else 0x0020L
+internal val SCARD_SPECIFIC = if (Platform.isWindows()) 6L else 0x0040L
