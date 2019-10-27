@@ -8,10 +8,10 @@ transit card reader).
 This is a [Kotlin Multiplatform][multi] project, which supports building using:
 
 * **[JNA][]** on JVM (builds a single library for anything [JNA][] supports)
-* **Native** for Kotlin/Native apps
+* **[Native][]** for [Kotlin/Native][native] apps
 
-Platform           | PC/SC Implementation     | [JNA][] (JRE) | Native
------------------- | ------------------------ | ------------- | ------
+Platform           | PC/SC Implementation     | [JNA][] (JRE) | [Native][]
+------------------ | ------------------------ | ------------- | ----------
 Linux x86_64       | [pcsclite][]             | :o:           | :o:
 macOS 10.14 x86_64 | `PCSC.framework`         | :o:           | :o:
 Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
@@ -152,5 +152,6 @@ We don't even parse the APDUs for you...
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 [Metrodroid]: https://github.com/metrodroid/metrodroid
 [multi]: https://kotlinlang.org/docs/reference/multiplatform.html
+[native]: https://kotlinlang.org/docs/reference/native-overview.html
 [pcsclite]: https://pcsclite.apdu.fr/
 [winscard]: https://docs.microsoft.com/en-us/windows/win32/api/winscard/
