@@ -19,11 +19,13 @@
 package au.id.micolous.kotlin.pcsc
 
 data class PCSCError private constructor(
+    /** Error code */
     val code: Long,
     /** Canonical enumeration for this error condition */
     val error: PCSCErrorCode?) : Throwable() {
     internal constructor(error: PCSCErrorCode) : this(error.code, error)
 
+    /** A human-readable error message, with description */
     override val message: String
         get() = error?.message ?: "UNKNOWN (0x${code.toString(16)})"
 

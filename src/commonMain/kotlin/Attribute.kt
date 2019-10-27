@@ -25,16 +25,26 @@ package au.id.micolous.kotlin.pcsc
  *
  * These correspond to `SCARD_CLASS_*` in Micrasoft's PC/SC API.
  */
-enum class AttributeClass(val v: Int) {
+enum class AttributeClass(
+    /** The numeric value of this information class. */
+    val v: Int) {
+    /** Vendor information */
     VendorInfo(1),
+    /** Communications attributes */
     Communications(2),
+    /** Protocol attributes */
     Protocol(3),
+    /** Power management attributes */
     PowerManagement(4),
+    /** Security attributes */
     Security(5),
+    /** Mechanical attributes */
     Mechanical(6),
+    /** Vendor-defined attributes */
     VendorDefined(7),
     IFDProtocol(8),
     ICCState(9),
+    /** Performance counters */
     Perf(0x7ffe),
     System(0x7fff);
 }
@@ -52,10 +62,15 @@ enum class Attribute(
     /** The tag ID of the attribute. */
     val tag: Int
 ) {
+    /** @see Card.getVendorName */
     VendorName(AttributeClass.VendorInfo, 0x0100),
+    /** @see Card.getIfdType */
     VendorIfdType(AttributeClass.VendorInfo, 0x0101),
+    /** @see Card.getIfdVersion */
     VendorIfdVersion(AttributeClass.VendorInfo, 0x0102),
+    /** @see Card.getIfdSerial */
     VendorIfdSerial(AttributeClass.VendorInfo, 0x0103),
+    /** @see Card.getMechanicalCharacteristics */
     MechanicalCharacteristics(AttributeClass.Mechanical, 0x0150),
     ;
     // TODO: implement all the other things
