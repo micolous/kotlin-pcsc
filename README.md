@@ -18,9 +18,9 @@ Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
 
 > :warning: Cross-compiling **Native** targets is not supported.
 
-## API:
+## API
 
-API documentation can be built with: `./gradlew dokka`
+[API documentation can be viewed online][api-docs], or built locally with: `./gradlew dokka`
 
 ## Build and test
 
@@ -109,6 +109,7 @@ level interface, and you'll be sending `ByteArray` to the ICC and getting `ByteA
 
 We don't even parse the APDUs for you...
 
+[api-docs]: https://micolous.github.io/kotlin-pcsc/kotlin-pcsc/index.html
 [JNA]: https://github.com/java-native-access/jna
 [jnasmartcardio]: https://github.com/jnasmartcardio/jnasmartcardio
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
