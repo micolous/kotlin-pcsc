@@ -54,22 +54,42 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardSetAttrib
 * SCardSetTimeout
 
-## Building
+## Build and test
 
-* Linux requires: `libpcsclite1 libpcsclite-dev`
+**Note:** Running tests requires a connected PC/SC reader, and a card connected to it.
 
-* macOS 10.14 should just work, as long as you have Xcode. Kotlin/Native typically requires the
-  latest version of Xcode.
+All targets require JDK 9 or later to be installed (for Gradle).
 
-* Windows: Not working yet
+### JNA (all platforms)
 
-## Tests
+```
+./gradlew :jnaMainClasses :jnaTest
+```
 
-`ContextTest` requires a connected PC/SC compatible reader, and a card connected to it.
+### Native targets
+#### Linux
 
-TODO: Make this work even if there is no card attached.
+Required packages: `libpcsclite1 libpcsclite-dev`
 
-## Running
+```
+./gradlew :linuxX64MainKlibrary :linuxX64Test
+```
+
+#### macOS
+
+Required packages: Xcode 11 or later
+
+```
+./gradlew :macosX64MainKlibrary :macosX64Test
+```
+
+#### Windows
+
+**Note:** Not working yet.
+
+...
+
+## Runtime notes
 
 ### Linux (JNA and Native)
 
@@ -88,6 +108,13 @@ sudo rmmod pn533_usb
 Then unplug and replug the device.
 
 ## FAQ
+
+#### Is there an example of use?
+
+Yes!  See the `sample` directory.
+
+This supports building on all target platforms, and includes a `jnaFatJar` task, which pulls in all
+dependencies to a single JAR file.
 
 #### How does this relate to javax.smartcardio?
 
