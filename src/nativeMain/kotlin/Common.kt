@@ -20,4 +20,4 @@ package au.id.micolous.kotlin.pcsc
 
 import kotlin.native.Platform
 
-actual val isLittleEndian = Platform.isLittleEndian
+internal actual val isLittleEndian = Platform.isLittleEndian

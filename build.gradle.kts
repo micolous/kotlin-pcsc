@@ -141,25 +141,28 @@ tasks {
     val dokka by getting(DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
-        multiplatform {
-            val global by creating {
-                perPackageOption {
-                    prefix = "au.id.micolous.kotlin.pcsc.jna"
-                    suppress = true
-                }
-                perPackageOption {
-                    prefix = "au.id.micolous.kotlin.pcsc.native"
-                    suppress = true
-                }
-                perPackageOption {
-                    prefix = "au.id.micolous.kotlin.pcsc.internal"
-                    suppress = true
-                }
+
+        configuration {
+            perPackageOption {
+                prefix = "au.id.micolous.kotlin.pcsc.jna"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "au.id.micolous.kotlin.pcsc.native"
+                suppress = true
+            }
+            perPackageOption {
+                prefix = "au.id.micolous.kotlin.pcsc.internal"
+                suppress = true
             }
 
-            register("common") {
-                targets = listOf("all")
-                platform = "common"
+            platform = "common"
+            includeNonPublic = false
+            reportUndocumented = true
+            skipEmptyPackages = true
+            includes = listOf("src/module.md")
+            sourceRoot {
+                path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
             }
         }
     }

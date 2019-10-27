@@ -85,6 +85,8 @@ fun main() {
 
         println("Device: (vendor=${card.getVendorName()}) (type=${card.getIfdType()}) " +
                 "(serial=${card.getIfdSerial()}) (version=${card.getIfdVersion()})")
+        println("Mechanical characteristics: ${card.getMechanicalCharacteristics()}")
+        println()
 
         println("Transmit: ${cmd1.toHex()}")
         val resp1 = card.transmit(cmd1)

@@ -140,4 +140,15 @@ expect class Card {
 fun Card.reconnect(shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any, initialization: Initialization)
         = reconnect(shareMode, setOf(preferredProtocol), initialization)
 
-fun Card.getAttrib(cls: Int, tag: Int) = getAttrib((cls.toLong() shl 16) or (tag.toLong() and 0xffffL))
+/**
+ * Gets an attribute of a [Card] by its attribute information class and tag ID.
+ *
+ * @param cls The attribute's information class.
+ * @param tag The attribute's tag ID, must be between 0 and 0xffff
+ * @return Attribute data, or `null` if the attribute is not supported.
+ */
+fun Card.getAttrib(cls: Int, tag: Int): ByteArray? {
+    require(tag >= 0) { "tag ID must be >= 0" }
+    require(tag <= 0xffff) { "tag ID must be <= 0xFFFF" }
+    return getAttrib((cls.toLong() shl 16) or (tag.toLong() and 0xffffL))
+}

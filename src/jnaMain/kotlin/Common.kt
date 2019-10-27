@@ -21,4 +21,4 @@ package au.id.micolous.kotlin.pcsc
 
 import java.nio.ByteOrder
 
-actual val isLittleEndian = ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN
+internal actual val isLittleEndian = ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN
