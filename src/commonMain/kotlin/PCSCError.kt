@@ -35,9 +35,11 @@ data class PCSCError private constructor(
             it.code == errorCode
         }?.let { PCSCError(it) } ?: PCSCError(errorCode, null)
 
+        @kotlin.ExperimentalUnsignedTypes
         internal fun fromCode(errorCode: Int) =
             fromCode(errorCode.toUInt().toLong())
 
+        @kotlin.ExperimentalUnsignedTypes
         internal fun fromCode(errorCode: UInt) =
             fromCode(errorCode.toLong())
     }
