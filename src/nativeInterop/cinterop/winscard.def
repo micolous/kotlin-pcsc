@@ -16,9 +16,10 @@ linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
 headerFilter.linux = PCSC/**
 
 language.mingw = C
-headers.mingw = winscard.h
+headers.mingw = winscard.h winsmcard.h
+compilerOpts.mingw = -DUNICODE -DWINVER=0x0601 -D_WIN32_WINNT=0x0601 -DWINAPI_FAMILY=3
 linkerOpts.mingw = -lWinSCard
-headerFilter.mingw = winscard.h pcsclite.h
+headerFilter.mingw = winscard.h winsmcard.h
 
 ---
 
@@ -30,9 +31,19 @@ headerFilter.mingw = winscard.h pcsclite.h
 // Return type for all SCard* functions
 typedef LONG SCARDSTATUS;
 
-#else
+#elif defined(_WIN32)
+// Return type for all SCard* functions
+typedef LONG SCARDSTATUS;
 
-// TODO
+// Add in pcsclite-specific declarations
+#define MAX_BUFFER_SIZE 264
+#define SCARD_PROTOCOL_ANY (SCARD_PROTOCOL_T0 | SCARD_PROTOCOL_T1)
+#define SCARD_PROTOCOL_T15 0x00000008
+#define SCARD_PROTOCOL_UNSET SCARD_PROTOCOL_UNDEFINED
+
+
+#else
+#error TODO not supported platform
 #endif
 
 // macOS defines an SCardControl symbol from an old version of pcsclite, and

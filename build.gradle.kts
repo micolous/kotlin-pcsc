@@ -58,7 +58,7 @@ kotlin {
     linuxX64()
     macosX64()  // (no cross compiler)
     // mingwX86()  // Windows
-    // mingwX64()  // Windows x64 (no cross compiler)
+    mingwX64()  // Windows (no cross compiler)
 
     jvm("jna")
 
@@ -71,11 +71,17 @@ kotlin {
             dependsOn(nativeMain)
         }
 
+        val nativeWindowsMain by creating {
+            dependsOn(nativeMain)
+        }
+
         fun KotlinNativeTarget.buildNative() {
             compilations["main"].apply {
                 defaultSourceSet {
                     dependsOn(when (preset) {
                         presets["macosX64"] -> nativeMacosMain
+                        presets["mingwX64"],
+                        presets["mingwX86"] -> nativeWindowsMain
                         else -> nativeMain
                     })
                 }

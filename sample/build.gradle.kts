@@ -20,6 +20,7 @@ dependencies {
 kotlin {
     linuxX64()
     macosX64()
+    mingwX64()
     jvm("jna")
 
     targets.filterIsInstance<KotlinNativeTarget>().forEach {

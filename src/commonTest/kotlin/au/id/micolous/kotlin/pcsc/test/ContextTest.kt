@@ -62,7 +62,7 @@ class ContextTest {
         val context = Context.establish()
         val firstReader = context.listReaders()[0]
         // TODO: Windows: fails with E_NOT_READY
-        val card = context.connect(firstReader, ShareMode.Direct, Protocol.Any)
+        val card = context.connect(firstReader, ShareMode.Shared, Protocol.Any)
         assertNotNull(card.protocol)
         card.reconnect(ShareMode.Direct, initialization = Initialization.Leave)
         assertNotNull(card.protocol)
