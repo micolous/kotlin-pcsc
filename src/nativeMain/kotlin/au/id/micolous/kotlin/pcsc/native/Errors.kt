@@ -31,10 +31,7 @@ internal fun wrapPCSCErrors(
     return when (val errorCode = f()) {
         trueValue -> true
         falseValue -> false
-
-        // Error handler
-        is int32_t -> throw PCSCError.fromCode(errorCode.convert<uint32_t>().toLong())
-        else -> throw PCSCError.fromCode(errorCode.toLong())
+        else -> throw PCSCError.fromCode(errorCode)
     }
 }
 

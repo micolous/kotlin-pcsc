@@ -34,5 +34,11 @@ data class PCSCError private constructor(
         internal fun fromCode(errorCode: Long) = PCSCErrorCode.values().find {
             it.code == errorCode
         }?.let { PCSCError(it) } ?: PCSCError(errorCode, null)
+
+        internal fun fromCode(errorCode: Int) =
+            fromCode(errorCode.toUInt().toLong())
+
+        internal fun fromCode(errorCode: UInt) =
+            fromCode(errorCode.toLong())
     }
 }

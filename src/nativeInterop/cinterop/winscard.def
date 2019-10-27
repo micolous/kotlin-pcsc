@@ -29,10 +29,22 @@ headerFilter.mingw = winscard.h pcsclite.h
 #elif defined(__linux__)
 // Return type for all SCard* functions
 typedef LONG SCARDSTATUS;
-#define SCardControl132 SCardControl
 
 #else
-#define SCardControl132 SCardControl
 
 // TODO
+#endif
+
+// macOS defines an SCardControl symbol from an old version of pcsclite, and
+// gives the current implementation the symbol SCardControl132.
+//
+// Work around this by making everything look like macOS.
+#if !defined(__APPLE__)
+LONG SCardControl132(
+    SCARDHANDLE hCard, DWORD dwControlCode, LPCVOID pbSendBuffer,
+    DWORD cbSendLength, /*@out@*/ LPVOID pbRecvBuffer, DWORD cbRecvLength,
+    LPDWORD lpBytesReturned) {
+    return SCardControl(hCard, dwControlCode, pbSendBuffer, cbSendLength,
+                        pbRecvBuffer, cbRecvLength, lpBytesReturned);
+}
 #endif

@@ -18,6 +18,7 @@ dependencies {
 }
 
 kotlin {
+    linuxX64()
     macosX64()
     jvm("jna")
 
