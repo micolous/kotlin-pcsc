@@ -44,21 +44,15 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardEndTransaction -> Card.endTransaction
 * SCardStatus -> Card.status
 * SCardControl -> Card.control
+* SCardGetAttrib -> Card.getAttrib
 
 ### TODO:
 
-#### Status inquiry
-
+* SCardCancelTransaction
 * SCardGetStatusChange
-
-#### Control and attributes
-
-* SCardGetAttrib
-* SCardSetAttrib
-
-#### Informational
-
 * SCardListReaderGroups
+* SCardSetAttrib
+* SCardSetTimeout
 
 ## Building
 
