@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CardStatus - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">CardStatus</a><br/>
+<br/>
+<h1>CardStatus</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CardStatus</span></code>
+<p>Return value from <a href="../-card/status.html">Card.status</a> (<code>SCardStatus</code>).</p>
+<p>The status <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>s (<a href="unknown.html">unknown</a>, <a href="absent.html">absent</a>, <a href="present.html">present</a>, <a href="swallowed.html">swallowed</a>, <a href="powered.html">powered</a>, <a href="negotiable.html">negotiable</a> and
+<a href="specific.html">specific</a>) have platform-specific differences:</p>
+<ul><li>On <code>pcsclite</code> (Linux and macOS), these are a bitmask.</li>
+<li>On Windows, only <strong>one</strong> of these will be true, as it represents the lifecycle of the card.</li>
+</ul>
+<p>For example, when a card is connected and the protocol has been negotiated:</p>
+<ul><li><code>pcsclite</code> would have <a href="present.html">present</a>, <a href="powered.html">powered</a> and <a href="specific.html">specific</a> == <code>true</code></li>
+<li>Windows would have <a href="specific.html">specific</a> == <code>true</code>, but <a href="present.html">present</a> and <a href="powered.html">powered</a> == <code>false</code></li>
+</ul>
+<p>See: https://pcsclite.apdu.fr/api/group__API.html#differences</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="absent.html">absent</a></h4>
+</td>
+<td>
+<p>If true, there is no card in the reader.</p>
+<code><span class="keyword">val </span><span class="identifier">absent</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="atr.html">atr</a></h4>
+</td>
+<td>
+<p>The ATR (Answer To Reset) returned by the card, if available.</p>
+<code><span class="keyword">val </span><span class="identifier">atr</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="negotiable.html">negotiable</a></h4>
+</td>
+<td>
+<p>If true, the card has been reset and is awaiting PTS negotation.</p>
+<code><span class="keyword">val </span><span class="identifier">negotiable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="powered.html">powered</a></h4>
+</td>
+<td>
+<p>If true, power is being provided to the card.</p>
+<code><span class="keyword">val </span><span class="identifier">powered</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="present.html">present</a></h4>
+</td>
+<td>
+<p>If true, there is a card in the reader.</p>
+<code><span class="keyword">val </span><span class="identifier">present</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="protocol.html">protocol</a></h4>
+</td>
+<td>
+<p>The current protocol, if any.</p>
+<code><span class="keyword">val </span><span class="identifier">protocol</span><span class="symbol">: </span><a href="../-protocol/index.html"><span class="identifier">Protocol</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="reader-name.html">readerName</a></h4>
+</td>
+<td>
+<p>Name of the reader.</p>
+<code><span class="keyword">val </span><span class="identifier">readerName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="reader-names.html">readerNames</a></h4>
+</td>
+<td>
+<p>Name(s) of the reader. On Windows, this may be multiple names.</p>
+<code><span class="keyword">val </span><span class="identifier">readerNames</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="specific.html">specific</a></h4>
+</td>
+<td>
+<p>If true, the card has been reset and specific communication protocols have been established.</p>
+<code><span class="keyword">val </span><span class="identifier">specific</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="swallowed.html">swallowed</a></h4>
+</td>
+<td>
+<p>If true, there is a card in the reader in position for use, but the card is not powered.</p>
+<code><span class="keyword">val </span><span class="identifier">swallowed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="unknown.html">unknown</a></h4>
+</td>
+<td>
+<p>If true, the reader / card is in an unknown state.</p>
+<code><span class="keyword">val </span><span class="identifier">unknown</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

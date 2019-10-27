@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Card.control - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="index.html">Card</a>&nbsp;/&nbsp;<a href="./control.html">control</a><br/>
+<br/>
+<h1>control</h1>
+<a name="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)"></a>
+<code><span class="keyword">fun </span><span class="identifier">control</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/controlCode">controlCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/sendBuffer">sendBuffer</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/recvBufferSize">recvBufferSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
+<p>Direct control commands of the reader.</p>
+<p>Equivalent to <code>SCardControl132</code> on macOS, or <code>SCardControl</code> on other platforms.</p>
+<h3>Parameters</h3>
+<p><a name="controlCode"></a>
+<code>controlCode</code> - Control code for the operation</p>
+<p><a name="sendBuffer"></a>
+<code>sendBuffer</code> - Data required to perform the operation</p>
+<p><a name="recvBufferSize"></a>
+<code>recvBufferSize</code> - Size of the buffer to use for output. If set to 0 (default), then no
+receive buffer will be used, and this function will return <code>null</code>.</p>
+<p><strong>Return</strong><br/>
+Correctly-sized <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a> with the return buffer from the card, or <code>null</code> if
+<a href="control.html#au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/recvBufferSize">recvBufferSize</a> == 0</p>
+</BODY>
+</HTML>

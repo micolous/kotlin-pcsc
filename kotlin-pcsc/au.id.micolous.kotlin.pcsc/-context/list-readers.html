@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Context.listReaders - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="index.html">Context</a>&nbsp;/&nbsp;<a href="./list-readers.html">listReaders</a><br/>
+<br/>
+<h1>listReaders</h1>
+<a name="au.id.micolous.kotlin.pcsc.Context$listReaders(kotlin.collections.List((kotlin.String)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">listReaders</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$listReaders(kotlin.collections.List((kotlin.String)))/groups">groups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Lists all readers available in this <a href="index.html">Context</a>.</p>
+<p>Equivalent to <code>SCardListReaders</code>.</p>
+<h3>Parameters</h3>
+<p><a name="groups"></a>
+<code>groups</code> - If specified, a list of group names to search within.</p>
+<p><strong>Return</strong><br/>
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> of reader names, as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, which can be used with <a href="connect.html">connect</a>.
+If there are no readers available, returns an empty list.</p>
+</BODY>
+</HTML>

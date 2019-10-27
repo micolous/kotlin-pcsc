@@ -1,0 +1,536 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PCSCErrorCode - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">PCSCErrorCode</a><br/>
+<br/>
+<h1>PCSCErrorCode</h1>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">PCSCErrorCode</span></code>
+<p>Enumeration to doscribe error states in the PC/SC API.</p>
+<h3>Enum Values</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-s_-s-u-c-c-e-s-s.html">S_SUCCESS</a></h4>
+</td>
+<td>
+<p><code>0x00000000</code>: No error was encountered</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f_-i-n-t-e-r-n-a-l_-e-r-r-o-r.html">F_INTERNAL_ERROR</a></h4>
+</td>
+<td>
+<p><code>0x80100001</code>: An internal consistency check failed</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-c-a-n-c-e-l-l-e-d.html">E_CANCELLED</a></h4>
+</td>
+<td>
+<p><code>0x80100002</code>: The action was cancelled by an SCardCancel request</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-v-a-l-i-d_-h-a-n-d-l-e.html">E_INVALID_HANDLE</a></h4>
+</td>
+<td>
+<p><code>0x80100003</code>: The supplied handle was invalid</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-v-a-l-i-d_-p-a-r-a-m-e-t-e-r.html">E_INVALID_PARAMETER</a></h4>
+</td>
+<td>
+<p><code>0x80100004</code>: One or more of the supplied parameters could not be properly interpreted</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-v-a-l-i-d_-t-a-r-g-e-t.html">E_INVALID_TARGET</a></h4>
+</td>
+<td>
+<p><code>0x80100005</code>: Registry startup information is missing or invalid</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-m-e-m-o-r-y.html">E_NO_MEMORY</a></h4>
+</td>
+<td>
+<p><code>0x80100006</code>: Not enough memory available to complete this command</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f_-w-a-i-t-e-d_-t-o-o_-l-o-n-g.html">F_WAITED_TOO_LONG</a></h4>
+</td>
+<td>
+<p><code>0x80100007</code>: An internal consistency timer has expired</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-s-u-f-f-i-c-i-e-n-t_-b-u-f-f-e-r.html">E_INSUFFICIENT_BUFFER</a></h4>
+</td>
+<td>
+<p><code>0x80100008</code>: The data buffer to receive returned data is too small for the returned data</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-u-n-k-n-o-w-n_-r-e-a-d-e-r.html">E_UNKNOWN_READER</a></h4>
+</td>
+<td>
+<p><code>0x80100009</code>: The specified reader name is not recognized</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-t-i-m-e-o-u-t.html">E_TIMEOUT</a></h4>
+</td>
+<td>
+<p><code>0x8010000A</code>: The user-specified timeout value has expired</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-s-h-a-r-i-n-g_-v-i-o-l-a-t-i-o-n.html">E_SHARING_VIOLATION</a></h4>
+</td>
+<td>
+<p><code>0x8010000B</code>: The smart card cannot be accessed because of other connections outstanding</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-s-m-a-r-t-c-a-r-d.html">E_NO_SMARTCARD</a></h4>
+</td>
+<td>
+<p><code>0x8010000C</code>: The operation requires a Smart Card, but no Smart Card is currently in the device</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-u-n-k-n-o-w-n_-c-a-r-d.html">E_UNKNOWN_CARD</a></h4>
+</td>
+<td>
+<p><code>0x8010000D</code>: The specified smart card name is not recognized</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-c-a-n-t_-d-i-s-p-o-s-e.html">E_CANT_DISPOSE</a></h4>
+</td>
+<td>
+<p><code>0x8010000E</code>: The system could not dispose of the media in the requested manner</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-p-r-o-t-o_-m-i-s-m-a-t-c-h.html">E_PROTO_MISMATCH</a></h4>
+</td>
+<td>
+<p><code>0x8010000F</code>: The requested protocols are incompatible with the protocol currently in use with the smart card</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o-t_-r-e-a-d-y.html">E_NOT_READY</a></h4>
+</td>
+<td>
+<p><code>0x80100010</code>: The reader or smart card is not ready to accept commands</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-v-a-l-i-d_-v-a-l-u-e.html">E_INVALID_VALUE</a></h4>
+</td>
+<td>
+<p><code>0x80100011</code>: One or more of the supplied parameters values could not be properly interpreted</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-s-y-s-t-e-m_-c-a-n-c-e-l-l-e-d.html">E_SYSTEM_CANCELLED</a></h4>
+</td>
+<td>
+<p><code>0x80100012</code>: The action was cancelled by the system, presumably to log off or shut down</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f_-c-o-m-m_-e-r-r-o-r.html">F_COMM_ERROR</a></h4>
+</td>
+<td>
+<p><code>0x80100013</code>: An internal communications error has been detected</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f_-u-n-k-n-o-w-n_-e-r-r-o-r.html">F_UNKNOWN_ERROR</a></h4>
+</td>
+<td>
+<p><code>0x80100014</code>: An internal error has been detected, but the source is unknown</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-v-a-l-i-d_-a-t-r.html">E_INVALID_ATR</a></h4>
+</td>
+<td>
+<p><code>0x80100015</code>: An ATR obtained from the registry is not a valid ATR string</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o-t_-t-r-a-n-s-a-c-t-e-d.html">E_NOT_TRANSACTED</a></h4>
+</td>
+<td>
+<p><code>0x80100016</code>: An attempt was made to end a non-existent transaction</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-r-e-a-d-e-r_-u-n-a-v-a-i-l-a-b-l-e.html">E_READER_UNAVAILABLE</a></h4>
+</td>
+<td>
+<p><code>0x80100017</code>: The specified reader is not currently available for use</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p_-s-h-u-t-d-o-w-n.html">P_SHUTDOWN</a></h4>
+</td>
+<td>
+<p><code>0x80100018</code>: The operation has been aborted to allow the server application to exit</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-p-c-i_-t-o-o_-s-m-a-l-l.html">E_PCI_TOO_SMALL</a></h4>
+</td>
+<td>
+<p><code>0x80100019</code>: The PCI Receive buffer was too small</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-r-e-a-d-e-r_-u-n-s-u-p-p-o-r-t-e-d.html">E_READER_UNSUPPORTED</a></h4>
+</td>
+<td>
+<p><code>0x8010001A</code>: The reader driver does not meet minimal requirements for support</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-d-u-p-l-i-c-a-t-e_-r-e-a-d-e-r.html">E_DUPLICATE_READER</a></h4>
+</td>
+<td>
+<p><code>0x8010001B</code>: The reader driver did not produce a unique reader name</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-c-a-r-d_-u-n-s-u-p-p-o-r-t-e-d.html">E_CARD_UNSUPPORTED</a></h4>
+</td>
+<td>
+<p><code>0x8010001C</code>: The smart card does not meet minimal requirements for support</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-s-e-r-v-i-c-e.html">E_NO_SERVICE</a></h4>
+</td>
+<td>
+<p><code>0x8010001D</code>: The Smart card resource manager is not running</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-s-e-r-v-i-c-e_-s-t-o-p-p-e-d.html">E_SERVICE_STOPPED</a></h4>
+</td>
+<td>
+<p><code>0x8010001E</code>: The Smart card resource manager has shut down</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-u-n-e-x-p-e-c-t-e-d.html">E_UNEXPECTED</a></h4>
+</td>
+<td>
+<p><code>0x8010001F</code>: An unexpected card error has occurred</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-u-n-s-u-p-p-o-r-t-e-d_-f-e-a-t-u-r-e.html">E_UNSUPPORTED_FEATURE</a></h4>
+</td>
+<td>
+<p><code>0x8010001F</code>: This smart card does not support the requested feature</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-c-c_-i-n-s-t-a-l-l-a-t-i-o-n.html">E_ICC_INSTALLATION</a></h4>
+</td>
+<td>
+<p><code>0x80100020</code>: No primary provider can be found for the smart card</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-c-c_-c-r-e-a-t-e-o-r-d-e-r.html">E_ICC_CREATEORDER</a></h4>
+</td>
+<td>
+<p><code>0x80100021</code>: The requested order of object creation is not supported</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-d-i-r_-n-o-t_-f-o-u-n-d.html">E_DIR_NOT_FOUND</a></h4>
+</td>
+<td>
+<p><code>0x80100023</code>: The identified directory does not exist in the smart card</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-f-i-l-e_-n-o-t_-f-o-u-n-d.html">E_FILE_NOT_FOUND</a></h4>
+</td>
+<td>
+<p><code>0x80100024</code>: The identified file does not exist in the smart card</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-d-i-r.html">E_NO_DIR</a></h4>
+</td>
+<td>
+<p><code>0x80100025</code>: The supplied path does not represent a smart card directory</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-f-i-l-e.html">E_NO_FILE</a></h4>
+</td>
+<td>
+<p><code>0x80100026</code>: The supplied path does not represent a smart card file</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-a-c-c-e-s-s.html">E_NO_ACCESS</a></h4>
+</td>
+<td>
+<p><code>0x80100027</code>: Access is denied to this file</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-w-r-i-t-e_-t-o-o_-m-a-n-y.html">E_WRITE_TOO_MANY</a></h4>
+</td>
+<td>
+<p><code>0x80100028</code>: The smart card does not have enough memory to store the information</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-b-a-d_-s-e-e-k.html">E_BAD_SEEK</a></h4>
+</td>
+<td>
+<p><code>0x80100029</code>: There was an error trying to set the smart card file object pointer</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-i-n-v-a-l-i-d_-c-h-v.html">E_INVALID_CHV</a></h4>
+</td>
+<td>
+<p><code>0x8010002A</code>: The supplied PIN is incorrect</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-u-n-k-n-o-w-n_-r-e-s_-m-n-g.html">E_UNKNOWN_RES_MNG</a></h4>
+</td>
+<td>
+<p><code>0x8010002B</code>: An unrecognized error code was returned from a layered component</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-s-u-c-h_-c-e-r-t-i-f-i-c-a-t-e.html">E_NO_SUCH_CERTIFICATE</a></h4>
+</td>
+<td>
+<p><code>0x8010002C</code>: The requested certificate does not exist</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-c-e-r-t-i-f-i-c-a-t-e_-u-n-a-v-a-i-l-a-b-l-e.html">E_CERTIFICATE_UNAVAILABLE</a></h4>
+</td>
+<td>
+<p><code>0x8010002D</code>: The requested certificate could not be obtained</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-r-e-a-d-e-r-s_-a-v-a-i-l-a-b-l-e.html">E_NO_READERS_AVAILABLE</a></h4>
+</td>
+<td>
+<p><code>0x8010002E</code>: Cannot find a smart card reader</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-c-o-m-m_-d-a-t-a_-l-o-s-t.html">E_COMM_DATA_LOST</a></h4>
+</td>
+<td>
+<p><code>0x8010002F</code>: A communications error with the smart card has been detected. More..</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-n-o_-k-e-y_-c-o-n-t-a-i-n-e-r.html">E_NO_KEY_CONTAINER</a></h4>
+</td>
+<td>
+<p><code>0x80100030</code>: The requested key container does not exist on the smart card</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e_-s-e-r-v-e-r_-t-o-o_-b-u-s-y.html">E_SERVER_TOO_BUSY</a></h4>
+</td>
+<td>
+<p><code>0x80100031</code>: The Smart Card Resource Manager is too busy to complete this operation</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-u-n-s-u-p-p-o-r-t-e-d_-c-a-r-d.html">W_UNSUPPORTED_CARD</a></h4>
+</td>
+<td>
+<p><code>0x80100065</code>: The reader cannot communicate with the card, due to ATR string configuration conflicts</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-u-n-r-e-s-p-o-n-s-i-v-e_-c-a-r-d.html">W_UNRESPONSIVE_CARD</a></h4>
+</td>
+<td>
+<p><code>0x80100066</code>: The smart card is not responding to a reset</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-u-n-p-o-w-e-r-e-d_-c-a-r-d.html">W_UNPOWERED_CARD</a></h4>
+</td>
+<td>
+<p><code>0x80100067</code>: Power has been removed from the smart card, so that further communication is not possible</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-r-e-s-e-t_-c-a-r-d.html">W_RESET_CARD</a></h4>
+</td>
+<td>
+<p><code>0x80100068</code>: The smart card has been reset, so any shared state information is invalid</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-r-e-m-o-v-e-d_-c-a-r-d.html">W_REMOVED_CARD</a></h4>
+</td>
+<td>
+<p><code>0x80100069</code>: The smart card has been removed, so further communication is not possible</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-s-e-c-u-r-i-t-y_-v-i-o-l-a-t-i-o-n.html">W_SECURITY_VIOLATION</a></h4>
+</td>
+<td>
+<p><code>0x8010006A</code>: Access was denied because of a security violation</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-w-r-o-n-g_-c-h-v.html">W_WRONG_CHV</a></h4>
+</td>
+<td>
+<p><code>0x8010006B</code>: The card cannot be accessed because the wrong PIN was presented</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-c-h-v_-b-l-o-c-k-e-d.html">W_CHV_BLOCKED</a></h4>
+</td>
+<td>
+<p><code>0x8010006C</code>: The card cannot be accessed because the maximum number of PIN entry attempts has been reached</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-e-o-f.html">W_EOF</a></h4>
+</td>
+<td>
+<p><code>0x8010006D</code>: The end of the smart card file has been reached</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-c-a-n-c-e-l-l-e-d_-b-y_-u-s-e-r.html">W_CANCELLED_BY_USER</a></h4>
+</td>
+<td>
+<p><code>0x8010006E</code>: The user pressed "Cancel" on a Smart Card Selection Dialog</p>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w_-c-a-r-d_-n-o-t_-a-u-t-h-e-n-t-i-c-a-t-e-d.html">W_CARD_NOT_AUTHENTICATED</a></h4>
+</td>
+<td>
+<p><code>0x8010006F</code>: No PIN was presented to the smart card</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="code.html">code</a></h4>
+</td>
+<td>
+<p>Numeric error code</p>
+<code><span class="keyword">val </span><span class="identifier">code</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="description.html">description</a></h4>
+</td>
+<td>
+<p>Description of the error condition</p>
+<code><span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="message.html">message</a></h4>
+</td>
+<td>
+<p>An error message for human consumption</p>
+<code><span class="keyword">val </span><span class="identifier">message</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

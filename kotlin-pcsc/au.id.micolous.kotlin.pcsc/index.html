@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>au.id.micolous.kotlin.pcsc - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="./index.html">au.id.micolous.kotlin.pcsc</a><br/>
+<br/>
+<h2>Package au.id.micolous.kotlin.pcsc</h2>
+<p>A PC/SC API implementation for Kotlin Multiplatform.</p>
+<p>This takes some small liberties with the PC/SC API to make it object oriented, and easier to use.</p>
+<h3>PC/SC C API</h3>
+<p>Alphabetical list of functions in the PC/SC C API, and their equivalent function in
+<code>kotlin-pcsc</code>:</p>
+<ul><li><code>SCardBeginTransaction</code> ➡️ <a href="-card/begin-transaction.html">Card.beginTransaction</a></li>
+<li><code>SCardCancel</code> ➡️ <a href="-context/cancel.html">Context.cancel</a></li>
+<li><code>SCardConnect</code> ➡️ <a href="-context/connect.html">Context.connect</a></li>
+<li><code>SCardControl</code> ➡️ <a href="-card/control.html">Card.control</a></li>
+<li><code>SCardDisconnect</code> ➡️ <a href="-card/disconnect.html">Card.disconnect</a></li>
+<li><code>SCardEndTransaction</code> ➡️ <a href="-card/end-transaction.html">Card.endTransaction</a></li>
+<li><code>SCardEstablishContext</code> ➡️ <a href="-context/establish.html">Context.establish</a></li>
+<li><code>SCardGetAttrib</code> ➡️ <a href="-card/get-attrib.html">Card.getAttrib</a></li>
+<li><code>SCardIsValidContext</code> ➡️ <a href="-context/is-valid.html">Context.isValid</a></li>
+<li><code>SCardListReaders</code> ➡️ <a href="-context/list-readers.html">Context.listReaders</a></li>
+<li><code>SCardReconnect</code> ➡️ <a href="-card/reconnect.html">Card.reconnect</a></li>
+<li><code>SCardReleaseContext</code> ➡️ <a href="-context/release.html">Context.release</a></li>
+<li><code>SCardStatus</code> ➡️ <a href="-card/status.html">Card.status</a></li>
+<li><code>SCardTransmit</code> ➡️ <a href="-card/transmit.html">Card.transmit</a></li>
+</ul>
+<p>Unimplemented functions:</p>
+<ul><li><code>SCardCancelTransaction</code></li>
+<li><code>SCardGetStatusChange</code></li>
+<li><code>SCardListReaderGroups</code></li>
+<li><code>SCardSetAttrib</code></li>
+<li><code>SCardSetTimeout</code></li>
+</ul>
+<h3>Public API</h3>
+<p>Only the <code>commonMain</code> module is part of the public API.</p>
+<p>Anything that <strong>only</strong> appears in <code>jnaMain</code>, <code>nativeMain</code>, <code>nativeMacosMain</code> or <code>nativeWindowsMain</code>
+is an internal implementation detail, and is subject to change without warning.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-attribute/index.html">Attribute</a></h4>
+</td>
+<td>
+<p>Card attribute IDs.</p>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Attribute</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-attribute-class/index.html">AttributeClass</a></h4>
+</td>
+<td>
+<p>Enumeration for attribute information classes.</p>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">AttributeClass</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-card/index.html">Card</a></h4>
+</td>
+<td>
+<p>Interface for all smartcard operations (<code>SCARDHANDLE</code>).</p>
+<code><span class="keyword">class </span><span class="identifier">Card</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-card-status/index.html">CardStatus</a></h4>
+</td>
+<td>
+<p>Return value from <a href="-card/status.html">Card.status</a> (<code>SCardStatus</code>).</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CardStatus</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-context/index.html">Context</a></h4>
+</td>
+<td>
+<p>Main interface for PC/SC API operations (<code>SCARDCONTEXT</code>).</p>
+<code><span class="keyword">class </span><span class="identifier">Context</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-disconnect-disposition/index.html">DisconnectDisposition</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">DisconnectDisposition</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-initialization/index.html">Initialization</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Initialization</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-mechanical-characteristics/index.html">MechanicalCharacteristics</a></h4>
+</td>
+<td>
+<p>Describes the mechanical characteristics of a card reader.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MechanicalCharacteristics</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-p-c-s-c-error-code/index.html">PCSCErrorCode</a></h4>
+</td>
+<td>
+<p>Enumeration to doscribe error states in the PC/SC API.</p>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">PCSCErrorCode</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-protocol/index.html">Protocol</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Protocol</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-scope/index.html">Scope</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Scope</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-share-mode/index.html">ShareMode</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">ShareMode</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-version/index.html">Version</a></h4>
+</td>
+<td>
+<p>Represents a version number, given in response to a <a href="-attribute/-vendor-ifd-version.html">Attribute.VendorIfdVersion</a> request.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Version</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Exceptions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-p-c-s-c-error/index.html">PCSCError</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PCSCError</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="connect.html">connect</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-context/index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">connect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/reader">reader</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/preferredProtocol">preferredProtocol</span><span class="symbol">:</span>&nbsp;<a href="-protocol/index.html"><span class="identifier">Protocol</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Protocol.Any<span class="symbol">)</span><span class="symbol">: </span><a href="-card/index.html"><span class="identifier">Card</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-attrib.html">getAttrib</a></h4>
+</td>
+<td>
+<p>Gets an attribute of the <a href="-card/index.html">Card</a> by its well-known <a href="-attribute/index.html">Attribute</a> identifier.</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.Attribute)/attribute">attribute</span><span class="symbol">:</span>&nbsp;<a href="-attribute/index.html"><span class="identifier">Attribute</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
+<p>Gets an attribute of the <a href="-card/index.html">Card</a> using an <a href="-attribute-class/index.html">AttributeClass</a> and tag (as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>).</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="-attribute-class/index.html"><span class="identifier">AttributeClass</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
+<p>Gets an attribute of a <a href="-card/index.html">Card</a> by its attribute information class and tag ID.</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-ifd-serial.html">getIfdSerial</a></h4>
+</td>
+<td>
+<p>Gets the IFD serial number</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getIfdSerial</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-ifd-type.html">getIfdType</a></h4>
+</td>
+<td>
+<p>Gets the vendor-specified IFD type</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getIfdType</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-ifd-version.html">getIfdVersion</a></h4>
+</td>
+<td>
+<p>Gets the vendor-specified IFD version</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getIfdVersion</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-version/index.html"><span class="identifier">Version</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-mechanical-characteristics.html">getMechanicalCharacteristics</a></h4>
+</td>
+<td>
+<p>Gets the mechanical characteristics of the IFD.</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getMechanicalCharacteristics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-mechanical-characteristics/index.html"><span class="identifier">MechanicalCharacteristics</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-vendor-name.html">getVendorName</a></h4>
+</td>
+<td>
+<p>Gets the IFD's vendor's name</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getVendorName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="reconnect.html">reconnect</a></h4>
+</td>
+<td>
+<p>Disconnects and reconnects to the given card with new parameters.</p>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">reconnect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$reconnect(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol, au.id.micolous.kotlin.pcsc.Initialization)/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$reconnect(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol, au.id.micolous.kotlin.pcsc.Initialization)/preferredProtocol">preferredProtocol</span><span class="symbol">:</span>&nbsp;<a href="-protocol/index.html"><span class="identifier">Protocol</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Protocol.Any<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$reconnect(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol, au.id.micolous.kotlin.pcsc.Initialization)/initialization">initialization</span><span class="symbol">:</span>&nbsp;<a href="-initialization/index.html"><span class="identifier">Initialization</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>getAttrib - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./get-attrib.html">getAttrib</a><br/>
+<br/>
+<h1>getAttrib</h1>
+<a name="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.Attribute)"></a>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.Attribute)/attribute">attribute</span><span class="symbol">:</span>&nbsp;<a href="-attribute/index.html"><span class="identifier">Attribute</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
+<p>Gets an attribute of the <a href="-card/index.html">Card</a> by its well-known <a href="-attribute/index.html">Attribute</a> identifier.</p>
+<a name="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)"></a>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="-attribute-class/index.html"><span class="identifier">AttributeClass</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
+<p>Gets an attribute of the <a href="-card/index.html">Card</a> using an <a href="-attribute-class/index.html">AttributeClass</a> and tag (as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>).</p>
+<h3>Parameters</h3>
+<p><a name="cls"></a>
+<code>cls</code> - The attribute's information class</p>
+<p><a name="tag"></a>
+<code>tag</code> - The attribute's tag ID, must be between 0 and 0xffff</p>
+<a name="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)"></a>
+<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
+<p>Gets an attribute of a <a href="-card/index.html">Card</a> by its attribute information class and tag ID.</p>
+<h3>Parameters</h3>
+<p><a name="cls"></a>
+<code>cls</code> - The attribute's information class.</p>
+<p><a name="tag"></a>
+<code>tag</code> - The attribute's tag ID, must be between 0 and 0xffff</p>
+<p><strong>Return</strong><br/>
+Attribute data, or <code>null</code> if the attribute is not supported.</p>
+</BODY>
+</HTML>
