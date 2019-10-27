@@ -23,6 +23,8 @@ import au.id.micolous.kotlin.pcsc.native.*
 import kotlinx.cinterop.*
 import platform.posix.*
 
+private val SCardListReaders = au.id.micolous.kotlin.pcsc.internal.SCardListReaders
+
 actual class Context private constructor(private var handle: SCARDCONTEXT?) {
 
     // SCardReleaseContext

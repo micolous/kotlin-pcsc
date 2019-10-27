@@ -108,7 +108,7 @@ kotlin {
         linuxX64().buildNative()
         macosX64().buildNative()
         // mingwX86().buildNative()
-        // mingwX64().buildNative()
+        mingwX64().buildNative()
 
         jvm("jna").apply {
             compilations["main"].apply {

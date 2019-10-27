@@ -1,5 +1,5 @@
 package = au.id.micolous.kotlin.pcsc.internal
-noStringConversion = SCardListReaders
+noStringConversion = SCardListReaders WCardListReaders
 
 # To be able to use PCSC.framework, we need to pretend we're using Objective-C.
 language.osx = Objective-C
@@ -42,6 +42,27 @@ typedef LONG SCARDSTATUS;
 #define SCARD_PROTOCOL_T15 0x00000008
 #define SCARD_PROTOCOL_UNSET SCARD_PROTOCOL_UNDEFINED
 
+#define WCardEstablishContext SCardEstablishContext
+#define WCardDisconnect SCardDisconnect
+#define WCardGetAttrib SCardGetAttrib
+#define WCardReconnect SCardReconnect
+#define WCardTransmit SCardTransmit
+#define WCardBeginTransaction SCardBeginTransaction
+#define WCardEndTransaction SCardEndTransaction
+#define WCardReleaseContext SCardReleaseContext
+#define WCardIsValidContext SCardIsValidContext
+#define WCardCancel SCardCancel
+// TODO: Handle wide chars
+#define WCardStatus SCardStatusA
+#define WCardListReaders SCardListReadersA
+
+#undef SCardConnect
+LONG SCardConnect(
+    SCARDCONTEXT hContext, LPCSTR szReader, DWORD dwShareMode, DWORD dwPreferredProtocols,
+    LPSCARDHANDLE phCard, LPDWORD pdwActiveProtocol) {
+    return SCardConnectA(hContext, szReader, dwShareMode, dwPreferredProtocols, phCard,
+        pdwActiveProtocol);
+}
 
 #else
 #error TODO not supported platform

@@ -19,8 +19,65 @@
 package au.id.micolous.kotlin.pcsc.internal
 
 /*
- * These typealiases are required because Kotlin/Native's windows.def massively overreaches across
- * the Win32 API, by inclusion of windows.h without any headerFilter.
+ * This makes common Windows types (also used in pcsclite) look like what we get out of pcsclite.
  */
-typealias DWORD = platform.windows.DWORD;
-typealias DWORDVar = platform.windows.DWORDVar;
+internal typealias DWORD = platform.windows.DWORD
+internal typealias DWORDVar = platform.windows.DWORDVar
+
+/*
+ * These are required because Kotlin/Native's windows.def massively overreaches across the Win32
+ * API, by inclusion of windows.h without any headerFilter.
+ */
+internal typealias SCARDHANDLE = platform.windows.SCARDHANDLE
+internal typealias SCARDHANDLEVar = platform.windows.SCARDHANDLEVar
+internal typealias SCARDCONTEXT = platform.windows.SCARDCONTEXT
+internal typealias SCARDCONTEXTVar = platform.windows.SCARDCONTEXTVar
+
+internal const val SCARD_PROTOCOL_T0 = platform.windows.SCARD_PROTOCOL_T0
+internal const val SCARD_PROTOCOL_T1 = platform.windows.SCARD_PROTOCOL_T1
+internal const val SCARD_PROTOCOL_RAW = platform.windows.SCARD_PROTOCOL_RAW
+internal const val SCARD_PROTOCOL_UNDEFINED = platform.windows.SCARD_PROTOCOL_UNDEFINED
+
+internal const val SCARD_SCOPE_USER = platform.windows.SCARD_SCOPE_USER
+internal const val SCARD_SCOPE_TERMINAL = platform.windows.SCARD_SCOPE_TERMINAL
+internal const val SCARD_SCOPE_SYSTEM = platform.windows.SCARD_SCOPE_SYSTEM
+internal const val SCARD_SHARE_SHARED = platform.windows.SCARD_SHARE_SHARED
+internal const val SCARD_SHARE_EXCLUSIVE = platform.windows.SCARD_SHARE_EXCLUSIVE
+internal const val SCARD_SHARE_DIRECT = platform.windows.SCARD_SHARE_DIRECT
+
+internal const val SCARD_LEAVE_CARD = platform.windows.SCARD_LEAVE_CARD
+internal const val SCARD_RESET_CARD = platform.windows.SCARD_RESET_CARD
+internal const val SCARD_UNPOWER_CARD = platform.windows.SCARD_UNPOWER_CARD
+internal const val SCARD_EJECT_CARD = platform.windows.SCARD_EJECT_CARD
+
+internal const val SCARD_NEGOTIABLE = platform.windows.SCARD_NEGOTIABLE
+internal const val SCARD_POWERED = platform.windows.SCARD_POWERED
+internal const val SCARD_SWALLOWED = platform.windows.SCARD_SWALLOWED
+internal const val SCARD_PRESENT = platform.windows.SCARD_PRESENT
+internal const val SCARD_ABSENT = platform.windows.SCARD_ABSENT
+internal const val SCARD_UNKNOWN = platform.windows.SCARD_UNKNOWN
+internal const val SCARD_SPECIFIC = platform.windows.SCARD_SPECIFIC
+
+/*
+ * These are wrapped as properties.
+ */
+internal val SCARD_PCI_T0 = platform.windows.SCARD_PCI_T0!!
+internal val SCARD_PCI_T1 = platform.windows.SCARD_PCI_T1!!
+internal val SCARD_PCI_RAW = platform.windows.SCARD_PCI_RAW!!
+
+/*
+ * These are also properties that point to functions. SCardConnect isn't here, because it doesn't
+ * work right unless it's an actual function (due to string conversion).
+ */
+internal val SCardDisconnect = WCardDisconnect!!
+internal val SCardGetAttrib = WCardGetAttrib!!
+internal val SCardReconnect = WCardReconnect!!
+internal val SCardTransmit = WCardTransmit!!
+internal val SCardBeginTransaction = WCardBeginTransaction!!
+internal val SCardEndTransaction = WCardEndTransaction!!
+internal val SCardStatus = WCardStatus!!
+internal val SCardReleaseContext = WCardReleaseContext!!
+internal val SCardIsValidContext = WCardIsValidContext!!
+internal val SCardCancel = WCardCancel!!
+internal val SCardListReaders = WCardListReaders!!
+internal val SCardEstablishContext = WCardEstablishContext!!
