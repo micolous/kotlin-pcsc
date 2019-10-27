@@ -18,6 +18,7 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+import au.id.micolous.kotlin.pcsc.jna.Dword
 import com.sun.jna.Platform
 
 actual enum class Scope(private val l: Long) {
