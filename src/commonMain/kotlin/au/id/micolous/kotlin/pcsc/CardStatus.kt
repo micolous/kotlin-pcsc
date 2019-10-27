@@ -89,5 +89,5 @@ data class CardStatus internal constructor(
      *
      * Note: Windows may have many names for the same reader -- this simply returns the first.
      */
-    val readerName = readerNames.firstOrNull
+    val readerName = readerNames.firstOrNull()
 }

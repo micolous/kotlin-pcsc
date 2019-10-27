@@ -29,7 +29,10 @@ headerFilter.mingw = winscard.h pcsclite.h
 #elif defined(__linux__)
 // Return type for all SCard* functions
 typedef LONG SCARDSTATUS;
+#define SCardControl132 SCardControl
 
 #else
+#define SCardControl132 SCardControl
+
 // TODO
 #endif

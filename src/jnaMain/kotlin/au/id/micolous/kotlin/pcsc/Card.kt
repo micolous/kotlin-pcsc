@@ -145,4 +145,30 @@ actual class Card internal constructor(
         )
     }
 
+    // SCardControl
+    actual fun control(controlCode: Long, sendBuffer: ByteArray?, recvBufferSize: Int): ByteArray? {
+        require(recvBufferSize >= 0) { "recvBufferSize must be >= 0" }
+        val bSendBuffer = sendBuffer?.copyOf()
+        val cbSendLength = Dword(bSendBuffer?.size?.toLong() ?: 0)
+        val bRecvBuffer = if (recvBufferSize == 0) null else ByteBuffer.allocateDirect(recvBufferSize)
+        val cbRecvLength = Dword(recvBufferSize.toLong())
+        val lpBytesReturned = DwordByReference()
+
+        wrapPCSCErrors {
+            LIB.value.SCardControl(
+                handle,
+                Dword(controlCode),
+                bSendBuffer,
+                cbSendLength,
+                bRecvBuffer,
+                cbRecvLength,
+                lpBytesReturned
+            )
+        }
+
+        return bRecvBuffer?.run {
+            position(0)
+            getByteArray(lpBytesReturned.value.toInt())
+        }
+    }
 }

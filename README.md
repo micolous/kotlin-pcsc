@@ -43,6 +43,7 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 * SCardBeginTransaction -> Card.beginTransaction
 * SCardEndTransaction -> Card.endTransaction
 * SCardStatus -> Card.status
+* SCardControl -> Card.control
 
 ### TODO:
 
@@ -52,7 +53,6 @@ This takes some small liberties with the PC/SC API to make it object oriented.
 
 #### Control and attributes
 
-* SCardControl
 * SCardGetAttrib
 * SCardSetAttrib
 

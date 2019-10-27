@@ -66,7 +66,7 @@ class MultiStringTest {
         assertEquals(listOf("world"), b)
 
         val e = b.asMultiString()
-        assertEquals(helloWorld.slice(6 until helloWorld.size).toHex(), e.toHex())
+        assertEquals(helloWorld.sliceArray(6 until helloWorld.size).toHex(), e.toHex())
     }
 
     @Test

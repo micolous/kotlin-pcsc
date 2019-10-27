@@ -104,6 +104,20 @@ expect class Card {
      * @throws PCSCError
      */
     fun status(): CardStatus
+
+    /**
+     * Direct control commands of the reader.
+     *
+     * Equivalent to `SCardControl132` on macOS, or `SCardControl` on other platforms.
+     *
+     * @param controlCode Control code for the operation
+     * @param sendBuffer Data required to perform the operation
+     * @param recvBufferSize Size of the buffer to use for output. If set to 0 (default), then no
+     * receive buffer will be used, and this function will return `null`.
+     * @return Correctly-sized [ByteArray] with the return buffer from the card, or `null` if
+     * [recvBufferSize] == 0
+     */
+    fun control(controlCode: Long, sendBuffer: ByteArray? = null, recvBufferSize: Int = 0): ByteArray?
 }
 
 /**

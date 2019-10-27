@@ -47,4 +47,7 @@ internal interface WinscardLibrary: Library {
                     pcchReaderLen: DwordByReference, pdwState: DwordByReference?,
                     pdwProtocol: DwordByReference?, pbAtr: ByteBuffer?,
                     pcbAtrLen: DwordByReference) : SCardResult
+    fun SCardControl(hCard: SCardHandle, dwControlCode: Dword, pbSendBuffer: ByteArray?,
+                     cbSendLength: Dword, pbRecvBuffer: ByteBuffer?, cbRecvLength: Dword,
+                     lpBytesReturned: DwordByReference) : SCardResult
 }

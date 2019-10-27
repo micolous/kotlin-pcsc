@@ -139,4 +139,35 @@ actual class Card internal constructor(
             )
         }
     }
+
+    // SCardControl
+    actual fun control(controlCode: Long, sendBuffer: ByteArray?, recvBufferSize: Int): ByteArray? {
+        require(recvBufferSize >= 0) { "recvBufferSize must be >= 0" }
+        val bSendBuffer = sendBuffer?.toUByteArray()
+        val cbSendLength: DWORD = (bSendBuffer?.size ?: 0).convert()
+        val bRecvBuffer = if (recvBufferSize == 0) null else UByteArray(recvBufferSize)
+        var cbRecvLength: DWORD = (bSendBuffer?.size ?: 0).convert()
+
+        return memScoped {
+            val lpBytesReturned = alloc<DWORDVar>()
+
+            sendBuffer.useNullablePinned { pbSendBuffer ->
+                bRecvBuffer.useNullablePinned { pbRecvBuffer -> wrapPCSCErrors {
+                    SCardControl132(
+                        handle,
+                        controlCode.convert<DWORD>(),
+                        pbSendBuffer?.addressOf(0),
+                        cbSendLength,
+                        pbRecvBuffer?.addressOf(0),
+                        cbRecvLength,
+                        lpBytesReturned.ptr
+                    )
+                }}
+            }
+
+            bRecvBuffer?.sliceArray(0 until lpBytesReturned.value.toInt())?.toByteArray()
+        }
+    }
+
+
 }
