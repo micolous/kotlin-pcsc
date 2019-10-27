@@ -48,8 +48,8 @@ private const val ZERO: Byte = 0
  *
  * The input is a list of null terminated strings, that is then terminated with a null byte.
  *
- * If there is no final terminating byte, but the end of the [ByteArray] was reached, this method
- * will not return an error.
+ * If there is no end-of-list terminating byte, but the end of the [ByteArray] was reached, this
+ * method will not return an error.
  *
  * If no [off] and [len] parameters are specified, the entire length of the [ByteArray] is decoded.
  *
@@ -64,12 +64,16 @@ internal fun ByteArray.toMultiString(
     require(len >= 0) { "len must be greater than or equal to 0" }
     require(off <= size) { "off must be less than or equal to $size" }
     require((off + len) <= size) { "length must be less than or equal to ${size - off}" }
+    if (len == 0) {
+        return emptySequence()
+    }
 
     val array = this
+    val lastByte = off + len
     return sequence {
         var start = off
 
-        for (index in (off..off + len)) {
+        for (index in (off until lastByte)) {
             if (array[index] == ZERO) {
                 // terminator
                 if (index == start) {
@@ -81,6 +85,11 @@ internal fun ByteArray.toMultiString(
                 yield(array.decodeToString(start, index, true))
                 start = index + 1
             }
+        }
+
+        // If there are extra bytes after the end of the array (ie: no null terminator)
+        if (start < lastByte - 1) {
+            yield(array.decodeToString(start, lastByte, true))
         }
     }
 }
