@@ -14,7 +14,7 @@ Platform           | PC/SC Implementation     | [JNA][] (JRE) | Native
 ------------------ | ------------------------ | ------------- | ------
 Linux x86_64       | [pcsclite][]             | :o:           | :o:
 macOS 10.14 x86_64 | `PCSC.framework`         | :o:           | :o:
-Windows 10 x86_64  | [WinSCard.dll][winscard] | :question:    | :x:
+Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
 
 > :warning: Cross-compiling **Native** targets is not supported.
 
