@@ -161,12 +161,6 @@ tasks {
                 targets = listOf("all")
                 platform = "common"
             }
-
-
-            // val common by creating {}
-            //val linuxX64 by creating {}
-            //val macosX64 by creating {}
-
         }
     }
 }
