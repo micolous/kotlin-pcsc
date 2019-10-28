@@ -1,8 +1,6 @@
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.plugin.mpp.DefaultCInteropSettings
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform") version "1.3.41"
@@ -14,12 +12,6 @@ repositories {
     jcenter()
 }
 
-val kotlinVersion = "1.3.41"
-val mingwPath = File(System.getenv("MINGW64_DIR") ?: "C:/msys64/mingw64")
-
-val kotlinNativeDataPath = System.getenv("KONAN_DATA_DIR")?.let { File(it) }
-    ?: File(System.getProperty("user.home")).resolve(".konan")
-
 dependencies {
     commonMainApi(kotlin("stdlib-common"))
     commonTestImplementation(kotlin("test-common"))
@@ -27,10 +19,6 @@ dependencies {
 }
 
 kotlin {
-    // Determine host preset.
-    val hostOs = System.getProperty("os.name")
-    val isMingwX64 = hostOs.startsWith("Windows")
-
     // linuxArm32Hfp()  // Raspberry Pi
     linuxX64()
     macosX64()  // (no cross compiler)
@@ -61,10 +49,8 @@ kotlin {
 
         // Setup common dependencies
         targets.forEach {
-            val linTarget = it.preset?.name?.startsWith("linux") ?: false
             val macTarget = it.preset?.name?.startsWith("macos") ?: false
             val winTarget = it.preset?.name?.startsWith("mingw") ?: false
-
 
             it.compilations.forEach { compilation ->
                 when (compilation.name) {

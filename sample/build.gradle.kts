@@ -13,8 +13,6 @@ repositories {
 dependencies {
     commonMainImplementation(kotlin("stdlib-common"))
     commonMainImplementation(rootProject)
-    commonTestImplementation(kotlin("test-common"))
-    commonTestImplementation(kotlin("test-annotations-common"))
 }
 
 kotlin {
@@ -26,7 +24,7 @@ kotlin {
 
     targets.filterIsInstance<KotlinNativeTarget>().forEach {
         it.binaries {
-            executable("pcsc_sample") { }
+            executable("pcsc_sample")
         }
     }
 
