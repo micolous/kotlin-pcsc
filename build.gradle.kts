@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
 plugins {
     kotlin("multiplatform") version "1.3.41"
     id("org.jetbrains.dokka") version "0.10.0"
+    id("maven-publish")
 }
 
 repositories {
@@ -17,6 +18,9 @@ dependencies {
     commonTestImplementation(kotlin("test-common"))
     commonTestImplementation(kotlin("test-annotations-common"))
 }
+
+group = "au.id.micolous.kotlin.pcsc"
+version = "0.0.1"
 
 kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
@@ -105,6 +109,14 @@ kotlin {
 
     sourceSets.all {
         languageSettings.useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
+    }
+}
+
+publishing {
+    publications {
+        val kotlinMultiplatform by getting {
+        //    artifactId = "kotlin-pcsc"
+        }
     }
 }
 

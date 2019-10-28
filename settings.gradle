@@ -1,1 +1,2 @@
+enableFeaturePreview("GRADLE_METADATA")
 include ':sample'
