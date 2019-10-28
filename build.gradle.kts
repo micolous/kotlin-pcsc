@@ -1,4 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.plugin.mpp.DefaultCInteropSettings
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
@@ -23,32 +26,6 @@ dependencies {
     commonTestImplementation(kotlin("test-annotations-common"))
 }
 
-/**
- * Runs `pkg-config`:
- * https://github.com/JetBrains/kotlin-native/issues/1534#issuecomment-384894431
- */
-fun pkgConfig(
-    vararg packageNames: String,
-    cflags: Boolean = false,
-    includes: Boolean = false,
-    libs: Boolean = false): List<String> {
-    val p = ProcessBuilder(*(listOfNotNull(
-        "pkg-config",
-        if (cflags) "--cflags-only-other" else null,
-        if (includes) "--variable=includedir" else null,
-        if (libs) "--libs" else null
-    ).toTypedArray() + packageNames))
-        .start()
-        .also { it.waitFor(10, TimeUnit.SECONDS) }
-
-
-    if (p.exitValue() != 0) {
-        throw Exception("Error executing pkg-config: ${p.errorStream.bufferedReader().readText()}")
-    }
-
-    return p.inputStream.bufferedReader().readText().split(" ").map{ it.trim() }
-}
-
 kotlin {
     // Determine host preset.
     val hostOs = System.getProperty("os.name")
@@ -57,76 +34,84 @@ kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
     linuxX64()
     macosX64()  // (no cross compiler)
-    // mingwX86()  // Windows
+    mingwX86()  // Windows
     mingwX64()  // Windows (no cross compiler)
 
     jvm("jna")
 
     sourceSets {
-        val nativeMain by creating {
-            dependsOn(getByName("commonMain"))
-        }
+        val commonMain by getting {}
+        val commonTest by getting {}
 
+        val nativeMain by creating {}
         val nativeMacosMain by creating {
             dependsOn(nativeMain)
         }
-
         val nativeWindowsMain by creating {
             dependsOn(nativeMain)
         }
 
-        fun KotlinNativeTarget.buildNative() {
+        jvm("jna").apply {
             compilations["main"].apply {
-                defaultSourceSet {
-                    dependsOn(when (preset) {
-                        presets["macosX64"] -> nativeMacosMain
-                        presets["mingwX64"],
-                        presets["mingwX86"] -> nativeWindowsMain
-                        else -> nativeMain
-                    })
-                }
-
-                cinterops {
-                    val winscard by creating {
-//                        when (preset) {
-//                            presets["linuxX64"] -> {
-//                                includeDirs("/usr/include", "/usr/include/PCSC")
-//                            }
-//                        }
-                    }
-                }
-            }
-
-            compilations["test"].apply {
-                defaultSourceSet {
-                    dependsOn(getByName("commonTest"))
+                dependencies {
+                    api("net.java.dev.jna:jna:4.0.0")
                 }
             }
         }
 
-        // linuxArm32Hfp().buildNative()
-        linuxX64().buildNative()
-        macosX64().buildNative()
-        // mingwX86().buildNative()
-        mingwX64().buildNative()
+        // Setup common dependencies
+        targets.forEach {
+            val linTarget = it.preset?.name?.startsWith("linux") ?: false
+            val macTarget = it.preset?.name?.startsWith("macos") ?: false
+            val winTarget = it.preset?.name?.startsWith("mingw") ?: false
 
-        jvm("jna").apply {
-            compilations["main"].apply {
-                defaultSourceSet {
-                    dependsOn(getByName("commonMain"))
-                }
-                dependencies {
-                    api(kotlin("stdlib-jdk8"))
-                    api("net.java.dev.jna:jna:4.0.0")
-                }
-            }
 
-            compilations["test"].apply {
-                defaultSourceSet {
-                    dependsOn(getByName("commonTest"))
-                }
-                dependencies {
-                    implementation(kotlin("test-junit"))
+            it.compilations.forEach { compilation ->
+                when (compilation.name) {
+                    "main" -> compilation.apply {
+                        defaultSourceSet {
+                            if (this != commonMain) {
+                                dependsOn(commonMain)
+                            }
+                        }
+
+                        when (this) {
+                            is KotlinJvmCompilation -> // Java
+                                dependencies {
+                                    api(kotlin("stdlib-jdk8"))
+                                }
+
+                            is KotlinNativeCompilation -> { // Native
+                                defaultSourceSet {
+                                    dependsOn(
+                                        when {
+                                            macTarget -> nativeMacosMain
+                                            winTarget -> nativeWindowsMain
+                                            else -> nativeMain
+                                        }
+                                    )
+                                }
+
+                                cinterops {
+                                    create("winscard")
+                                }
+                            }
+                        }
+                    }
+
+
+                    "test" -> compilation.apply {
+                        defaultSourceSet {
+                            dependsOn(commonTest)
+                        }
+
+                        if (this is KotlinJvmCompilation) {
+                            // common
+                            dependencies {
+                                implementation(kotlin("test-junit"))
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -21,6 +21,7 @@ kotlin {
     linuxX64()
     macosX64()
     mingwX64()
+    mingwX86()
     jvm("jna")
 
     targets.filterIsInstance<KotlinNativeTarget>().forEach {
