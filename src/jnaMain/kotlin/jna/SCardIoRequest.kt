@@ -33,7 +33,7 @@ internal class SCardIoRequest(p: Pointer? = null) : Structure(p) {
     @JvmField var dwProtocol = Dword()
     @JvmField var cbPciLength = Dword()
 
-    override fun getFieldOrder(): MutableList<Any?> {
+    override fun getFieldOrder(): MutableList<String> {
         return mutableListOf("dwProtocol", "cbPciLength")
     }
 
