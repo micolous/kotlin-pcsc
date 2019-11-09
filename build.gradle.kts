@@ -32,7 +32,13 @@ kotlin {
     mingwX86()  // Windows
     mingwX64()  // Windows (no cross compiler)
 
-    jvm("jna")
+    jvm("jna") {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "9"
+            }
+        }
+    }
 
     sourceSets {
         val commonMain by getting {}
@@ -155,5 +161,12 @@ tasks {
                 path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
             }
         }
+    }
+}
+
+afterEvaluate {
+    tasks.filterIsInstance<AbstractArchiveTask>().forEach {
+        it.isPreserveFileTimestamps = false
+        it.isReproducibleFileOrder = true
     }
 }
