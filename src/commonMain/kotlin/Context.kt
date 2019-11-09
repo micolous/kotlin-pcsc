@@ -118,4 +118,14 @@ fun Context.getStatus(readers: List<String>) : List<ReaderState> = runBlocking {
 }
 
 fun Context.getStatus(reader: String): ReaderState
-    = getStatus(listOf(reader)).first()
+        = getStatus(listOf(reader)).first()
+
+/**
+ * Gets the status of all connected readers.
+ *
+ * @param groups If specified, a list of group names to search within.
+ * @returns [List] of all connected readers
+ * @see [Context.getStatus], [Context.listReaders]
+ */
+fun Context.getAllReaderStatus(groups: List<String>? = null): List<ReaderState>
+        = listReaders(groups).takeUnless { it.isEmpty() }?.let(::getStatus).orEmpty()

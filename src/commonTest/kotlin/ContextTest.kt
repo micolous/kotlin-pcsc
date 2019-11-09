@@ -75,9 +75,7 @@ class ContextTest {
     @Test
     fun testGetStatusChange() {
         val context = Context.establish()
-        val readers = context.listReaders()
-        val states = context.getStatus(readers)
-
+        val states = context.getAllReaderStatus()
         for (state in states) {
             println(state)
         }
