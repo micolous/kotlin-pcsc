@@ -18,6 +18,8 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+import au.id.micolous.kotlin.pcsc.internal.*
+import kotlin.reflect.*
 import kotlinx.cinterop.*
 
 /**
@@ -27,10 +29,38 @@ import kotlinx.cinterop.*
  *
  * If [this] is non-`null`, then [block] will be executed with a [Pinned] version of [this].
  */
-inline fun <T : Any, R> T?.useNullablePinned(block: (Pinned<T>?) -> R): R {
+internal inline fun <T : Any, R> T?.useNullablePinned(block: (Pinned<T>?) -> R): R {
     if (this == null) {
         return block(null)
     }
 
     return this.usePinned(block)
 }
+
+/**
+ * Creates a new [ByteArray], or returns `null` if [length] is 0.
+ */
+internal fun maybeByteArray(length: Int): ByteArray? {
+    require(length >= 0) { "buffer length must be at least 0" }
+    return when (length) {
+        0 -> null
+        else -> ByteArray(length)
+    }
+}
+
+internal inline fun maybeByteArray(length: DWORD) = maybeByteArray(length.toInt())
+internal inline fun maybeByteArray(length: DWORDVar) = maybeByteArray(length.value.toInt())
+
+/**
+ * Creates a new [UByteArray], or returns `null` if [length] is 0.
+ */
+internal fun maybeUByteArray(length: Int): UByteArray? {
+    require(length >= 0) { "buffer length must be at least 0" }
+    return when (length) {
+        0 -> null
+        else -> UByteArray(length)
+    }
+}
+
+internal inline fun maybeUByteArray(length: DWORD) = maybeUByteArray(length.toInt())
+internal inline fun maybeUByteArray(length: DWORDVar) = maybeUByteArray(length.value.toInt())

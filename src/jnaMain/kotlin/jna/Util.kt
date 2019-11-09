@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package au.id.micolous.kotlin.pcsc
+package au.id.micolous.kotlin.pcsc.jna
 
 import java.nio.ByteBuffer
 
@@ -29,3 +29,17 @@ internal fun ByteBuffer.getByteArray(length: Int): ByteArray {
     get(out)
     return out
 }
+
+/**
+ * Wrapper around [ByteBuffer.allocateDirect] to return `null` if [length] is 0.
+ */
+internal fun maybeAlloc(length: Int): ByteBuffer? {
+    require(length >= 0) { "buffer length must be at least 0" }
+    return when (length) {
+        0 -> null
+        else -> ByteBuffer.allocateDirect(length)
+    }
+}
+
+internal fun maybeAlloc(length: Dword) = maybeAlloc(length.toInt())
+internal fun maybeAlloc(length: DwordByReference) = maybeAlloc(length.value.toInt())

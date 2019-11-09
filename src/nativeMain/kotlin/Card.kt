@@ -103,20 +103,20 @@ actual class Card internal constructor(
             }
 
             // We now have correct buffer sizes
-            val readerNames = ByteArray(pcchReaderLen.value.toInt())
-            val atr = UByteArray(pcbAtrLen.value.toInt())
+            val readerNames = maybeByteArray(pcchReaderLen)
+            val atr = maybeUByteArray(pcbAtrLen)
             val pdwState = alloc<DWORDVar>()
             val pdwProtocol = alloc<DWORDVar>()
 
-            readerNames.usePinned { mszReaderNames -> atr.usePinned { pbAtr ->
+            readerNames.useNullablePinned { mszReaderNames -> atr.useNullablePinned { pbAtr ->
                 wrapPCSCErrors {
                     SCardStatus(
                         handle,
-                        mszReaderNames.addressOf(0),
+                        mszReaderNames?.addressOf(0),
                         pcchReaderLen.ptr,
                         pdwState.ptr,
                         pdwProtocol.ptr,
-                        pbAtr.addressOf(0),
+                        pbAtr?.addressOf(0),
                         pcbAtrLen.ptr
                     )
                 }
@@ -124,7 +124,7 @@ actual class Card internal constructor(
 
             val state = pdwState.value
             CardStatus(
-                readerNames = readerNames.toMultiString().toList(),
+                readerNames = readerNames?.toMultiString()?.toList() ?: emptyList(),
                 // SCARD_UNKNOWN == 0 on Windows
                 unknown = state == SCARD_UNKNOWN.convert<DWORD>(),
                 // These are all written as bitmasks to be compatible with pcsclite and Windows
@@ -135,7 +135,7 @@ actual class Card internal constructor(
                 negotiable = (state and SCARD_NEGOTIABLE.convert<DWORD>()) == SCARD_NEGOTIABLE.convert<DWORD>(),
                 specific = (state and SCARD_SPECIFIC.convert<DWORD>()) == SCARD_SPECIFIC.convert<DWORD>(),
                 protocol = pdwProtocol.value.toProtocol(),
-                atr = atr.toByteArray()
+                atr = atr?.toByteArray() ?: ByteArray(0)
             )
         }
     }
@@ -145,7 +145,7 @@ actual class Card internal constructor(
         require(recvBufferSize >= 0) { "recvBufferSize must be >= 0" }
         val bSendBuffer = sendBuffer?.toUByteArray()
         val cbSendLength: DWORD = (bSendBuffer?.size ?: 0).convert()
-        val bRecvBuffer = if (recvBufferSize == 0) null else UByteArray(recvBufferSize)
+        val bRecvBuffer = maybeUByteArray(recvBufferSize)
         var cbRecvLength: DWORD = (bSendBuffer?.size ?: 0).convert()
 
         return memScoped {

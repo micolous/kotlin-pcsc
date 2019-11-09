@@ -64,7 +64,7 @@ actual class Card internal constructor(
 
         val pioSendPci = SCardIoRequest.getForProtocol(protocol)
 
-        val pbRecvBuffer = ByteBuffer.allocateDirect(MAX_BUFFER_SIZE)
+        val pbRecvBuffer = ByteBuffer.allocateDirect(MAX_BUFFER_SIZE)!!
         val pcbRecvLength = DwordByReference(Dword(pbRecvBuffer.limit().toLong()))
 
         wrapPCSCErrors {
@@ -107,8 +107,8 @@ actual class Card internal constructor(
             LIB.value.SCardStatus(handle, null, pcchReaderLen, null, null, null, pcbAtrLen)
         }
 
-        val readerNames = ByteBuffer.allocateDirect(pcchReaderLen.value.toInt())
-        val atr = ByteBuffer.allocateDirect(pcbAtrLen.value.toInt())
+        val readerNames = maybeAlloc(pcchReaderLen)
+        val atr = maybeAlloc(pcbAtrLen)
         val pdwState = DwordByReference()
         val pdwProtocol = DwordByReference()
 
@@ -150,8 +150,7 @@ actual class Card internal constructor(
         require(recvBufferSize >= 0) { "recvBufferSize must be >= 0" }
         val bSendBuffer = sendBuffer?.copyOf()
         val cbSendLength = Dword(bSendBuffer?.size?.toLong() ?: 0)
-        val bRecvBuffer =
-            if (recvBufferSize == 0) null else ByteBuffer.allocateDirect(recvBufferSize)
+        val bRecvBuffer = maybeAlloc(recvBufferSize)
         val cbRecvLength = Dword(recvBufferSize.toLong())
         val lpBytesReturned = DwordByReference()
 
