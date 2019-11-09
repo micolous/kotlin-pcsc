@@ -23,6 +23,7 @@ package au.id.micolous.kotlin.pcsc.internal
  */
 internal typealias DWORD = platform.windows.DWORD
 internal typealias DWORDVar = platform.windows.DWORDVar
+internal typealias SCARD_READERSTATE = platform.windows.SCARD_READERSTATE_A
 
 /*
  * These are required because Kotlin/Native's windows.def massively overreaches across the Win32
@@ -81,3 +82,4 @@ internal val SCardIsValidContext = WCardIsValidContext!!
 internal val SCardCancel = WCardCancel!!
 internal val SCardListReaders = WCardListReaders!!
 internal val SCardEstablishContext = WCardEstablishContext!!
+internal val SCardGetStatusChange = WCardGetStatusChange!!

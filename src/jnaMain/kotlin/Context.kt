@@ -97,6 +97,24 @@ actual class Context private constructor(private var handle: SCardContext?) {
         return Card(phCard.handle, pdwActiveProtocol.value.toLong().toProtocol())
     }
 
+    // SCardGetStatusChange
+    actual suspend fun getStatusChange(timeout: Int, readers: List<ReaderState>): List<ReaderState> {
+        val handle = nonNullHandle()
+        val readerCount = Dword(readers.size.toLong())
+
+        // Copy the List<ReaderState> into an array with native types.
+        // This will be passed by reference, and mutated...
+        val jnaReaderStates = SCardReaderState.makeArray(readers.size)
+        jnaReaderStates.forEachIndexed{ i, j -> j.copyFrom(readers[i]) }
+
+        wrapPCSCErrors {
+            LIB.value.SCardGetStatusChange(
+                handle, Dword(timeout.toLong()), jnaReaderStates, readerCount)
+        }
+
+        return jnaReaderStates.toList().map { it.unwrap() }
+    }
+
     /** Returns the handle associated with this context, or raises an exception if invalid. */
     private fun nonNullHandle(): SCardContext {
         val handle = handle

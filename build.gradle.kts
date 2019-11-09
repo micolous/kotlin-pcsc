@@ -13,8 +13,11 @@ repositories {
     jcenter()
 }
 
+val coroutinesVer = "1.3.0-RC"
+
 dependencies {
     commonMainApi(kotlin("stdlib-common"))
+    commonMainApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVer")
     commonTestImplementation(kotlin("test-common"))
     commonTestImplementation(kotlin("test-annotations-common"))
 }
@@ -72,6 +75,10 @@ kotlin {
                                 }
 
                             is KotlinNativeCompilation -> { // Native
+                                dependencies {
+                                    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVer")
+                                }
+
                                 defaultSourceSet {
                                     dependsOn(
                                         when {

@@ -18,6 +18,8 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+import kotlinx.coroutines.*
+
 /**
  * Main interface for PC/SC API operations (`SCARDCONTEXT`).
  *
@@ -73,6 +75,15 @@ expect class Context {
      */
     fun connect(reader: String, shareMode: ShareMode, preferredProtcols: Set<Protocol>?) : Card
 
+    /**
+     * Waits for status changes in the given list of readers.
+     *
+     * Equivalent to `SCardGetStatusChange`.
+     *
+     * @param timeout Number of seconds to wait. To wait for a long time, use [LONG_TIMEOUT].
+     */
+    suspend fun getStatusChange(timeout: Int, readers: List<ReaderState>) : List<ReaderState>
+
     companion object {
         /**
          * Establishes a new PC/SC context.
@@ -94,3 +105,17 @@ expect class Context {
  */
 fun Context.connect(reader: String, shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any) : Card
         = connect(reader, shareMode, setOf(preferredProtocol))
+
+/**
+ * Gets the current state of the given readers, and returns immediately.
+ *
+ * This is equivalent to `SCardGetStatusChange(dwTimeout = 0, ...)`.
+ *
+ * @see [Context.getStatusChange]
+ */
+fun Context.getStatus(readers: List<String>) : List<ReaderState> = runBlocking {
+    getStatusChange(0, readers.map { ReaderState(it) })
+}
+
+fun Context.getStatus(reader: String): ReaderState
+    = getStatus(listOf(reader)).first()

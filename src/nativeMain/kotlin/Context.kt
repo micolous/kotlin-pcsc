@@ -102,6 +102,25 @@ actual class Context private constructor(private var handle: SCARDCONTEXT?) {
         }
     }
 
+    // SCardGetStatusChange
+    actual suspend fun getStatusChange(timeout: Int, readers: List<ReaderState>): List<ReaderState> {
+        val handle = nonNullHandle()
+
+        return memScoped {
+            // Copy the List<ReaderState> into an array with native types.
+            // This will be passed by reference, and mutated...
+            val rgReaderStates = allocArray<SCARD_READERSTATE_A>(readers.size)
+            readers.forEachIndexed{ i, j -> rgReaderStates[i].copyFrom(memScope, j) }
+
+            wrapPCSCErrors {
+                SCardGetStatusChange(
+                    handle, timeout.convert<DWORD>(), rgReaderStates, readers.size.convert<DWORD>())
+            }
+
+            (0 until readers.size).map { i -> rgReaderStates[i].unwrap() }
+        }
+    }
+
     /** Returns the handle associated with this context, or raises an exception if invalid. */
     private fun nonNullHandle(): SCARDCONTEXT {
         val handle = handle

@@ -52,4 +52,7 @@ internal interface WinscardLibrary: Library {
                      lpBytesReturned: DwordByReference) : SCardResult
     fun SCardGetAttrib(hCard: SCardHandle, dwAttrId: Dword, pbAttr: ByteBuffer?,
                        pcbAttrLen: DwordByReference) : SCardResult
+    fun SCardGetStatusChange(hContext: SCardContext, dwTimeout: Dword,
+                             rgReaderStates: Array<SCardReaderState>,
+                             cReaders: Dword) : SCardResult
 }

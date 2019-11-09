@@ -71,4 +71,17 @@ class ContextTest {
         card.disconnect()
         context.release()
     }
+
+    @Test
+    fun testGetStatusChange() {
+        val context = Context.establish()
+        val readers = context.listReaders()
+        val states = context.getStatus(readers)
+
+        for (state in states) {
+            println(state)
+        }
+
+        context.release()
+    }
 }

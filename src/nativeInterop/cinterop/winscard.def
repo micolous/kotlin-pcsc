@@ -55,6 +55,7 @@ typedef LONG SCARDSTATUS;
 // TODO: Handle wide chars
 #define WCardStatus SCardStatusA
 #define WCardListReaders SCardListReadersA
+#define WCardGetStatusChange SCardGetStatusChangeA
 
 #undef SCardConnect
 LONG SCardConnect(
