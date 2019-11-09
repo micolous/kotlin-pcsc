@@ -25,3 +25,6 @@ import platform.posix.*
 
 internal actual val isLittleEndian = Platform.isLittleEndian
 internal val DWORD_ZERO = 0.convert<DWORD>()
+
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun UInt.hasBits(mask: UInt) = (this and mask) == mask

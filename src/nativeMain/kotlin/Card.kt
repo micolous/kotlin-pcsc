@@ -128,12 +128,12 @@ actual class Card internal constructor(
                 // SCARD_UNKNOWN == 0 on Windows
                 unknown = state == SCARD_UNKNOWN.convert<DWORD>(),
                 // These are all written as bitmasks to be compatible with pcsclite and Windows
-                absent = (state and SCARD_ABSENT.convert<DWORD>()) == SCARD_ABSENT.convert<DWORD>(),
-                present = (state and SCARD_PRESENT.convert<DWORD>()) == SCARD_PRESENT.convert<DWORD>(),
-                swallowed = (state and SCARD_SWALLOWED.convert<DWORD>()) == SCARD_SWALLOWED.convert<DWORD>(),
-                powered = (state and SCARD_POWERED.convert<DWORD>()) == SCARD_POWERED.convert<DWORD>(),
-                negotiable = (state and SCARD_NEGOTIABLE.convert<DWORD>()) == SCARD_NEGOTIABLE.convert<DWORD>(),
-                specific = (state and SCARD_SPECIFIC.convert<DWORD>()) == SCARD_SPECIFIC.convert<DWORD>(),
+                absent = state.hasBits(SCARD_ABSENT.convert()),
+                present = state.hasBits(SCARD_PRESENT.convert()),
+                swallowed = state.hasBits(SCARD_SWALLOWED.convert()),
+                powered = state.hasBits(SCARD_POWERED.convert()),
+                negotiable = state.hasBits(SCARD_NEGOTIABLE.convert()) ,
+                specific = state.hasBits(SCARD_SPECIFIC.convert()),
                 protocol = pdwProtocol.value.toProtocol(),
                 atr = atr?.toByteArray() ?: ByteArray(0)
             )

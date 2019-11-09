@@ -42,6 +42,7 @@ internal fun ByteArray.getInt(off: Int = 0, len: Int = off - size): Int = getLon
 /** A really long timeout value. */
 const val LONG_TIMEOUT = 50 * 86400 // days
 
+@Suppress("NOTHING_TO_INLINE")
 internal inline fun Int.hasBits(mask: Int) = (this and mask) == mask
+@Suppress("NOTHING_TO_INLINE")
 internal inline fun Long.hasBits(mask: Long) = (this and mask) == mask
-internal inline fun UInt.hasBits(mask: UInt) = (this and mask) == mask
