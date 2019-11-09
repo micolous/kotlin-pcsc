@@ -18,6 +18,7 @@
  */
 package au.id.micolous.kotlin.pcsc.jna
 
+import au.id.micolous.kotlin.pcsc.toMultiString
 import java.nio.ByteBuffer
 
 internal fun ByteBuffer.getMultiString(length: Int): Sequence<String> {

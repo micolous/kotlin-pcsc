@@ -124,12 +124,12 @@ actual class Card internal constructor(
             )
         }
 
-        readerNames.position(0)
-        atr.position(0)
+        readerNames?.position(0)
+        atr?.position(0)
 
         val state = pdwState.value.toLong()
         return CardStatus(
-            readerNames = readerNames.getMultiString(pcchReaderLen.value.toInt()).toList(),
+            readerNames = readerNames?.getMultiString(pcchReaderLen.value.toInt())?.toList() ?: emptyList(),
             // SCARD_UNKNOWN == 0 on Windows
             unknown = ((SCARD_UNKNOWN == 0L && state == SCARD_UNKNOWN) ||
                     (SCARD_UNKNOWN != 0L && (state and SCARD_UNKNOWN) == SCARD_UNKNOWN)),
@@ -141,7 +141,7 @@ actual class Card internal constructor(
             negotiable = (state and SCARD_NEGOTIABLE) == SCARD_NEGOTIABLE,
             specific = (state and SCARD_SPECIFIC) == SCARD_SPECIFIC,
             protocol = pdwProtocol.value.toLong().toProtocol(),
-            atr = atr.getByteArray(pcbAtrLen.value.toInt())
+            atr = atr?.getByteArray(pcbAtrLen.value.toInt()) ?: ByteArray(0)
         )
     }
 
