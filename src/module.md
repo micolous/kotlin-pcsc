@@ -23,6 +23,7 @@ Alphabetical list of functions in the PC/SC C API, and their equivalent function
 * `SCardEndTransaction` ➡️ [Card.endTransaction][]
 * `SCardEstablishContext` ➡️ [Context.establish][]
 * `SCardGetAttrib` ➡️ [Card.getAttrib][]
+* `SCardGetStatusChange` ➡️ [Context.getStatusChange][]
 * `SCardIsValidContext` ➡️ [Context.isValid][]
 * `SCardListReaders` ➡️ [Context.listReaders][]
 * `SCardReconnect` ➡️ [Card.reconnect][]
@@ -33,7 +34,6 @@ Alphabetical list of functions in the PC/SC C API, and their equivalent function
 Unimplemented functions:
 
 * `SCardCancelTransaction`
-* `SCardGetStatusChange`
 * `SCardListReaderGroups`
 * `SCardSetAttrib`
 * `SCardSetTimeout`
