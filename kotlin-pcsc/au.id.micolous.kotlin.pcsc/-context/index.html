@@ -34,6 +34,14 @@
 </tr>
 <tr>
 <td>
+<h4><a href="get-status-change.html">getStatusChange</a></h4>
+</td>
+<td>
+<p>Waits for status changes in the given list of readers.</p>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getStatusChange</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$getStatusChange(kotlin.Int, kotlin.collections.List((au.id.micolous.kotlin.pcsc.ReaderState)))/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$getStatusChange(kotlin.Int, kotlin.collections.List((au.id.micolous.kotlin.pcsc.ReaderState)))/readers">readers</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="is-valid.html">isValid</a></h4>
 </td>
 <td>
@@ -80,6 +88,22 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">connect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/reader">reader</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="../-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/preferredProtocol">preferredProtocol</span><span class="symbol">:</span>&nbsp;<a href="../-protocol/index.html"><span class="identifier">Protocol</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Protocol.Any<span class="symbol">)</span><span class="symbol">: </span><a href="../-card/index.html"><span class="identifier">Card</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../get-all-reader-status.html">getAllReaderStatus</a></h4>
+</td>
+<td>
+<p>Gets the status of all connected readers.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">getAllReaderStatus</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAllReaderStatus(au.id.micolous.kotlin.pcsc.Context, kotlin.collections.List((kotlin.String)))/groups">groups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../get-status.html">getStatus</a></h4>
+</td>
+<td>
+<p>Gets the current state of the given readers, and returns immediately.</p>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">getStatus</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getStatus(au.id.micolous.kotlin.pcsc.Context, kotlin.collections.List((kotlin.String)))/readers">readers</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span></code><code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">getStatus</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getStatus(au.id.micolous.kotlin.pcsc.Context, kotlin.String)/reader">reader</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a></code></td>
 </tr>
 </tbody>
 </table>

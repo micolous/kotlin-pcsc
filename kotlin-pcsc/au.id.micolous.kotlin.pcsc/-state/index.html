@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>State - kotlin-pcsc</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">State</a><br/>
+<br/>
+<h1>State</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">State</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">State</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/ignore">ignore</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/changed">changed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/unknown">unknown</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/unavailable">unavailable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/empty">empty</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/present">present</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/atrMatch">atrMatch</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/exclusive">exclusive</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/inUse">inUse</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/mute">mute</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.State$<init>(kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/unpowered">unpowered</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="atr-match.html">atrMatch</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">atrMatch</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="changed.html">changed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">changed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="empty.html">empty</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">empty</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="exclusive.html">exclusive</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">exclusive</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="ignore.html">ignore</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">ignore</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="in-use.html">inUse</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">inUse</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="mute.html">mute</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">mute</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="present.html">present</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">present</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="unavailable.html">unavailable</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">unavailable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="unaware.html">unaware</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">unaware</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="unknown.html">unknown</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">unknown</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="unpowered.html">unpowered</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">unpowered</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-u-n-a-w-a-r-e.html">UNAWARE</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">UNAWARE</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">State</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
