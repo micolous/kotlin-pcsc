@@ -45,4 +45,14 @@ data class ReaderState(
     val currentState: State = State.UNAWARE,
     val eventState: State = State.UNAWARE,
     val atr: ByteArray = ByteArray(0)
-)
+) {
+    /**
+     * Transforms this [ReaderState] into a version where the eventState is the current state.
+     */
+    fun update() = ReaderState(
+        reader = reader,
+        currentState = eventState,
+        eventState = State.UNAWARE,
+        atr = atr
+    )
+}
