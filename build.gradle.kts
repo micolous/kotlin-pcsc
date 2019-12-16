@@ -32,13 +32,7 @@ kotlin {
     mingwX86()  // Windows
     mingwX64()  // Windows (no cross compiler)
 
-    jvm("jna") {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "9"
-            }
-        }
-    }
+    jvm("jna")
 
     sourceSets {
         val commonMain by getting {}
