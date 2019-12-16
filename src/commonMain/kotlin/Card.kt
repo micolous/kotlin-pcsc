@@ -106,7 +106,7 @@ expect class Card {
     fun status(): CardStatus
 
     /**
-     * Direct control commands of the reader.
+     * Direct control commands for a connected reader.
      *
      * Equivalent to `SCardControl132` on macOS, or `SCardControl` on other platforms.
      *
@@ -151,4 +151,13 @@ fun Card.getAttrib(cls: Int, tag: Int): ByteArray? {
     require(tag >= 0) { "tag ID must be >= 0" }
     require(tag <= 0xffff) { "tag ID must be <= 0xFFFF" }
     return getAttrib((cls.toLong() shl 16) or (tag.toLong() and 0xffffL))
+}
+
+/**
+ * Direct control commands for a connected reader.
+ *
+ * This version has no receive buffer, and always returns null.
+ */
+fun Card.control(controlCode: Long, sendBuffer: ByteArray? = null) {
+    control(controlCode, sendBuffer, recvBufferSize = 0)
 }

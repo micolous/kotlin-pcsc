@@ -106,6 +106,9 @@ expect class Context {
 fun Context.connect(reader: String, shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any) : Card
         = connect(reader, shareMode, setOf(preferredProtocol))
 
+suspend fun Context.getStatusChange(timeout: Int, reader: ReaderState)
+    = getStatusChange(timeout, listOf(reader)).first()
+
 /**
  * Gets the current state of the given readers, and returns immediately.
  *
