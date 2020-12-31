@@ -13,7 +13,7 @@ repositories {
     jcenter()
 }
 
-val coroutinesVer = "1.3.0-RC"
+val coroutinesVer = "1.3.0"
 
 dependencies {
     commonMainApi(kotlin("stdlib-common"))
