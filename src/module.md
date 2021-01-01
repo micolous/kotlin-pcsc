@@ -8,30 +8,27 @@ This is documentation for [kotlin-pcsc][], a Kotlin Multiplatform library for us
 
 A PC/SC API implementation for Kotlin Multiplatform.
 
-This takes some small liberties with the PC/SC API to make it object oriented, and easier to use.
+This takes some small liberties with the PC/SC API to make it object oriented, and easier to use:
 
-### PC/SC C API
+PC/SC function name     | Object      | Equivalent function         | Additional helper functions
+----------------------- | ----------- | --------------------------- | ---------------------------
+`SCardBeginTransaction` | [Card][]    | [Card.beginTransaction][]
+`SCardCancel`           | [Context][] | [Context.cancel][]
+`SCardConnect`          | [Context][] | [Context.connect][]
+`SCardControl`          | [Card][]    | [Card.control][]
+`SCardDisconnect`       | [Card][]    | [Card.disconnect][]
+`SCardEndTransaction`   | [Card][]    | [Card.endTransaction][]
+`SCardEstablishContext` | [Context][] | [Context.establish][]
+`SCardGetAttrib`        | [Card][]    | [Card.getAttrib][]          | [Card.getIfdSerial][], [Card.getIfdType][], [Card.getIfdVersion][], [Card.getMechanicalCharacteristics][], [Card.getVendorName][]
+`SCardGetStatusChange`  | [Context][] | [Context.getStatusChange][] | [Context.getAllReaderStatus][], [Context.getStatus][]
+`SCardIsValidContext`   | [Context][] | [Context.isValid][]
+`SCardListReaders`      | [Context][] | [Context.listReaders][]
+`SCardReconnect`        | [Card][]    | [Card.reconnect][]
+`SCardReleaseContext`   | [Context][] | [Context.release][]
+`SCardStatus`           | [Card][]    | [Card.status][]
+`SCardTransmit`         | [Card][]    | [Card.transmit][]
 
-Alphabetical list of functions in the PC/SC C API, and their equivalent function in
-`kotlin-pcsc`:
-
-* `SCardBeginTransaction` ➡️ [Card.beginTransaction][]
-* `SCardCancel` ➡️ [Context.cancel][]
-* `SCardConnect` ➡️ [Context.connect][]
-* `SCardControl` ➡️ [Card.control][]
-* `SCardDisconnect` ➡️ [Card.disconnect][]
-* `SCardEndTransaction` ➡️ [Card.endTransaction][]
-* `SCardEstablishContext` ➡️ [Context.establish][]
-* `SCardGetAttrib` ➡️ [Card.getAttrib][]
-* `SCardGetStatusChange` ➡️ [Context.getStatusChange][]
-* `SCardIsValidContext` ➡️ [Context.isValid][]
-* `SCardListReaders` ➡️ [Context.listReaders][]
-* `SCardReconnect` ➡️ [Card.reconnect][]
-* `SCardReleaseContext` ➡️ [Context.release][]
-* `SCardStatus` ➡️ [Card.status][]
-* `SCardTransmit` ➡️ [Card.transmit][]
-
-Unimplemented functions:
+### Unimplemented functions
 
 * `SCardCancelTransaction`
 * `SCardListReaderGroups`
