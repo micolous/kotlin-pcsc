@@ -1,10 +1,11 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
+import java.io.ByteArrayOutputStream
 
 plugins {
-    kotlin("multiplatform") version "1.3.41"
-    id("org.jetbrains.dokka") version "0.10.0"
+    kotlin("multiplatform") version "1.4.21"
+    id("org.jetbrains.dokka") version "1.4.20"
     id("maven-publish")
 }
 
@@ -13,10 +14,9 @@ repositories {
     jcenter()
 }
 
-val coroutinesVer = "1.3.0"
+val coroutinesVer = "1.4.2"
 
 dependencies {
-    commonMainApi(kotlin("stdlib-common"))
     commonMainApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVer")
     commonTestImplementation(kotlin("test-common"))
     commonTestImplementation(kotlin("test-annotations-common"))
@@ -24,6 +24,15 @@ dependencies {
 
 group = "au.id.micolous.kotlin.pcsc"
 version = "0.0.1"
+
+val macOSSDKPath = lazy {
+    val o = ByteArrayOutputStream()
+    project.exec {
+        commandLine("xcrun", "--sdk", "macosx", "--show-sdk-path")
+        standardOutput = o
+    }
+    o.toString("UTF-8").trim()
+}
 
 kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
@@ -46,14 +55,6 @@ kotlin {
             dependsOn(nativeMain)
         }
 
-        jvm("jna").apply {
-            compilations["main"].apply {
-                dependencies {
-                    api("net.java.dev.jna:jna:4.0.0")
-                }
-            }
-        }
-
         // Setup common dependencies
         targets.forEach {
             val macTarget = it.preset?.name?.startsWith("macos") ?: false
@@ -71,14 +72,10 @@ kotlin {
                         when (this) {
                             is KotlinJvmCompilation -> // Java
                                 dependencies {
-                                    api(kotlin("stdlib-jdk8"))
+                                    api("net.java.dev.jna:jna:4.0.0")
                                 }
 
                             is KotlinNativeCompilation -> { // Native
-                                dependencies {
-                                    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVer")
-                                }
-
                                 defaultSourceSet {
                                     dependsOn(
                                         when {
@@ -90,7 +87,11 @@ kotlin {
                                 }
 
                                 cinterops {
-                                    create("winscard")
+                                    create("winscard") {
+                                        when {
+                                            macTarget -> includeDirs("${macOSSDKPath.value}/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers")
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -127,11 +128,27 @@ publishing {
     }
 }
 
-tasks {
-    val dokka by getting(DokkaTask::class) {
-        outputFormat = "html"
-        outputDirectory = "$buildDir/dokka"
+tasks.withType<DokkaTask>().configureEach {
+    outputDirectory.set(buildDir.resolve("dokka"))
 
+    dokkaSourceSets {
+        named("commonMain") {
+            includeNonPublic.set(false)
+            reportUndocumented.set(true)
+            skipEmptyPackages.set(true)
+            includes.from("src/module.md")
+            sourceRoot(kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first())
+            platform.set(org.jetbrains.dokka.Platform.common)
+        }
+
+        // There are source sets for each platform-specific target. Our API is only the `common`
+        // source set, so we intentionally don't generate docs for the other targets. Also,
+        // building docs for those targets requires a working (cross-)compiler... which is hard. :)
+        configureEach {
+            suppress.set(name != "commonMain")
+        }
+    }
+/*
         configuration {
             perPackageOption {
                 prefix = "au.id.micolous.kotlin.pcsc.jna"
@@ -154,8 +171,7 @@ tasks {
             sourceRoot {
                 path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
             }
-        }
-    }
+        }*/
 }
 
 afterEvaluate {

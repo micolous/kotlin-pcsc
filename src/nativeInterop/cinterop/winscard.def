@@ -2,10 +2,11 @@ package = au.id.micolous.kotlin.pcsc.internal
 noStringConversion = SCardListReaders WCardListReaders
 
 # To be able to use PCSC.framework, we need to pretend we're using Objective-C.
-language.osx = Objective-C
-modules.osx = PCSC
-compilerOpts.osx = -framework PCSC
+language.osx = C
+headers.osx = wintypes.h pcsclite.h winscard.h
+# compilerOpts.osx needs data from xcrun, provided dynamically by build.gradle.kts
 linkerOpts.osx = -framework PCSC
+headerFilter.osx = wintypes.h pcsclite.h winscard.h
 
 # Other platforms work nicer...
 language.linux = C
