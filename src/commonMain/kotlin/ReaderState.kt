@@ -19,7 +19,12 @@
 
 package au.id.micolous.kotlin.pcsc
 
-// Equivalent to SCARD_STATE_*
+/**
+ * The state of the reader, as used in the `dwCurrentState` and `dwEventState` fields of the
+ * [SCARD_READERSTATE struct](https://docs.microsoft.com/en-us/windows/win32/api/winscard/ns-winscard-scard_readerstatea).
+ *
+ * @see [ReaderState]
+ */
 data class State(
     val ignore: Boolean = false,
     val changed: Boolean = false,
@@ -40,6 +45,14 @@ data class State(
     }
 }
 
+/**
+ * The current state of the reader.
+ *
+ * Equivalent to [SCARD_READERSTATE](https://docs.microsoft.com/en-us/windows/win32/api/winscard/ns-winscard-scard_readerstatea).
+ *
+ * @see [Context.getStatus]
+ * @see [Context.getStatusChange]
+ */
 data class ReaderState(
     val reader: String,
     val currentState: State = State.UNAWARE,

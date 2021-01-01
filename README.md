@@ -20,7 +20,7 @@ Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
 
 ## API
 
-[API documentation can be viewed online][api-docs], or built locally with: `./gradlew dokka`
+[API documentation can be viewed online][api-docs], or built locally with: `./gradlew dokkaHtml`
 
 ## Build and test
 

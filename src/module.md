@@ -30,7 +30,7 @@ PC/SC function name     | Object      | Equivalent function         | Additional
 
 ### Unimplemented functions
 
-* `SCardCancelTransaction`
+* `SCardCancelTransaction` (on Windows, this is "reserved for future use")
 * `SCardListReaderGroups`
 * `SCardSetAttrib`
 * `SCardSetTimeout`
@@ -41,5 +41,3 @@ Only the `commonMain` module is part of the public API.
 
 Anything that **only** appears in `jnaMain`, `nativeMain`, `nativeMacosMain` or `nativeWindowsMain`
 is an internal implementation detail, and is subject to change without warning.
-
-
