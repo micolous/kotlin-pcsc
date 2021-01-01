@@ -89,7 +89,9 @@ kotlin {
                                 cinterops {
                                     create("winscard") {
                                         when {
-                                            macTarget -> includeDirs("${macOSSDKPath.value}/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers")
+                                            macTarget -> lazy {
+                                                includeDirs("${macOSSDKPath.value}/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers")
+                                            }
                                         }
                                     }
                                 }
