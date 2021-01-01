@@ -20,8 +20,6 @@ package au.id.micolous.kotlin.pcsc
 
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
-import platform.posix.*
-
 
 private fun State.toDword() = (
     if (ignore) SCARD_STATE_IGNORE.convert() else DWORD_ZERO or

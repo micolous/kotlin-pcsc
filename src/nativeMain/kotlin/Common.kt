@@ -21,7 +21,6 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlin.native.Platform
 import kotlinx.cinterop.*
-import platform.posix.*
 
 internal actual val isLittleEndian = Platform.isLittleEndian
 internal val DWORD_ZERO = 0.convert<DWORD>()

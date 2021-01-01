@@ -25,13 +25,18 @@ dependencies {
 group = "au.id.micolous.kotlin.pcsc"
 version = "0.0.1"
 
-val macOSSDKPath = lazy {
-    val o = ByteArrayOutputStream()
-    project.exec {
-        commandLine("xcrun", "--sdk", "macosx", "--show-sdk-path")
-        standardOutput = o
+/** The macOS SDK path, or null if it is not available. */
+val macOSSDKPath : String? = run {
+    try {
+        val o = ByteArrayOutputStream()
+        project.exec {
+            commandLine("xcrun", "--sdk", "macosx", "--show-sdk-path")
+            standardOutput = o
+        }
+        o.toString("UTF-8").trim()
+    } catch (_: Exception) {
+        null
     }
-    o.toString("UTF-8").trim()
 }
 
 kotlin {
@@ -89,9 +94,8 @@ kotlin {
                                 cinterops {
                                     create("winscard") {
                                         when {
-                                            macTarget -> lazy {
-                                                includeDirs("${macOSSDKPath.value}/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers")
-                                            }
+                                            macTarget && macOSSDKPath != null ->
+                                                includeDirs("${macOSSDKPath}/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers")
                                         }
                                     }
                                 }
@@ -141,6 +145,10 @@ tasks.withType<DokkaTask>().configureEach {
             includes.from("src/module.md")
             sourceRoot(kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first())
             platform.set(org.jetbrains.dokka.Platform.common)
+            perPackageOption {
+                matchingRegex.set("au\\.id\\.micolous\\.kotlin\\.pcsc\\.(jna|internal|native)(\$|\\\\.).*")
+                suppress.set(true)
+            }
         }
 
         // There are source sets for each platform-specific target. Our API is only the `common`
@@ -150,30 +158,6 @@ tasks.withType<DokkaTask>().configureEach {
             suppress.set(name != "commonMain")
         }
     }
-/*
-        configuration {
-            perPackageOption {
-                prefix = "au.id.micolous.kotlin.pcsc.jna"
-                suppress = true
-            }
-            perPackageOption {
-                prefix = "au.id.micolous.kotlin.pcsc.native"
-                suppress = true
-            }
-            perPackageOption {
-                prefix = "au.id.micolous.kotlin.pcsc.internal"
-                suppress = true
-            }
-
-            platform = "common"
-            includeNonPublic = false
-            reportUndocumented = true
-            skipEmptyPackages = true
-            includes = listOf("src/module.md")
-            sourceRoot {
-                path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
-            }
-        }*/
 }
 
 afterEvaluate {
