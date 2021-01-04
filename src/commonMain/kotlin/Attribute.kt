@@ -90,17 +90,20 @@ data class Version internal constructor(
     /** The build number. */
     val build: Int
 ) {
-    internal constructor(b: ByteArray) : this(
-        major = b.getInt(0, 1),
-        minor = b.getInt(1, 1),
-        build = b.getInt(2, 2)
-    )
-
     /** Converts the version number to its string representation. */
     override fun toString() = "$major.$minor.$build"
 
     companion object {
-        internal const val LENGTH = 4
+        private const val LENGTH = 4
+
+        internal fun fromByteArray(b: ByteArray) : Version {
+            require(b.size == LENGTH) { "Version must be $LENGTH bytes, got ${b.size}" }
+            return Version(
+                major = b.getInt(0, 1),
+                minor = b.getInt(1, 1),
+                build = b.getInt(2, 2)
+            )
+        }
     }
 }
 
@@ -108,8 +111,6 @@ data class Version internal constructor(
  * Describes the mechanical characteristics of a card reader.
  */
 data class MechanicalCharacteristics internal constructor(private val c: Long) {
-    internal constructor(b: ByteArray) : this(b.getLong(0, 4))
-
     private fun hasBits(bits: Long) = (c and bits) == bits
 
     /** Reader has a card swallowing mechanism */
@@ -122,7 +123,12 @@ data class MechanicalCharacteristics internal constructor(private val c: Long) {
     val contactless = hasBits(0x08)
 
     companion object {
-        internal const val LENGTH = 4
+        private const val LENGTH = 4
+
+        internal fun fromByteArray(b: ByteArray) : MechanicalCharacteristics {
+            require(b.size == LENGTH) { "MechanicalCharacteristics must be $LENGTH bytes, got ${b.size}" }
+            return MechanicalCharacteristics(b.getLong(0, 4))
+        }
     }
 }
 
@@ -139,33 +145,49 @@ fun Card.getAttrib(attribute: Attribute) = getAttrib(attribute.num)
  */
 fun Card.getAttrib(cls: AttributeClass, tag: Int) = getAttrib(cls.v, tag)
 
-/** Gets the IFD's vendor's name */
-fun Card.getVendorName() = getAttrib(Attribute.VendorName)?.decodeToString()
+/**
+ * Gets the IFD's vendor's name, as a [String].
+ *
+ * Returns `null` on errors.
+ */
+fun Card.getVendorName() = runCatching {
+    getAttrib(Attribute.VendorName)?.decodeToString()
+}.getOrNull()
 
-/** Gets the vendor-specified IFD type */
-fun Card.getIfdType() = getAttrib(Attribute.VendorIfdType)?.decodeToString()
+/**
+ * Gets the vendor-specified IFD type, as a [String].
+ *
+ * Returns `null` on errors.
+ */
+fun Card.getIfdType() = runCatching {
+    getAttrib(Attribute.VendorIfdType)?.decodeToString()
+}.getOrNull()
 
-/** Gets the vendor-specified IFD version */
-fun Card.getIfdVersion() : Version? {
-    val a = getAttrib(Attribute.VendorIfdVersion) ?: return null
-    if (a.size < Version.LENGTH) {
-        return null
-    }
-    return Version(a.asBigEndian())
-}
+/**
+ * Gets the vendor-specified IFD version
+ *
+ * Returns `null` on errors.
+ * @see Version
+ */
+fun Card.getIfdVersion() : Version? = runCatching {
+    getAttrib(Attribute.VendorIfdVersion)?.asBigEndian()?.let(Version::fromByteArray)
+}.getOrNull()
 
-/** Gets the IFD serial number */
-fun Card.getIfdSerial() = getAttrib(Attribute.VendorIfdSerial)?.decodeToString()
+/**
+ * Gets the IFD serial number, as a [String].
+ *
+ * Returns `null` on errors.
+ */
+fun Card.getIfdSerial() = runCatching {
+    getAttrib(Attribute.VendorIfdSerial)?.decodeToString()
+}.getOrNull()
 
 /**
  * Gets the mechanical characteristics of the IFD.
  *
+ * Returns `null` on errors.
  * @see MechanicalCharacteristics
  */
-fun Card.getMechanicalCharacteristics() : MechanicalCharacteristics? {
-    val a = getAttrib(Attribute.MechanicalCharacteristics) ?: return null
-    if (a.size < MechanicalCharacteristics.LENGTH) {
-        return null
-    }
-    return MechanicalCharacteristics(a.asBigEndian())
-}
+fun Card.getMechanicalCharacteristics() : MechanicalCharacteristics? = runCatching {
+    getAttrib(Attribute.MechanicalCharacteristics)?.asBigEndian()?.let(MechanicalCharacteristics::fromByteArray)
+}.getOrNull()

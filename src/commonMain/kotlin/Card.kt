@@ -136,6 +136,7 @@ expect class Card {
      * [SCardGetAttrib](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardgetattrib).
      *
      * @return Attribute data, or `null` if the attribute is not supported.
+     * @throws PCSCError
      */
     fun getAttrib(attribute: Long): ByteArray?
 }
