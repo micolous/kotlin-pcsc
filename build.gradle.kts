@@ -43,7 +43,6 @@ kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
     linuxX64()
     macosX64()  // (no cross compiler)
-    mingwX86()  // Windows
     mingwX64()  // Windows (no cross compiler)
 
     jvm("jna")
