@@ -2,7 +2,7 @@
  * ReaderState.kt
  * Native implementation of PC/SC SCARD_READERSTATE
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,9 +52,9 @@ private fun DWORD.toState(): State {
 }
 
 /**
- * Copies a [ReaderState] into a native [SCARD_READERSTATE] structure.
+ * Copies a [ReaderState] into a native [SCARD_READERSTATE_A] structure.
  */
-internal fun SCARD_READERSTATE.copyFrom(memScope: MemScope, state: ReaderState) {
+internal fun SCARD_READERSTATE_A.copyFrom(memScope: MemScope, state: ReaderState) {
     szReader = state.reader.cstr.getPointer(memScope)
     dwCurrentState = state.currentState.toDword()
     dwEventState = state.eventState.toDword()
@@ -64,9 +64,9 @@ internal fun SCARD_READERSTATE.copyFrom(memScope: MemScope, state: ReaderState) 
 }
 
 /**
- * Unwraps a native [SCARD_READERSTATE] structure into a [ReaderState].
+ * Unwraps a native [SCARD_READERSTATE_A] structure into a [ReaderState].
  */
-internal fun SCARD_READERSTATE.unwrap() = ReaderState(
+internal fun SCARD_READERSTATE_A.unwrap() = ReaderState(
     reader = szReader?.toKString() ?: "",
     currentState = dwCurrentState.toState(),
     eventState = dwEventState.toState(),

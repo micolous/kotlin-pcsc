@@ -16,7 +16,7 @@ linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
 headerFilter.linux = PCSC/**
 
 language.mingw = C
-depends.mingw = posix
+depends.mingw = org.jetbrains.kotlin.native.platform.windows
 headers.mingw = scarderr.h winscard.h winsmcrd.h
 compilerOpts.mingw = -DUNICODE -DWINVER=0x0601 -D_WIN32_WINNT=0x0601 -DWINAPI_FAMILY=3
 linkerOpts.mingw = -lWinSCard

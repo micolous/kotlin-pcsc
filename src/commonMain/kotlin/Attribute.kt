@@ -2,7 +2,7 @@
  * Context.kt
  * Native implementation of SCARDCONTEXT PC/SC operations
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,6 +98,10 @@ data class Version internal constructor(
 
     /** Converts the version number to its string representation. */
     override fun toString() = "$major.$minor.$build"
+
+    companion object {
+        internal const val LENGTH = 4
+    }
 }
 
 /**
@@ -116,6 +120,10 @@ data class MechanicalCharacteristics internal constructor(private val c: Long) {
     val cardCapture = hasBits(0x04)
     /** Reader supports contactless communication */
     val contactless = hasBits(0x08)
+
+    companion object {
+        internal const val LENGTH = 4
+    }
 }
 
 /**
@@ -138,8 +146,13 @@ fun Card.getVendorName() = getAttrib(Attribute.VendorName)?.decodeToString()
 fun Card.getIfdType() = getAttrib(Attribute.VendorIfdType)?.decodeToString()
 
 /** Gets the vendor-specified IFD version */
-fun Card.getIfdVersion() =
-    getAttrib(Attribute.VendorIfdVersion)?.asBigEndian()?.let(::Version)
+fun Card.getIfdVersion() : Version? {
+    val a = getAttrib(Attribute.VendorIfdVersion) ?: return null
+    if (a.size < Version.LENGTH) {
+        return null
+    }
+    return Version(a.asBigEndian())
+}
 
 /** Gets the IFD serial number */
 fun Card.getIfdSerial() = getAttrib(Attribute.VendorIfdSerial)?.decodeToString()
@@ -149,6 +162,10 @@ fun Card.getIfdSerial() = getAttrib(Attribute.VendorIfdSerial)?.decodeToString()
  *
  * @see MechanicalCharacteristics
  */
-fun Card.getMechanicalCharacteristics() = (
-        getAttrib(Attribute.MechanicalCharacteristics)?.asBigEndian()?.let(
-            ::MechanicalCharacteristics))
+fun Card.getMechanicalCharacteristics() : MechanicalCharacteristics? {
+    val a = getAttrib(Attribute.MechanicalCharacteristics) ?: return null
+    if (a.size < MechanicalCharacteristics.LENGTH) {
+        return null
+    }
+    return MechanicalCharacteristics(a.asBigEndian())
+}
