@@ -75,7 +75,8 @@ actual class Context private constructor(private var handle: SCardContext?) {
                 )
             }
 
-            readers.position(0)
+            // TODO: https://youtrack.jetbrains.com/issue/KT-29974
+            (readers as java.nio.Buffer).position(0)
             readers.getMultiString(neededLength).toList()
         } else {
             emptyList()

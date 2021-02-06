@@ -79,7 +79,8 @@ actual class Card internal constructor(
             )
         }
 
-        pbRecvBuffer.position(0)
+        // TODO: https://youtrack.jetbrains.com/issue/KT-29974
+        (pbRecvBuffer as java.nio.Buffer).position(0)
         return pbRecvBuffer.getByteArray(pcbRecvLength.value.toInt())
     }
 
@@ -124,8 +125,9 @@ actual class Card internal constructor(
             )
         }
 
-        readerNames?.position(0)
-        atr?.position(0)
+        // TODO: https://youtrack.jetbrains.com/issue/KT-29974
+        (readerNames as java.nio.Buffer?)?.position(0)
+        (atr as java.nio.Buffer?)?.position(0)
 
         val state = pdwState.value.toLong()
         return CardStatus(
@@ -167,7 +169,7 @@ actual class Card internal constructor(
         }
 
         return bRecvBuffer?.run {
-            position(0)
+            (this as java.nio.Buffer).position(0)
             getByteArray(lpBytesReturned.value.toInt())
         }
     }
