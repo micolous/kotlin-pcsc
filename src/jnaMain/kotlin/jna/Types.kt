@@ -66,8 +66,7 @@ internal class DwordByReference() : ByReference(DWORD_SIZE) {
     }
 }
 
-internal class Handle(value: Long = 0) : KIntegerType(HANDLE_SIZE, value) {
-}
+internal class Handle(value: Long = 0) : KIntegerType(HANDLE_SIZE, value)
 
 internal class HandleByReference : ByReference(HANDLE_SIZE) {
     var value: Long
