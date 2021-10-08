@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
 
 plugins {
-    kotlin("multiplatform") version "1.3.41"
+    kotlin("multiplatform") version "1.5.31"
     id("org.jetbrains.dokka") version "0.10.0"
     id("maven-publish")
 }
