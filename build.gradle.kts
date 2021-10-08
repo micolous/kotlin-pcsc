@@ -10,7 +10,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    mavenCentral()
 }
 
 val coroutinesVer = "1.3.0"
