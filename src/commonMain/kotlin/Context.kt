@@ -113,13 +113,21 @@ expect class Context {
 fun Context.connect(reader: String, shareMode: ShareMode, preferredProtocol: Protocol = Protocol.Any) : Card
         = connect(reader, shareMode, setOf(preferredProtocol))
 
+/**
+ * Waits for status changes in a single reader.
+ *
+ * Equivalent to
+ * [SCardGetStatusChange](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardgetstatuschangea).
+ *
+ * @param timeout Number of seconds to wait. To wait for a long time, use [LONG_TIMEOUT].
+ */
 suspend fun Context.getStatusChange(timeout: Int, reader: ReaderState)
     = getStatusChange(timeout, listOf(reader)).first()
 
 /**
  * Gets the current state of the given readers, and returns immediately.
  *
- * This is equivalent to `SCardGetStatusChange(dwTimeout = 0, ...)`.
+ * Equivalent to `SCardGetStatusChange(dwTimeout = 0, ...)`.
  *
  * @see [Context.getStatusChange]
  */
@@ -127,6 +135,13 @@ fun Context.getStatus(readers: List<String>) : List<ReaderState> = runBlocking {
     getStatusChange(0, readers.map { ReaderState(it) })
 }
 
+/**
+ * Gets the current state of a single reader, and returns immediately.
+ *
+ * Equivalent to `SCardGetStatusChange(dwTimeout = 0, ...)`.
+ *
+ * @see [Context.getStatusChange]
+ */
 fun Context.getStatus(reader: String): ReaderState
         = getStatus(listOf(reader)).first()
 

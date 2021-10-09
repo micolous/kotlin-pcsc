@@ -2,7 +2,7 @@
  * CardStatus.kt
  * Informational structure for Card.status
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,8 @@ package au.id.micolous.kotlin.pcsc
  * * `pcsclite` would have [present], [powered] and [specific] == `true`
  * * Windows would have [specific] == `true`, but [present] and [powered] == `false`
  *
- * See: https://pcsclite.apdu.fr/api/group__API.html#differences
+ * See [pcsclite's API differences](https://pcsclite.apdu.fr/api/group__API.html#differences) for
+ * more details.
  */
 data class CardStatus internal constructor(
     /**
