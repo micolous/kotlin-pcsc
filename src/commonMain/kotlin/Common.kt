@@ -2,7 +2,7 @@
  * Common.kt
  * Interface for common definitions
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ internal fun ByteArray.getLong(off: Int = 0, len: Int = off - size): Long {
     require(off >= 0) { "off must be >= 0" }
     require(len >= 0) { "len must be >= 0" }
     val last = off + len
-    require(last <= size) { "length must be less than ${size - off}"}
+    require(last <= size) { "maximum length is ${size - off}, got $len (off=$off, size=$size)" }
 
     var o = 0L
     for (i in (off until last)) {

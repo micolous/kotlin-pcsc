@@ -2,7 +2,7 @@
  * ReaderState.kt
  * Return value from Context.getStatusChange
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,12 @@
 
 package au.id.micolous.kotlin.pcsc
 
-// Equivalent to SCARD_STATE_*
+/**
+ * The state of the reader, as used in the `dwCurrentState` and `dwEventState` fields of the
+ * [SCARD_READERSTATE struct](https://docs.microsoft.com/en-us/windows/win32/api/winscard/ns-winscard-scard_readerstatea).
+ *
+ * @see [ReaderState]
+ */
 data class State(
     val ignore: Boolean = false,
     val changed: Boolean = false,
@@ -40,6 +45,14 @@ data class State(
     }
 }
 
+/**
+ * The current state of the reader.
+ *
+ * Equivalent to [SCARD_READERSTATE](https://docs.microsoft.com/en-us/windows/win32/api/winscard/ns-winscard-scard_readerstatea).
+ *
+ * @see [Context.getStatus]
+ * @see [Context.getStatusChange]
+ */
 data class ReaderState(
     val reader: String,
     val currentState: State = State.UNAWARE,
