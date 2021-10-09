@@ -20,14 +20,14 @@ Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
 
 ## API
 
-[API documentation can be viewed online][api-docs], or built locally with: `./gradlew dokka`
+[API documentation can be viewed online][api-docs], or built locally with: `./gradlew dokkaHtml`
 
 ## Build and test
 
 **Note:** Running tests requires a connected [PC/SC][]-compatible smart card reader, and a card
 connected to it.
 
-All targets require JDK 9 or later to be installed (for Gradle).
+All targets, even native ones, require JDK 9 or later to be installed (for Gradle).
 
 ### JNA (all platforms)
 
@@ -39,9 +39,13 @@ This builds for all platforms, as the prebuilt `net.java.dev.jna` package alread
 platform-specific JNI helpers.  You don't need any cross-compiling or special machine for that.
 
 ### Native targets
+
+**Note:** Only `x86_64` targets are currently supported.
+
 #### Linux
 
-Required packages: `libpcsclite1 libpcsclite-dev`
+* Build dependencies: `libpcsclite1 libpcsclite-dev`
+* Run-time dependencies: `libpcsclite1`
 
 ```sh
 ./gradlew :linuxX64MainKlibrary :linuxX64Test
@@ -49,7 +53,7 @@ Required packages: `libpcsclite1 libpcsclite-dev`
 
 #### macOS
 
-Required packages: Xcode 11 or later
+* Build dependencies: Xcode 11 or later
 
 ```sh
 ./gradlew :macosX64MainKlibrary :macosX64Test

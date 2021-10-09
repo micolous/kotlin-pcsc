@@ -19,7 +19,6 @@ kotlin {
     linuxX64()
     macosX64()
     mingwX64()
-    mingwX86()
     jvm("jna")
 
     targets.filterIsInstance<KotlinNativeTarget>().forEach {
@@ -50,6 +49,11 @@ afterEvaluate {
             it.name.endsWith(".jar") } +
                 project.tasks["jnaJar"].outputs.files
         deps.forEach { from(zipTree(it)) }
+        exclude(
+            // Added by JDK9, and exists in multiple dependency JARs (which conflict).
+            // Fat executable JARs don't need modules support anyway.
+            "META-INF/versions/9/module-info.class",
+        )
     }
 
     tasks.filterIsInstance<AbstractArchiveTask>().forEach {

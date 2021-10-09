@@ -21,10 +21,9 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlin.native.Platform
 import kotlinx.cinterop.*
-import platform.posix.*
 
 internal actual val isLittleEndian = Platform.isLittleEndian
 internal val DWORD_ZERO = 0.convert<DWORD>()
 
 @Suppress("NOTHING_TO_INLINE")
-internal inline fun UInt.hasBits(mask: UInt) = (this and mask) == mask
+internal inline fun DWORD.hasBits(mask: DWORD) = (this and mask) == mask

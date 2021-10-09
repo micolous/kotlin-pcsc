@@ -1,21 +1,17 @@
 package = au.id.micolous.kotlin.pcsc.internal
 noStringConversion = SCardListReaders WCardListReaders
+language = C
 
-# To be able to use PCSC.framework, we need to pretend we're using Objective-C.
-language.osx = Objective-C
-modules.osx = PCSC
-compilerOpts.osx = -framework PCSC
+headers.osx = wintypes.h pcsclite.h winscard.h
+compilerOpts.osx = -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/PCSC.framework/Headers
 linkerOpts.osx = -framework PCSC
 
 # Other platforms work nicer...
-language.linux = C
-depends.linux = posix
 headers.linux = PCSC/wintypes.h PCSC/pcsclite.h PCSC/reader.h PCSC/winscard.h
 compilerOpts.linux = -pthread -I/usr/include/PCSC -I/usr/include -I/usr/include/x86_64-linux-gnu
 linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
 headerFilter.linux = PCSC/**
 
-language.mingw = C
 depends.mingw = posix
 headers.mingw = scarderr.h winscard.h winsmcrd.h
 compilerOpts.mingw = -DUNICODE -DWINVER=0x0601 -D_WIN32_WINNT=0x0601 -DWINAPI_FAMILY=3
@@ -23,19 +19,16 @@ linkerOpts.mingw = -lWinSCard
 headerFilter.mingw = scarderr.h winscard.h winsmcrd.h
 
 ---
+// Return type for all SCard* functions
+typedef LONG SCARDSTATUS;
 
 #if defined(__APPLE__)
-// typedefs declared here don't show up. They are instead defined in:
-// src/nativeMacosMain/kotlin/PlatformTypes.kt
+// Supported platform, but doesn't need any extra code anymore.
 
 #elif defined(__linux__)
-// Return type for all SCard* functions
-typedef LONG SCARDSTATUS;
+typedef SCARD_READERSTATE SCARD_READERSTATE_A;
 
 #elif defined(_WIN32)
-// Return type for all SCard* functions
-typedef LONG SCARDSTATUS;
-
 // Add in pcsclite-specific declarations
 #define MAX_BUFFER_SIZE 264
 #define SCARD_PROTOCOL_ANY (SCARD_PROTOCOL_T0 | SCARD_PROTOCOL_T1)
