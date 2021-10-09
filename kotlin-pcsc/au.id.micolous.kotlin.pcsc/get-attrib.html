@@ -1,33 +1,50 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>getAttrib - kotlin-pcsc</title>
-<link rel="stylesheet" href="../../style.css">
-</HEAD>
-<BODY>
-<a href="../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./get-attrib.html">getAttrib</a><br/>
-<br/>
-<h1>getAttrib</h1>
-<a name="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.Attribute)"></a>
-<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.Attribute)/attribute">attribute</span><span class="symbol">:</span>&nbsp;<a href="-attribute/index.html"><span class="identifier">Attribute</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
-<p>Gets an attribute of the <a href="-card/index.html">Card</a> by its well-known <a href="-attribute/index.html">Attribute</a> identifier.</p>
-<a name="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)"></a>
-<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="-attribute-class/index.html"><span class="identifier">AttributeClass</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
-<p>Gets an attribute of the <a href="-card/index.html">Card</a> using an <a href="-attribute-class/index.html">AttributeClass</a> and tag (as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>).</p>
-<h3>Parameters</h3>
-<p><a name="cls"></a>
-<code>cls</code> - The attribute's information class</p>
-<p><a name="tag"></a>
-<code>tag</code> - The attribute's tag ID, must be between 0 and 0xffff</p>
-<a name="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)"></a>
-<code><span class="keyword">fun </span><a href="-card/index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
-<p>Gets an attribute of a <a href="-card/index.html">Card</a> by its attribute information class and tag ID.</p>
-<h3>Parameters</h3>
-<p><a name="cls"></a>
-<code>cls</code> - The attribute's information class.</p>
-<p><a name="tag"></a>
-<code>tag</code> - The attribute's tag ID, must be between 0 and 0xffff</p>
-<p><strong>Return</strong><br/>
-Attribute data, or <code>null</code> if the attribute is not supported.</p>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>getAttrib</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script><script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../styles/style.css" rel="Stylesheet"><link href="../../styles/logo-styles.css" rel="Stylesheet"><link href="../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="kotlin-pcsc::au.id.micolous.kotlin.pcsc//getAttrib/au.id.micolous.kotlin.pcsc.Card#au.id.micolous.kotlin.pcsc.Attribute/PointingToDeclaration//788909594">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">kotlin-pcsc</a>/<a href="index.html">au.id.micolous.kotlin.pcsc</a>/<a href="get-attrib.html">getAttrib</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>get</span><wbr></wbr><span><span>Attrib</span></span></h1>
+          </div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="-card/index.html">Card</a>.<a href="get-attrib.html">getAttrib</a>(attribute: <a href="-attribute/index.html">Attribute</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<p class="paragraph">Gets an attribute of the <a href="-card/index.html">Card</a> by its well-known <a href="-attribute/index.html">Attribute</a> identifier.</p></div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="-card/index.html">Card</a>.<a href="get-attrib.html">getAttrib</a>(cls: <a href="-attribute-class/index.html">AttributeClass</a>, tag: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<p class="paragraph">Gets an attribute of the <a href="-card/index.html">Card</a> using an <a href="-attribute-class/index.html">AttributeClass</a> and tag (as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>).</p><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>cls</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The attribute's information class</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>tag</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The attribute's tag ID, must be between 0 and 0xffff</p></div></div></div></div></div></div></div></div></div></div></div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="-card/index.html">Card</a>.<a href="get-attrib.html">getAttrib</a>(cls: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, tag: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<p class="paragraph">Gets an attribute of a <a href="-card/index.html">Card</a> by its attribute information class and tag ID.</p><h4 class="">Return</h4><p class="paragraph">Attribute data, or <code>null</code> if the attribute is not supported.</p><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>cls</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The attribute's information class.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>tag</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The attribute's tag ID, must be between 0 and 0xffff</p></div></div></div></div></div></div></div></div></div></div></div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

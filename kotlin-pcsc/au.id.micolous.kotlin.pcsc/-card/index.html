@@ -1,164 +1,345 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Card - kotlin-pcsc</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">Card</a><br/>
-<br/>
-<h1>Card</h1>
-<code><span class="keyword">class </span><span class="identifier">Card</span></code>
-<p>Interface for all smartcard operations (<code>SCARDHANDLE</code>).</p>
-<p><strong>See Also</strong><br/>
-<p><a href="../-context/connect.html">Context.connect</a></p>
-</p>
-<h3>Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="protocol.html">protocol</a></h4>
-</td>
-<td>
-<p>The <a href="../-protocol/index.html">Protocol</a> in use for communication with this <a href="./index.html">Card</a>, or <code>null</code> if unknown.</p>
-<code><span class="keyword">var </span><span class="identifier">protocol</span><span class="symbol">: </span><a href="../-protocol/index.html"><span class="identifier">Protocol</span></a><span class="symbol">?</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="begin-transaction.html">beginTransaction</a></h4>
-</td>
-<td>
-<p>Starts a new transaction on the card.</p>
-<code><span class="keyword">fun </span><span class="identifier">beginTransaction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="control.html">control</a></h4>
-</td>
-<td>
-<p>Direct control commands of the reader.</p>
-<code><span class="keyword">fun </span><span class="identifier">control</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/controlCode">controlCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/sendBuffer">sendBuffer</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$control(kotlin.Long, kotlin.ByteArray, kotlin.Int)/recvBufferSize">recvBufferSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="disconnect.html">disconnect</a></h4>
-</td>
-<td>
-<p>Disconnects from the given card.</p>
-<code><span class="keyword">fun </span><span class="identifier">disconnect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$disconnect(au.id.micolous.kotlin.pcsc.DisconnectDisposition)/disposition">disposition</span><span class="symbol">:</span>&nbsp;<a href="../-disconnect-disposition/index.html"><span class="identifier">DisconnectDisposition</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DisconnectDisposition.Leave<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="end-transaction.html">endTransaction</a></h4>
-</td>
-<td>
-<p>Ends a previously declared transaction.</p>
-<code><span class="keyword">fun </span><span class="identifier">endTransaction</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$endTransaction(au.id.micolous.kotlin.pcsc.DisconnectDisposition)/disposition">disposition</span><span class="symbol">:</span>&nbsp;<a href="../-disconnect-disposition/index.html"><span class="identifier">DisconnectDisposition</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DisconnectDisposition.Leave<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="get-attrib.html">getAttrib</a></h4>
-</td>
-<td>
-<p>Gets an attribute from the device.</p>
-<code><span class="keyword">fun </span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$getAttrib(kotlin.Long)/attribute">attribute</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="reconnect.html">reconnect</a></h4>
-</td>
-<td>
-<p>Disconnects and reconnects to the given card with new parameters.</p>
-<code><span class="keyword">fun </span><span class="identifier">reconnect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$reconnect(au.id.micolous.kotlin.pcsc.ShareMode, kotlin.collections.Set((au.id.micolous.kotlin.pcsc.Protocol)), au.id.micolous.kotlin.pcsc.Initialization)/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="../-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$reconnect(au.id.micolous.kotlin.pcsc.ShareMode, kotlin.collections.Set((au.id.micolous.kotlin.pcsc.Protocol)), au.id.micolous.kotlin.pcsc.Initialization)/preferredProtcols">preferredProtcols</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="../-protocol/index.html"><span class="identifier">Protocol</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$reconnect(au.id.micolous.kotlin.pcsc.ShareMode, kotlin.collections.Set((au.id.micolous.kotlin.pcsc.Protocol)), au.id.micolous.kotlin.pcsc.Initialization)/initialization">initialization</span><span class="symbol">:</span>&nbsp;<a href="../-initialization/index.html"><span class="identifier">Initialization</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="status.html">status</a></h4>
-</td>
-<td>
-<p>Gets the current status of a smart card in this reader.</p>
-<code><span class="keyword">fun </span><span class="identifier">status</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-card-status/index.html"><span class="identifier">CardStatus</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="transmit.html">transmit</a></h4>
-</td>
-<td>
-<p>Transmits an APDU to the card, and returns the response.</p>
-<code><span class="keyword">fun </span><span class="identifier">transmit</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Card$transmit(kotlin.ByteArray)/buffer">buffer</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="../get-attrib.html">getAttrib</a></h4>
-</td>
-<td>
-<p>Gets an attribute of the <a href="./index.html">Card</a> by its well-known <a href="../-attribute/index.html">Attribute</a> identifier.</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.Attribute)/attribute">attribute</span><span class="symbol">:</span>&nbsp;<a href="../-attribute/index.html"><span class="identifier">Attribute</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
-<p>Gets an attribute of the <a href="./index.html">Card</a> using an <a href="../-attribute-class/index.html">AttributeClass</a> and tag (as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>).</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="../-attribute-class/index.html"><span class="identifier">AttributeClass</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.AttributeClass, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code>
-<p>Gets an attribute of a <a href="./index.html">Card</a> by its attribute information class and tag ID.</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getAttrib</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/cls">cls</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAttrib(au.id.micolous.kotlin.pcsc.Card, kotlin.Int, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-ifd-serial.html">getIfdSerial</a></h4>
-</td>
-<td>
-<p>Gets the IFD serial number</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getIfdSerial</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-ifd-type.html">getIfdType</a></h4>
-</td>
-<td>
-<p>Gets the vendor-specified IFD type</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getIfdType</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-ifd-version.html">getIfdVersion</a></h4>
-</td>
-<td>
-<p>Gets the vendor-specified IFD version</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getIfdVersion</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-version/index.html"><span class="identifier">Version</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-mechanical-characteristics.html">getMechanicalCharacteristics</a></h4>
-</td>
-<td>
-<p>Gets the mechanical characteristics of the IFD.</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getMechanicalCharacteristics</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-mechanical-characteristics/index.html"><span class="identifier">MechanicalCharacteristics</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-vendor-name.html">getVendorName</a></h4>
-</td>
-<td>
-<p>Gets the IFD's vendor's name</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">getVendorName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../reconnect.html">reconnect</a></h4>
-</td>
-<td>
-<p>Disconnects and reconnects to the given card with new parameters.</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Card</span></a><span class="symbol">.</span><span class="identifier">reconnect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$reconnect(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol, au.id.micolous.kotlin.pcsc.Initialization)/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="../-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$reconnect(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol, au.id.micolous.kotlin.pcsc.Initialization)/preferredProtocol">preferredProtocol</span><span class="symbol">:</span>&nbsp;<a href="../-protocol/index.html"><span class="identifier">Protocol</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Protocol.Any<span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$reconnect(au.id.micolous.kotlin.pcsc.Card, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol, au.id.micolous.kotlin.pcsc.Initialization)/initialization">initialization</span><span class="symbol">:</span>&nbsp;<a href="../-initialization/index.html"><span class="identifier">Initialization</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Card</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="kotlin-pcsc::au.id.micolous.kotlin.pcsc/Card///PointingToDeclaration//788909594">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">kotlin-pcsc</a>/<a href="../index.html">au.id.micolous.kotlin.pcsc</a>/<a href="index.html">Card</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span><span>Card</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">class <a href="index.html">Card</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Interface for all smartcard operations (<code>SCARDHANDLE</code>).</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button><button class="section-tab" data-togglable="See also">See also</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">See also</h2>
+              <div data-togglable="See also">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="main-subrow keyValue WithExtraAttributes RowTitle"><div class=""><span class="inline-flex"><a href="../-context/connect.html"><span>au.</span><wbr></wbr><span>id.</span><wbr></wbr><span>micolous.</span><wbr></wbr><span>kotlin.</span><wbr></wbr><span>pcsc.</span><wbr></wbr><span>Context</span></a></span><span class="inline-flex"><div data-togglable="See also"></div></span></div><div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="1257487540%2FFunctions%2F788909594" anchor-label="beginTransaction" id="1257487540%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="begin-transaction.html"><span>begin</span><wbr></wbr><span><span>Transaction</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1257487540%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="begin-transaction.html">beginTransaction</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Starts a new transaction on the card.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="264234960%2FFunctions%2F788909594" anchor-label="control" id="264234960%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="control.html"><span><span>control</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="264234960%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="control.html">control</a>(controlCode: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>, sendBuffer: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>? = null, recvBufferSize: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 0): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Direct control commands for a connected reader.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1489028060%2FFunctions%2F788909594" anchor-label="disconnect" id="1489028060%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="disconnect.html"><span><span>disconnect</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1489028060%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="disconnect.html">disconnect</a>(disposition: <a href="../-disconnect-disposition/index.html">DisconnectDisposition</a> = DisconnectDisposition.Leave)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Disconnects from the given card.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="627042133%2FFunctions%2F788909594" anchor-label="endTransaction" id="627042133%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="end-transaction.html"><span>end</span><wbr></wbr><span><span>Transaction</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="627042133%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="end-transaction.html">endTransaction</a>(disposition: <a href="../-disconnect-disposition/index.html">DisconnectDisposition</a> = DisconnectDisposition.Leave)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Ends a previously declared transaction.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="512763112%2FFunctions%2F788909594" anchor-label="getAttrib" id="512763112%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="get-attrib.html"><span>get</span><wbr></wbr><span><span>Attrib</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="512763112%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="get-attrib.html">getAttrib</a>(attribute: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets an attribute from the device.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-93365103%2FFunctions%2F788909594" anchor-label="reconnect" id="-93365103%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="reconnect.html"><span><span>reconnect</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-93365103%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="reconnect.html">reconnect</a>(shareMode: <a href="../-share-mode/index.html">ShareMode</a>, preferredProtcols: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a>&lt;<a href="../-protocol/index.html">Protocol</a>&gt;?, initialization: <a href="../-initialization/index.html">Initialization</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Disconnects and reconnects to the given card with new parameters.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="105603287%2FFunctions%2F788909594" anchor-label="status" id="105603287%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="status.html"><span><span>status</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="105603287%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="status.html">status</a>(): <a href="../-card-status/index.html">CardStatus</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the current status of a smart card in this reader.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-285907211%2FFunctions%2F788909594" anchor-label="transmit" id="-285907211%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="transmit.html"><span><span>transmit</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-285907211%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="transmit.html">transmit</a>(buffer: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Transmits an APDU to the card, and returns the response.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="-267827727%2FProperties%2F788909594" anchor-label="protocol" id="-267827727%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="protocol.html">protocol</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-267827727%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-267827727%2FProperties%2F788909594" anchor-label="protocol" id="-267827727%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">var <a href="protocol.html">protocol</a>: <a href="../-protocol/index.html">Protocol</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-267827727%2FProperties%2F788909594" anchor-label="protocol" id="-267827727%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">The <a href="../-protocol/index.html">Protocol</a> in use for communication with this <a href="index.html">Card</a>, or <code>null</code> if unknown.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="tabbedcontent">Extensions</h2>
+              <div class="table" data-togglable="Extensions"><a data-name="420958095%2FExtensions%2F788909594" anchor-label="control" id="420958095%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../control.html"><span><span>control</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="420958095%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../control.html">control</a>(controlCode: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>, sendBuffer: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>? = null)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Direct control commands for a connected reader.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1965412477%2FExtensions%2F788909594" anchor-label="getAttrib" id="1965412477%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-attrib.html"><span>get</span><wbr></wbr><span><span>Attrib</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1965412477%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-attrib.html">getAttrib</a>(attribute: <a href="../-attribute/index.html">Attribute</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets an attribute of the <a href="index.html">Card</a> by its well-known <a href="../-attribute/index.html">Attribute</a> identifier.</p></div></div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-attrib.html">getAttrib</a>(cls: <a href="../-attribute-class/index.html">AttributeClass</a>, tag: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets an attribute of the <a href="index.html">Card</a> using an <a href="../-attribute-class/index.html">AttributeClass</a> and tag (as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>).</p></div></div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-attrib.html">getAttrib</a>(cls: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, tag: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets an attribute of a <a href="index.html">Card</a> by its attribute information class and tag ID.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-564306622%2FExtensions%2F788909594" anchor-label="getIfdSerial" id="-564306622%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-ifd-serial.html"><span>get</span><wbr></wbr><span>Ifd</span><wbr></wbr><span><span>Serial</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-564306622%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-ifd-serial.html">getIfdSerial</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the IFD serial number, as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1072725448%2FExtensions%2F788909594" anchor-label="getIfdType" id="1072725448%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-ifd-type.html"><span>get</span><wbr></wbr><span>Ifd</span><wbr></wbr><span><span>Type</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1072725448%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-ifd-type.html">getIfdType</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the vendor-specified IFD type, as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="699085276%2FExtensions%2F788909594" anchor-label="getIfdVersion" id="699085276%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-ifd-version.html"><span>get</span><wbr></wbr><span>Ifd</span><wbr></wbr><span><span>Version</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="699085276%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-ifd-version.html">getIfdVersion</a>(): <a href="../-version/index.html">Version</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the vendor-specified IFD version</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1627591440%2FExtensions%2F788909594" anchor-label="getMechanicalCharacteristics" id="1627591440%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-mechanical-characteristics.html"><span>get</span><wbr></wbr><span>Mechanical</span><wbr></wbr><span><span>Characteristics</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1627591440%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-mechanical-characteristics.html">getMechanicalCharacteristics</a>(): <a href="../-mechanical-characteristics/index.html">MechanicalCharacteristics</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the mechanical characteristics of the IFD.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2082478046%2FExtensions%2F788909594" anchor-label="getVendorName" id="2082478046%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-vendor-name.html"><span>get</span><wbr></wbr><span>Vendor</span><wbr></wbr><span><span>Name</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2082478046%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../get-vendor-name.html">getVendorName</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the IFD's vendor's name, as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-984748306%2FExtensions%2F788909594" anchor-label="reconnect" id="-984748306%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../reconnect.html"><span><span>reconnect</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-984748306%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Card</a>.<a href="../reconnect.html">reconnect</a>(shareMode: <a href="../-share-mode/index.html">ShareMode</a>, preferredProtocol: <a href="../-protocol/index.html">Protocol</a> = Protocol.Any, initialization: <a href="../-initialization/index.html">Initialization</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Disconnects and reconnects to the given card with new parameters.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

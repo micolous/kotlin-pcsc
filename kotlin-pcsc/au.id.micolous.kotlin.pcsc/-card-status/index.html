@@ -1,117 +1,183 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>CardStatus - kotlin-pcsc</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">CardStatus</a><br/>
-<br/>
-<h1>CardStatus</h1>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CardStatus</span></code>
-<p>Return value from <a href="../-card/status.html">Card.status</a> (<code>SCardStatus</code>).</p>
-<p>The status <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>s (<a href="unknown.html">unknown</a>, <a href="absent.html">absent</a>, <a href="present.html">present</a>, <a href="swallowed.html">swallowed</a>, <a href="powered.html">powered</a>, <a href="negotiable.html">negotiable</a> and
-<a href="specific.html">specific</a>) have platform-specific differences:</p>
-<ul><li>On <code>pcsclite</code> (Linux and macOS), these are a bitmask.</li>
-<li>On Windows, only <strong>one</strong> of these will be true, as it represents the lifecycle of the card.</li>
-</ul>
-<p>For example, when a card is connected and the protocol has been negotiated:</p>
-<ul><li><code>pcsclite</code> would have <a href="present.html">present</a>, <a href="powered.html">powered</a> and <a href="specific.html">specific</a> == <code>true</code></li>
-<li>Windows would have <a href="specific.html">specific</a> == <code>true</code>, but <a href="present.html">present</a> and <a href="powered.html">powered</a> == <code>false</code></li>
-</ul>
-<p>See: https://pcsclite.apdu.fr/api/group__API.html#differences</p>
-<h3>Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="absent.html">absent</a></h4>
-</td>
-<td>
-<p>If true, there is no card in the reader.</p>
-<code><span class="keyword">val </span><span class="identifier">absent</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="atr.html">atr</a></h4>
-</td>
-<td>
-<p>The ATR (Answer To Reset) returned by the card, if available.</p>
-<code><span class="keyword">val </span><span class="identifier">atr</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="negotiable.html">negotiable</a></h4>
-</td>
-<td>
-<p>If true, the card has been reset and is awaiting PTS negotation.</p>
-<code><span class="keyword">val </span><span class="identifier">negotiable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="powered.html">powered</a></h4>
-</td>
-<td>
-<p>If true, power is being provided to the card.</p>
-<code><span class="keyword">val </span><span class="identifier">powered</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="present.html">present</a></h4>
-</td>
-<td>
-<p>If true, there is a card in the reader.</p>
-<code><span class="keyword">val </span><span class="identifier">present</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="protocol.html">protocol</a></h4>
-</td>
-<td>
-<p>The current protocol, if any.</p>
-<code><span class="keyword">val </span><span class="identifier">protocol</span><span class="symbol">: </span><a href="../-protocol/index.html"><span class="identifier">Protocol</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="reader-name.html">readerName</a></h4>
-</td>
-<td>
-<p>Name of the reader.</p>
-<code><span class="keyword">val </span><span class="identifier">readerName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="reader-names.html">readerNames</a></h4>
-</td>
-<td>
-<p>Name(s) of the reader. On Windows, this may be multiple names.</p>
-<code><span class="keyword">val </span><span class="identifier">readerNames</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="specific.html">specific</a></h4>
-</td>
-<td>
-<p>If true, the card has been reset and specific communication protocols have been established.</p>
-<code><span class="keyword">val </span><span class="identifier">specific</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="swallowed.html">swallowed</a></h4>
-</td>
-<td>
-<p>If true, there is a card in the reader in position for use, but the card is not powered.</p>
-<code><span class="keyword">val </span><span class="identifier">swallowed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="unknown.html">unknown</a></h4>
-</td>
-<td>
-<p>If true, the reader / card is in an unknown state.</p>
-<code><span class="keyword">val </span><span class="identifier">unknown</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>CardStatus</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="kotlin-pcsc::au.id.micolous.kotlin.pcsc/CardStatus///PointingToDeclaration//788909594">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">kotlin-pcsc</a>/<a href="../index.html">au.id.micolous.kotlin.pcsc</a>/<a href="index.html">CardStatus</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Card</span><wbr></wbr><span><span>Status</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">data class <a href="index.html">CardStatus</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Return value from <a href="../-card/status.html">Card.status</a> (<code>SCardStatus</code>).</p><p class="paragraph">The status <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a>s (<a href="unknown.html">unknown</a>, <a href="absent.html">absent</a>, <a href="present.html">present</a>, <a href="swallowed.html">swallowed</a>, <a href="powered.html">powered</a>, <a href="negotiable.html">negotiable</a> and <a href="specific.html">specific</a>) have platform-specific differences:</p><ul><li><p class="paragraph">On <code>pcsclite</code> (Linux and macOS), these are a bitmask.</p></li><li><p class="paragraph">On Windows, only <strong>one</strong> of these will be true, as it represents the lifecycle of the card.</p></li></ul><p class="paragraph">For example, when a card is connected and the protocol has been negotiated:</p><ul><li><p class="paragraph"><code>pcsclite</code> would have <a href="present.html">present</a>, <a href="powered.html">powered</a> and <a href="specific.html">specific</a> == <code>true</code></p></li><li><p class="paragraph">Windows would have <a href="specific.html">specific</a> == <code>true</code>, but <a href="present.html">present</a> and <a href="powered.html">powered</a> == <code>false</code></p></li></ul><p class="paragraph">See: https://pcsclite.apdu.fr/api/group__API.html#differences</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="225304386%2FProperties%2F788909594" anchor-label="absent" id="225304386%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="absent.html">absent</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="225304386%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="225304386%2FProperties%2F788909594" anchor-label="absent" id="225304386%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="absent.html">absent</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="225304386%2FProperties%2F788909594" anchor-label="absent" id="225304386%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, there is no card in the reader.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2008302112%2FProperties%2F788909594" anchor-label="atr" id="2008302112%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="atr.html">atr</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2008302112%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="2008302112%2FProperties%2F788909594" anchor-label="atr" id="2008302112%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="atr.html">atr</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2008302112%2FProperties%2F788909594" anchor-label="atr" id="2008302112%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">The ATR (Answer To Reset) returned by the card, if available.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="731243053%2FProperties%2F788909594" anchor-label="negotiable" id="731243053%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="negotiable.html">negotiable</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="731243053%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="731243053%2FProperties%2F788909594" anchor-label="negotiable" id="731243053%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="negotiable.html">negotiable</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="731243053%2FProperties%2F788909594" anchor-label="negotiable" id="731243053%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, the card has been reset and is awaiting PTS negotation.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1456081659%2FProperties%2F788909594" anchor-label="powered" id="1456081659%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="powered.html">powered</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1456081659%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="1456081659%2FProperties%2F788909594" anchor-label="powered" id="1456081659%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="powered.html">powered</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1456081659%2FProperties%2F788909594" anchor-label="powered" id="1456081659%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, power is being provided to the card.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1299170684%2FProperties%2F788909594" anchor-label="present" id="-1299170684%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="present.html">present</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1299170684%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-1299170684%2FProperties%2F788909594" anchor-label="present" id="-1299170684%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="present.html">present</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1299170684%2FProperties%2F788909594" anchor-label="present" id="-1299170684%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, there is a card in the reader.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-416039613%2FProperties%2F788909594" anchor-label="protocol" id="-416039613%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="protocol.html">protocol</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-416039613%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-416039613%2FProperties%2F788909594" anchor-label="protocol" id="-416039613%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="protocol.html">protocol</a>: <a href="../-protocol/index.html">Protocol</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-416039613%2FProperties%2F788909594" anchor-label="protocol" id="-416039613%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">The current protocol, if any.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-36168915%2FProperties%2F788909594" anchor-label="readerName" id="-36168915%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="reader-name.html">readerName</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-36168915%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-36168915%2FProperties%2F788909594" anchor-label="readerName" id="-36168915%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="reader-name.html">readerName</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-36168915%2FProperties%2F788909594" anchor-label="readerName" id="-36168915%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">Name of the reader.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="445018426%2FProperties%2F788909594" anchor-label="readerNames" id="445018426%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="reader-names.html">readerNames</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="445018426%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="445018426%2FProperties%2F788909594" anchor-label="readerNames" id="445018426%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="reader-names.html">readerNames</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="445018426%2FProperties%2F788909594" anchor-label="readerNames" id="445018426%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">Name(s) of the reader. On Windows, this may be multiple names.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-439049239%2FProperties%2F788909594" anchor-label="specific" id="-439049239%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="specific.html">specific</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-439049239%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-439049239%2FProperties%2F788909594" anchor-label="specific" id="-439049239%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="specific.html">specific</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-439049239%2FProperties%2F788909594" anchor-label="specific" id="-439049239%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, the card has been reset and specific communication protocols have been established.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="915989531%2FProperties%2F788909594" anchor-label="swallowed" id="915989531%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="swallowed.html">swallowed</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="915989531%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="915989531%2FProperties%2F788909594" anchor-label="swallowed" id="915989531%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="swallowed.html">swallowed</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="915989531%2FProperties%2F788909594" anchor-label="swallowed" id="915989531%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, there is a card in the reader in position for use, but the card is not powered.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1639524907%2FProperties%2F788909594" anchor-label="unknown" id="-1639524907%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="unknown.html">unknown</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1639524907%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-1639524907%2FProperties%2F788909594" anchor-label="unknown" id="-1639524907%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="unknown.html">unknown</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = false<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1639524907%2FProperties%2F788909594" anchor-label="unknown" id="-1639524907%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">If true, the reader / card is in an unknown state.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,111 +1,241 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Context - kotlin-pcsc</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">Context</a><br/>
-<br/>
-<h1>Context</h1>
-<code><span class="keyword">class </span><span class="identifier">Context</span></code>
-<p>Main interface for PC/SC API operations (<code>SCARDCONTEXT</code>).</p>
-<p><strong>See Also</strong><br/>
-<p><a href="establish.html">Context.establish</a></p>
-</p>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="cancel.html">cancel</a></h4>
-</td>
-<td>
-<p>Terminates all outstanding actions within this <a href="./index.html">Context</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">cancel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="connect.html">connect</a></h4>
-</td>
-<td>
-<p>Connects to a given reader.</p>
-<code><span class="keyword">fun </span><span class="identifier">connect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$connect(kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, kotlin.collections.Set((au.id.micolous.kotlin.pcsc.Protocol)))/reader">reader</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$connect(kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, kotlin.collections.Set((au.id.micolous.kotlin.pcsc.Protocol)))/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="../-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$connect(kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, kotlin.collections.Set((au.id.micolous.kotlin.pcsc.Protocol)))/preferredProtcols">preferredProtcols</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="../-protocol/index.html"><span class="identifier">Protocol</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-card/index.html"><span class="identifier">Card</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="get-status-change.html">getStatusChange</a></h4>
-</td>
-<td>
-<p>Waits for status changes in the given list of readers.</p>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getStatusChange</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$getStatusChange(kotlin.Int, kotlin.collections.List((au.id.micolous.kotlin.pcsc.ReaderState)))/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$getStatusChange(kotlin.Int, kotlin.collections.List((au.id.micolous.kotlin.pcsc.ReaderState)))/readers">readers</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="is-valid.html">isValid</a></h4>
-</td>
-<td>
-<p>Returns <code>true</code> if this class represents a valid context.</p>
-<code><span class="keyword">fun </span><span class="identifier">isValid</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="list-readers.html">listReaders</a></h4>
-</td>
-<td>
-<p>Lists all readers available in this <a href="./index.html">Context</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">listReaders</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context$listReaders(kotlin.collections.List((kotlin.String)))/groups">groups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="release.html">release</a></h4>
-</td>
-<td>
-<p>Releases the given context, and renders it unusable.</p>
-<code><span class="keyword">fun </span><span class="identifier">release</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Companion Object Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="establish.html">establish</a></h4>
-</td>
-<td>
-<p>Establishes a new PC/SC context.</p>
-<code><span class="keyword">fun </span><span class="identifier">establish</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc.Context.Companion$establish(au.id.micolous.kotlin.pcsc.Scope)/scope">scope</span><span class="symbol">:</span>&nbsp;<a href="../-scope/index.html"><span class="identifier">Scope</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Scope.User<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Context</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="../connect.html">connect</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">connect</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/reader">reader</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/shareMode">shareMode</span><span class="symbol">:</span>&nbsp;<a href="../-share-mode/index.html"><span class="identifier">ShareMode</span></a><span class="symbol">, </span><span class="identifier" id="au.id.micolous.kotlin.pcsc$connect(au.id.micolous.kotlin.pcsc.Context, kotlin.String, au.id.micolous.kotlin.pcsc.ShareMode, au.id.micolous.kotlin.pcsc.Protocol)/preferredProtocol">preferredProtocol</span><span class="symbol">:</span>&nbsp;<a href="../-protocol/index.html"><span class="identifier">Protocol</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Protocol.Any<span class="symbol">)</span><span class="symbol">: </span><a href="../-card/index.html"><span class="identifier">Card</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-all-reader-status.html">getAllReaderStatus</a></h4>
-</td>
-<td>
-<p>Gets the status of all connected readers.</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">getAllReaderStatus</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getAllReaderStatus(au.id.micolous.kotlin.pcsc.Context, kotlin.collections.List((kotlin.String)))/groups">groups</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../get-status.html">getStatus</a></h4>
-</td>
-<td>
-<p>Gets the current state of the given readers, and returns immediately.</p>
-<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">getStatus</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getStatus(au.id.micolous.kotlin.pcsc.Context, kotlin.collections.List((kotlin.String)))/readers">readers</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a><span class="symbol">&gt;</span></code><code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">Context</span></a><span class="symbol">.</span><span class="identifier">getStatus</span><span class="symbol">(</span><span class="identifier" id="au.id.micolous.kotlin.pcsc$getStatus(au.id.micolous.kotlin.pcsc.Context, kotlin.String)/reader">reader</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-reader-state/index.html"><span class="identifier">ReaderState</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Context</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="kotlin-pcsc::au.id.micolous.kotlin.pcsc/Context///PointingToDeclaration//788909594">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">kotlin-pcsc</a>/<a href="../index.html">au.id.micolous.kotlin.pcsc</a>/<a href="index.html">Context</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span><span>Context</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">class <a href="index.html">Context</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Main interface for PC/SC API operations (<code>SCARDCONTEXT</code>).</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Extensions">Extensions</button><button class="section-tab" data-togglable="See also">See also</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">See also</h2>
+              <div data-togglable="See also">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="main-subrow keyValue WithExtraAttributes RowTitle"><div class=""><span class="inline-flex"><a href="-companion/establish.html"><span>au.</span><wbr></wbr><span>id.</span><wbr></wbr><span>micolous.</span><wbr></wbr><span>kotlin.</span><wbr></wbr><span>pcsc.</span><wbr></wbr><span>Context.</span><wbr></wbr><span>Companion</span></a></span><span class="inline-flex"><div data-togglable="See also"></div></span></div><div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="">Types</h2>
+              <div class="table" data-togglable="Types"><a data-name="-642335505%2FClasslikes%2F788909594" anchor-label="Companion" id="-642335505%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-companion/index.html"><span><span>Companion</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-642335505%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">object <a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="-1304655240%2FFunctions%2F788909594" anchor-label="cancel" id="-1304655240%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="cancel.html"><span><span>cancel</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1304655240%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="cancel.html">cancel</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Terminates all outstanding actions within this <a href="index.html">Context</a>.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-38155655%2FFunctions%2F788909594" anchor-label="connect" id="-38155655%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="connect.html"><span><span>connect</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-38155655%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="connect.html">connect</a>(reader: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, shareMode: <a href="../-share-mode/index.html">ShareMode</a>, preferredProtcols: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a>&lt;<a href="../-protocol/index.html">Protocol</a>&gt;?): <a href="../-card/index.html">Card</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Connects to a given reader.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="386782223%2FFunctions%2F788909594" anchor-label="getStatusChange" id="386782223%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="get-status-change.html"><span>get</span><wbr></wbr><span>Status</span><wbr></wbr><span><span>Change</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="386782223%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">suspend fun <a href="get-status-change.html">getStatusChange</a>(timeout: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, readers: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-reader-state/index.html">ReaderState</a>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-reader-state/index.html">ReaderState</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Waits for status changes in the given list of readers.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="124240310%2FFunctions%2F788909594" anchor-label="isValid" id="124240310%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-valid.html"><span>is</span><wbr></wbr><span><span>Valid</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="124240310%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="is-valid.html">isValid</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Returns <code>true</code> if this class represents a valid context.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2067090435%2FFunctions%2F788909594" anchor-label="listReaders" id="2067090435%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="list-readers.html"><span>list</span><wbr></wbr><span><span>Readers</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2067090435%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="list-readers.html">listReaders</a>(groups: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Lists all readers available in this <a href="index.html">Context</a>.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1182664769%2FFunctions%2F788909594" anchor-label="release" id="1182664769%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="release.html"><span><span>release</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1182664769%2FFunctions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="release.html">release</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Releases the given context, and renders it unusable.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="tabbedcontent">Extensions</h2>
+              <div class="table" data-togglable="Extensions"><a data-name="50846848%2FExtensions%2F788909594" anchor-label="connect" id="50846848%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../connect.html"><span><span>connect</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="50846848%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Context</a>.<a href="../connect.html">connect</a>(reader: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, shareMode: <a href="../-share-mode/index.html">ShareMode</a>, preferredProtocol: <a href="../-protocol/index.html">Protocol</a> = Protocol.Any): <a href="../-card/index.html">Card</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1901227771%2FExtensions%2F788909594" anchor-label="getAllReaderStatus" id="1901227771%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-all-reader-status.html"><span>get</span><wbr></wbr><span>All</span><wbr></wbr><span>Reader</span><wbr></wbr><span><span>Status</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1901227771%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Context</a>.<a href="../get-all-reader-status.html">getAllReaderStatus</a>(groups: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;? = null): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-reader-state/index.html">ReaderState</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the status of all connected readers.</p></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="351686530%2FExtensions%2F788909594" anchor-label="getStatus" id="351686530%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-status.html"><span>get</span><wbr></wbr><span><span>Status</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="351686530%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Context</a>.<a href="../get-status.html">getStatus</a>(readers: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-reader-state/index.html">ReaderState</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<div class="brief "><p class="paragraph">Gets the current state of the given readers, and returns immediately.</p></div></div>
+<div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">fun <a href="index.html">Context</a>.<a href="../get-status.html">getStatus</a>(reader: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="../-reader-state/index.html">ReaderState</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="417545743%2FExtensions%2F788909594" anchor-label="getStatusChange" id="417545743%2FExtensions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../get-status-change.html"><span>get</span><wbr></wbr><span>Status</span><wbr></wbr><span><span>Change</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="417545743%2FExtensions%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">suspend fun <a href="index.html">Context</a>.<a href="../get-status-change.html">getStatusChange</a>(timeout: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, reader: <a href="../-reader-state/index.html">ReaderState</a>): <a href="../-reader-state/index.html">ReaderState</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

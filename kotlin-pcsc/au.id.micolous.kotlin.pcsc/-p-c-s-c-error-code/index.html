@@ -1,536 +1,900 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>PCSCErrorCode - kotlin-pcsc</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlin-pcsc</a>&nbsp;/&nbsp;<a href="../index.html">au.id.micolous.kotlin.pcsc</a>&nbsp;/&nbsp;<a href="./index.html">PCSCErrorCode</a><br/>
-<br/>
-<h1>PCSCErrorCode</h1>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">PCSCErrorCode</span></code>
-<p>Enumeration to doscribe error states in the PC/SC API.</p>
-<h3>Enum Values</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="-s_-s-u-c-c-e-s-s.html">S_SUCCESS</a></h4>
-</td>
-<td>
-<p><code>0x00000000</code>: No error was encountered</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-f_-i-n-t-e-r-n-a-l_-e-r-r-o-r.html">F_INTERNAL_ERROR</a></h4>
-</td>
-<td>
-<p><code>0x80100001</code>: An internal consistency check failed</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-c-a-n-c-e-l-l-e-d.html">E_CANCELLED</a></h4>
-</td>
-<td>
-<p><code>0x80100002</code>: The action was cancelled by an SCardCancel request</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-v-a-l-i-d_-h-a-n-d-l-e.html">E_INVALID_HANDLE</a></h4>
-</td>
-<td>
-<p><code>0x80100003</code>: The supplied handle was invalid</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-v-a-l-i-d_-p-a-r-a-m-e-t-e-r.html">E_INVALID_PARAMETER</a></h4>
-</td>
-<td>
-<p><code>0x80100004</code>: One or more of the supplied parameters could not be properly interpreted</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-v-a-l-i-d_-t-a-r-g-e-t.html">E_INVALID_TARGET</a></h4>
-</td>
-<td>
-<p><code>0x80100005</code>: Registry startup information is missing or invalid</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-m-e-m-o-r-y.html">E_NO_MEMORY</a></h4>
-</td>
-<td>
-<p><code>0x80100006</code>: Not enough memory available to complete this command</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-f_-w-a-i-t-e-d_-t-o-o_-l-o-n-g.html">F_WAITED_TOO_LONG</a></h4>
-</td>
-<td>
-<p><code>0x80100007</code>: An internal consistency timer has expired</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-s-u-f-f-i-c-i-e-n-t_-b-u-f-f-e-r.html">E_INSUFFICIENT_BUFFER</a></h4>
-</td>
-<td>
-<p><code>0x80100008</code>: The data buffer to receive returned data is too small for the returned data</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-u-n-k-n-o-w-n_-r-e-a-d-e-r.html">E_UNKNOWN_READER</a></h4>
-</td>
-<td>
-<p><code>0x80100009</code>: The specified reader name is not recognized</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-t-i-m-e-o-u-t.html">E_TIMEOUT</a></h4>
-</td>
-<td>
-<p><code>0x8010000A</code>: The user-specified timeout value has expired</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-s-h-a-r-i-n-g_-v-i-o-l-a-t-i-o-n.html">E_SHARING_VIOLATION</a></h4>
-</td>
-<td>
-<p><code>0x8010000B</code>: The smart card cannot be accessed because of other connections outstanding</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-s-m-a-r-t-c-a-r-d.html">E_NO_SMARTCARD</a></h4>
-</td>
-<td>
-<p><code>0x8010000C</code>: The operation requires a Smart Card, but no Smart Card is currently in the device</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-u-n-k-n-o-w-n_-c-a-r-d.html">E_UNKNOWN_CARD</a></h4>
-</td>
-<td>
-<p><code>0x8010000D</code>: The specified smart card name is not recognized</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-c-a-n-t_-d-i-s-p-o-s-e.html">E_CANT_DISPOSE</a></h4>
-</td>
-<td>
-<p><code>0x8010000E</code>: The system could not dispose of the media in the requested manner</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-p-r-o-t-o_-m-i-s-m-a-t-c-h.html">E_PROTO_MISMATCH</a></h4>
-</td>
-<td>
-<p><code>0x8010000F</code>: The requested protocols are incompatible with the protocol currently in use with the smart card</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o-t_-r-e-a-d-y.html">E_NOT_READY</a></h4>
-</td>
-<td>
-<p><code>0x80100010</code>: The reader or smart card is not ready to accept commands</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-v-a-l-i-d_-v-a-l-u-e.html">E_INVALID_VALUE</a></h4>
-</td>
-<td>
-<p><code>0x80100011</code>: One or more of the supplied parameters values could not be properly interpreted</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-s-y-s-t-e-m_-c-a-n-c-e-l-l-e-d.html">E_SYSTEM_CANCELLED</a></h4>
-</td>
-<td>
-<p><code>0x80100012</code>: The action was cancelled by the system, presumably to log off or shut down</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-f_-c-o-m-m_-e-r-r-o-r.html">F_COMM_ERROR</a></h4>
-</td>
-<td>
-<p><code>0x80100013</code>: An internal communications error has been detected</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-f_-u-n-k-n-o-w-n_-e-r-r-o-r.html">F_UNKNOWN_ERROR</a></h4>
-</td>
-<td>
-<p><code>0x80100014</code>: An internal error has been detected, but the source is unknown</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-v-a-l-i-d_-a-t-r.html">E_INVALID_ATR</a></h4>
-</td>
-<td>
-<p><code>0x80100015</code>: An ATR obtained from the registry is not a valid ATR string</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o-t_-t-r-a-n-s-a-c-t-e-d.html">E_NOT_TRANSACTED</a></h4>
-</td>
-<td>
-<p><code>0x80100016</code>: An attempt was made to end a non-existent transaction</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-r-e-a-d-e-r_-u-n-a-v-a-i-l-a-b-l-e.html">E_READER_UNAVAILABLE</a></h4>
-</td>
-<td>
-<p><code>0x80100017</code>: The specified reader is not currently available for use</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-p_-s-h-u-t-d-o-w-n.html">P_SHUTDOWN</a></h4>
-</td>
-<td>
-<p><code>0x80100018</code>: The operation has been aborted to allow the server application to exit</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-p-c-i_-t-o-o_-s-m-a-l-l.html">E_PCI_TOO_SMALL</a></h4>
-</td>
-<td>
-<p><code>0x80100019</code>: The PCI Receive buffer was too small</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-r-e-a-d-e-r_-u-n-s-u-p-p-o-r-t-e-d.html">E_READER_UNSUPPORTED</a></h4>
-</td>
-<td>
-<p><code>0x8010001A</code>: The reader driver does not meet minimal requirements for support</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-d-u-p-l-i-c-a-t-e_-r-e-a-d-e-r.html">E_DUPLICATE_READER</a></h4>
-</td>
-<td>
-<p><code>0x8010001B</code>: The reader driver did not produce a unique reader name</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-c-a-r-d_-u-n-s-u-p-p-o-r-t-e-d.html">E_CARD_UNSUPPORTED</a></h4>
-</td>
-<td>
-<p><code>0x8010001C</code>: The smart card does not meet minimal requirements for support</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-s-e-r-v-i-c-e.html">E_NO_SERVICE</a></h4>
-</td>
-<td>
-<p><code>0x8010001D</code>: The Smart card resource manager is not running</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-s-e-r-v-i-c-e_-s-t-o-p-p-e-d.html">E_SERVICE_STOPPED</a></h4>
-</td>
-<td>
-<p><code>0x8010001E</code>: The Smart card resource manager has shut down</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-u-n-e-x-p-e-c-t-e-d.html">E_UNEXPECTED</a></h4>
-</td>
-<td>
-<p><code>0x8010001F</code>: An unexpected card error has occurred</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-u-n-s-u-p-p-o-r-t-e-d_-f-e-a-t-u-r-e.html">E_UNSUPPORTED_FEATURE</a></h4>
-</td>
-<td>
-<p><code>0x8010001F</code>: This smart card does not support the requested feature</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-c-c_-i-n-s-t-a-l-l-a-t-i-o-n.html">E_ICC_INSTALLATION</a></h4>
-</td>
-<td>
-<p><code>0x80100020</code>: No primary provider can be found for the smart card</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-c-c_-c-r-e-a-t-e-o-r-d-e-r.html">E_ICC_CREATEORDER</a></h4>
-</td>
-<td>
-<p><code>0x80100021</code>: The requested order of object creation is not supported</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-d-i-r_-n-o-t_-f-o-u-n-d.html">E_DIR_NOT_FOUND</a></h4>
-</td>
-<td>
-<p><code>0x80100023</code>: The identified directory does not exist in the smart card</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-f-i-l-e_-n-o-t_-f-o-u-n-d.html">E_FILE_NOT_FOUND</a></h4>
-</td>
-<td>
-<p><code>0x80100024</code>: The identified file does not exist in the smart card</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-d-i-r.html">E_NO_DIR</a></h4>
-</td>
-<td>
-<p><code>0x80100025</code>: The supplied path does not represent a smart card directory</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-f-i-l-e.html">E_NO_FILE</a></h4>
-</td>
-<td>
-<p><code>0x80100026</code>: The supplied path does not represent a smart card file</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-a-c-c-e-s-s.html">E_NO_ACCESS</a></h4>
-</td>
-<td>
-<p><code>0x80100027</code>: Access is denied to this file</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-w-r-i-t-e_-t-o-o_-m-a-n-y.html">E_WRITE_TOO_MANY</a></h4>
-</td>
-<td>
-<p><code>0x80100028</code>: The smart card does not have enough memory to store the information</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-b-a-d_-s-e-e-k.html">E_BAD_SEEK</a></h4>
-</td>
-<td>
-<p><code>0x80100029</code>: There was an error trying to set the smart card file object pointer</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-i-n-v-a-l-i-d_-c-h-v.html">E_INVALID_CHV</a></h4>
-</td>
-<td>
-<p><code>0x8010002A</code>: The supplied PIN is incorrect</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-u-n-k-n-o-w-n_-r-e-s_-m-n-g.html">E_UNKNOWN_RES_MNG</a></h4>
-</td>
-<td>
-<p><code>0x8010002B</code>: An unrecognized error code was returned from a layered component</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-s-u-c-h_-c-e-r-t-i-f-i-c-a-t-e.html">E_NO_SUCH_CERTIFICATE</a></h4>
-</td>
-<td>
-<p><code>0x8010002C</code>: The requested certificate does not exist</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-c-e-r-t-i-f-i-c-a-t-e_-u-n-a-v-a-i-l-a-b-l-e.html">E_CERTIFICATE_UNAVAILABLE</a></h4>
-</td>
-<td>
-<p><code>0x8010002D</code>: The requested certificate could not be obtained</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-r-e-a-d-e-r-s_-a-v-a-i-l-a-b-l-e.html">E_NO_READERS_AVAILABLE</a></h4>
-</td>
-<td>
-<p><code>0x8010002E</code>: Cannot find a smart card reader</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-c-o-m-m_-d-a-t-a_-l-o-s-t.html">E_COMM_DATA_LOST</a></h4>
-</td>
-<td>
-<p><code>0x8010002F</code>: A communications error with the smart card has been detected. More..</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-n-o_-k-e-y_-c-o-n-t-a-i-n-e-r.html">E_NO_KEY_CONTAINER</a></h4>
-</td>
-<td>
-<p><code>0x80100030</code>: The requested key container does not exist on the smart card</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-e_-s-e-r-v-e-r_-t-o-o_-b-u-s-y.html">E_SERVER_TOO_BUSY</a></h4>
-</td>
-<td>
-<p><code>0x80100031</code>: The Smart Card Resource Manager is too busy to complete this operation</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-u-n-s-u-p-p-o-r-t-e-d_-c-a-r-d.html">W_UNSUPPORTED_CARD</a></h4>
-</td>
-<td>
-<p><code>0x80100065</code>: The reader cannot communicate with the card, due to ATR string configuration conflicts</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-u-n-r-e-s-p-o-n-s-i-v-e_-c-a-r-d.html">W_UNRESPONSIVE_CARD</a></h4>
-</td>
-<td>
-<p><code>0x80100066</code>: The smart card is not responding to a reset</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-u-n-p-o-w-e-r-e-d_-c-a-r-d.html">W_UNPOWERED_CARD</a></h4>
-</td>
-<td>
-<p><code>0x80100067</code>: Power has been removed from the smart card, so that further communication is not possible</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-r-e-s-e-t_-c-a-r-d.html">W_RESET_CARD</a></h4>
-</td>
-<td>
-<p><code>0x80100068</code>: The smart card has been reset, so any shared state information is invalid</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-r-e-m-o-v-e-d_-c-a-r-d.html">W_REMOVED_CARD</a></h4>
-</td>
-<td>
-<p><code>0x80100069</code>: The smart card has been removed, so further communication is not possible</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-s-e-c-u-r-i-t-y_-v-i-o-l-a-t-i-o-n.html">W_SECURITY_VIOLATION</a></h4>
-</td>
-<td>
-<p><code>0x8010006A</code>: Access was denied because of a security violation</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-w-r-o-n-g_-c-h-v.html">W_WRONG_CHV</a></h4>
-</td>
-<td>
-<p><code>0x8010006B</code>: The card cannot be accessed because the wrong PIN was presented</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-c-h-v_-b-l-o-c-k-e-d.html">W_CHV_BLOCKED</a></h4>
-</td>
-<td>
-<p><code>0x8010006C</code>: The card cannot be accessed because the maximum number of PIN entry attempts has been reached</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-e-o-f.html">W_EOF</a></h4>
-</td>
-<td>
-<p><code>0x8010006D</code>: The end of the smart card file has been reached</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-c-a-n-c-e-l-l-e-d_-b-y_-u-s-e-r.html">W_CANCELLED_BY_USER</a></h4>
-</td>
-<td>
-<p><code>0x8010006E</code>: The user pressed "Cancel" on a Smart Card Selection Dialog</p>
-</td>
-</tr>
-<tr>
-<td>
-<h4><a href="-w_-c-a-r-d_-n-o-t_-a-u-t-h-e-n-t-i-c-a-t-e-d.html">W_CARD_NOT_AUTHENTICATED</a></h4>
-</td>
-<td>
-<p><code>0x8010006F</code>: No PIN was presented to the smart card</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="code.html">code</a></h4>
-</td>
-<td>
-<p>Numeric error code</p>
-<code><span class="keyword">val </span><span class="identifier">code</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="description.html">description</a></h4>
-</td>
-<td>
-<p>Description of the error condition</p>
-<code><span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="message.html">message</a></h4>
-</td>
-<td>
-<p>An error message for human consumption</p>
-<code><span class="keyword">val </span><span class="identifier">message</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PCSCErrorCode</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="kotlin-pcsc::au.id.micolous.kotlin.pcsc/PCSCErrorCode///PointingToDeclaration//788909594">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">kotlin-pcsc</a>/<a href="../index.html">au.id.micolous.kotlin.pcsc</a>/<a href="index.html">PCSCErrorCode</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>PCSCError</span><wbr></wbr><span><span>Code</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace">enum <a href="index.html">PCSCErrorCode</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a>&lt;<a href="index.html">PCSCErrorCode</a>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Enumeration to doscribe error states in the PC/SC API.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Entries">Entries</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="tabbedcontent">Entries</h2>
+              <div class="table" data-togglable="Entries"><a data-name="-2031781106%2FClasslikes%2F788909594" anchor-label="W_CARD_NOT_AUTHENTICATED" id="-2031781106%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-c-a-r-d_-n-o-t_-a-u-t-h-e-n-t-i-c-a-t-e-d/index.html">W_CARD_NOT_AUTHENTICATED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2031781106%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-c-a-r-d_-n-o-t_-a-u-t-h-e-n-t-i-c-a-t-e-d/index.html">W_CARD_NOT_AUTHENTICATED</a>(0x8010006FL, &quot;No PIN was presented to the smart card&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010006F</code>: No PIN was presented to the smart card</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="404733723%2FClasslikes%2F788909594" anchor-label="W_CANCELLED_BY_USER" id="404733723%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-c-a-n-c-e-l-l-e-d_-b-y_-u-s-e-r/index.html">W_CANCELLED_BY_USER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="404733723%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-c-a-n-c-e-l-l-e-d_-b-y_-u-s-e-r/index.html">W_CANCELLED_BY_USER</a>(0x8010006EL, &quot;The user pressed \&quot;Cancel\&quot; on a Smart Card Selection Dialog&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010006E</code>: The user pressed &quot;Cancel&quot; on a Smart Card Selection Dialog</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1447461372%2FClasslikes%2F788909594" anchor-label="W_EOF" id="-1447461372%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-e-o-f/index.html">W_EOF</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1447461372%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-e-o-f/index.html">W_EOF</a>(0x8010006DL, &quot;The end of the smart card file has been reached&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010006D</code>: The end of the smart card file has been reached</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1388854782%2FClasslikes%2F788909594" anchor-label="W_CHV_BLOCKED" id="-1388854782%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-c-h-v_-b-l-o-c-k-e-d/index.html">W_CHV_BLOCKED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1388854782%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-c-h-v_-b-l-o-c-k-e-d/index.html">W_CHV_BLOCKED</a>(0x8010006CL, &quot;The card cannot be accessed because the maximum number of PIN entry attempts has been reached&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010006C</code>: The card cannot be accessed because the maximum number of PIN entry attempts has been reached</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="917654049%2FClasslikes%2F788909594" anchor-label="W_WRONG_CHV" id="917654049%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-w-r-o-n-g_-c-h-v/index.html">W_WRONG_CHV</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="917654049%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-w-r-o-n-g_-c-h-v/index.html">W_WRONG_CHV</a>(0x8010006BL, &quot;The card cannot be accessed because the wrong PIN was presented&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010006B</code>: The card cannot be accessed because the wrong PIN was presented</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1684043036%2FClasslikes%2F788909594" anchor-label="W_SECURITY_VIOLATION" id="1684043036%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-s-e-c-u-r-i-t-y_-v-i-o-l-a-t-i-o-n/index.html">W_SECURITY_VIOLATION</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1684043036%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-s-e-c-u-r-i-t-y_-v-i-o-l-a-t-i-o-n/index.html">W_SECURITY_VIOLATION</a>(0x8010006AL, &quot;Access was denied because of a security violation&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010006A</code>: Access was denied because of a security violation</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1436023059%2FClasslikes%2F788909594" anchor-label="W_REMOVED_CARD" id="1436023059%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-r-e-m-o-v-e-d_-c-a-r-d/index.html">W_REMOVED_CARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1436023059%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-r-e-m-o-v-e-d_-c-a-r-d/index.html">W_REMOVED_CARD</a>(0x80100069L, &quot;The smart card has been removed, so further communication is not possible&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100069</code>: The smart card has been removed, so further communication is not possible</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-377117182%2FClasslikes%2F788909594" anchor-label="W_RESET_CARD" id="-377117182%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-r-e-s-e-t_-c-a-r-d/index.html">W_RESET_CARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-377117182%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-r-e-s-e-t_-c-a-r-d/index.html">W_RESET_CARD</a>(0x80100068L, &quot;The smart card has been reset, so any shared state information is invalid&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100068</code>: The smart card has been reset, so any shared state information is invalid</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1527780062%2FClasslikes%2F788909594" anchor-label="W_UNPOWERED_CARD" id="1527780062%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-u-n-p-o-w-e-r-e-d_-c-a-r-d/index.html">W_UNPOWERED_CARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1527780062%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-u-n-p-o-w-e-r-e-d_-c-a-r-d/index.html">W_UNPOWERED_CARD</a>(0x80100067L, &quot;Power has been removed from the smart card, so that further communication is not possible&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100067</code>: Power has been removed from the smart card, so that further communication is not possible</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="170657886%2FClasslikes%2F788909594" anchor-label="W_UNRESPONSIVE_CARD" id="170657886%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-u-n-r-e-s-p-o-n-s-i-v-e_-c-a-r-d/index.html">W_UNRESPONSIVE_CARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="170657886%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-u-n-r-e-s-p-o-n-s-i-v-e_-c-a-r-d/index.html">W_UNRESPONSIVE_CARD</a>(0x80100066L, &quot;The smart card is not responding to a reset&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100066</code>: The smart card is not responding to a reset</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1946396584%2FClasslikes%2F788909594" anchor-label="W_UNSUPPORTED_CARD" id="1946396584%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-w_-u-n-s-u-p-p-o-r-t-e-d_-c-a-r-d/index.html">W_UNSUPPORTED_CARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1946396584%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-w_-u-n-s-u-p-p-o-r-t-e-d_-c-a-r-d/index.html">W_UNSUPPORTED_CARD</a>(0x80100065L, &quot;The reader cannot communicate with the card, due to ATR string configuration conflicts&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100065</code>: The reader cannot communicate with the card, due to ATR string configuration conflicts</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1453358354%2FClasslikes%2F788909594" anchor-label="E_SERVER_TOO_BUSY" id="1453358354%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-s-e-r-v-e-r_-t-o-o_-b-u-s-y/index.html">E_SERVER_TOO_BUSY</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1453358354%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-s-e-r-v-e-r_-t-o-o_-b-u-s-y/index.html">E_SERVER_TOO_BUSY</a>(0x80100031L, &quot;The Smart Card Resource Manager is too busy to complete this operation&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100031</code>: The Smart Card Resource Manager is too busy to complete this operation</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2075649229%2FClasslikes%2F788909594" anchor-label="E_NO_KEY_CONTAINER" id="2075649229%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-k-e-y_-c-o-n-t-a-i-n-e-r/index.html">E_NO_KEY_CONTAINER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2075649229%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-k-e-y_-c-o-n-t-a-i-n-e-r/index.html">E_NO_KEY_CONTAINER</a>(0x80100030L, &quot;The requested key container does not exist on the smart card&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100030</code>: The requested key container does not exist on the smart card</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-467128022%2FClasslikes%2F788909594" anchor-label="E_COMM_DATA_LOST" id="-467128022%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-c-o-m-m_-d-a-t-a_-l-o-s-t/index.html">E_COMM_DATA_LOST</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-467128022%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-c-o-m-m_-d-a-t-a_-l-o-s-t/index.html">E_COMM_DATA_LOST</a>(0x8010002FL, &quot;A communications error with the smart card has been detected. More..&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010002F</code>: A communications error with the smart card has been detected. More..</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="180732340%2FClasslikes%2F788909594" anchor-label="E_NO_READERS_AVAILABLE" id="180732340%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-r-e-a-d-e-r-s_-a-v-a-i-l-a-b-l-e/index.html">E_NO_READERS_AVAILABLE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="180732340%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-r-e-a-d-e-r-s_-a-v-a-i-l-a-b-l-e/index.html">E_NO_READERS_AVAILABLE</a>(0x8010002EL, &quot;Cannot find a smart card reader&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010002E</code>: Cannot find a smart card reader</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="429440842%2FClasslikes%2F788909594" anchor-label="E_CERTIFICATE_UNAVAILABLE" id="429440842%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-c-e-r-t-i-f-i-c-a-t-e_-u-n-a-v-a-i-l-a-b-l-e/index.html">E_CERTIFICATE_UNAVAILABLE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="429440842%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-c-e-r-t-i-f-i-c-a-t-e_-u-n-a-v-a-i-l-a-b-l-e/index.html">E_CERTIFICATE_UNAVAILABLE</a>(0x8010002DL, &quot;The requested certificate could not be obtained&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010002D</code>: The requested certificate could not be obtained</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-508100459%2FClasslikes%2F788909594" anchor-label="E_NO_SUCH_CERTIFICATE" id="-508100459%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-s-u-c-h_-c-e-r-t-i-f-i-c-a-t-e/index.html">E_NO_SUCH_CERTIFICATE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-508100459%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-s-u-c-h_-c-e-r-t-i-f-i-c-a-t-e/index.html">E_NO_SUCH_CERTIFICATE</a>(0x8010002CL, &quot;The requested certificate does not exist&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010002C</code>: The requested certificate does not exist</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1548323200%2FClasslikes%2F788909594" anchor-label="E_UNKNOWN_RES_MNG" id="1548323200%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-u-n-k-n-o-w-n_-r-e-s_-m-n-g/index.html">E_UNKNOWN_RES_MNG</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1548323200%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-u-n-k-n-o-w-n_-r-e-s_-m-n-g/index.html">E_UNKNOWN_RES_MNG</a>(0x8010002BL, &quot;An unrecognized error code was returned from a layered component&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010002B</code>: An unrecognized error code was returned from a layered component</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="266148649%2FClasslikes%2F788909594" anchor-label="E_INVALID_CHV" id="266148649%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-v-a-l-i-d_-c-h-v/index.html">E_INVALID_CHV</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="266148649%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-v-a-l-i-d_-c-h-v/index.html">E_INVALID_CHV</a>(0x8010002AL, &quot;The supplied PIN is incorrect&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010002A</code>: The supplied PIN is incorrect</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1915157630%2FClasslikes%2F788909594" anchor-label="E_BAD_SEEK" id="1915157630%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-b-a-d_-s-e-e-k/index.html">E_BAD_SEEK</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1915157630%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-b-a-d_-s-e-e-k/index.html">E_BAD_SEEK</a>(0x80100029L, &quot;There was an error trying to set the smart card file object pointer&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100029</code>: There was an error trying to set the smart card file object pointer</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1459370950%2FClasslikes%2F788909594" anchor-label="E_WRITE_TOO_MANY" id="1459370950%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-w-r-i-t-e_-t-o-o_-m-a-n-y/index.html">E_WRITE_TOO_MANY</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1459370950%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-w-r-i-t-e_-t-o-o_-m-a-n-y/index.html">E_WRITE_TOO_MANY</a>(0x80100028L, &quot;The smart card does not have enough memory to store the information&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100028</code>: The smart card does not have enough memory to store the information</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1460720112%2FClasslikes%2F788909594" anchor-label="E_NO_ACCESS" id="-1460720112%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-a-c-c-e-s-s/index.html">E_NO_ACCESS</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1460720112%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-a-c-c-e-s-s/index.html">E_NO_ACCESS</a>(0x80100027L, &quot;Access is denied to this file&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100027</code>: Access is denied to this file</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1691781560%2FClasslikes%2F788909594" anchor-label="E_NO_FILE" id="1691781560%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-f-i-l-e/index.html">E_NO_FILE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1691781560%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-f-i-l-e/index.html">E_NO_FILE</a>(0x80100026L, &quot;The supplied path does not represent a smart card file&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100026</code>: The supplied path does not represent a smart card file</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1491548289%2FClasslikes%2F788909594" anchor-label="E_NO_DIR" id="1491548289%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-d-i-r/index.html">E_NO_DIR</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1491548289%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-d-i-r/index.html">E_NO_DIR</a>(0x80100025L, &quot;The supplied path does not represent a smart card directory&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100025</code>: The supplied path does not represent a smart card directory</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-843460835%2FClasslikes%2F788909594" anchor-label="E_FILE_NOT_FOUND" id="-843460835%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-f-i-l-e_-n-o-t_-f-o-u-n-d/index.html">E_FILE_NOT_FOUND</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-843460835%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-f-i-l-e_-n-o-t_-f-o-u-n-d/index.html">E_FILE_NOT_FOUND</a>(0x80100024L, &quot;The identified file does not exist in the smart card&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100024</code>: The identified file does not exist in the smart card</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1760066542%2FClasslikes%2F788909594" anchor-label="E_DIR_NOT_FOUND" id="1760066542%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-d-i-r_-n-o-t_-f-o-u-n-d/index.html">E_DIR_NOT_FOUND</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1760066542%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-d-i-r_-n-o-t_-f-o-u-n-d/index.html">E_DIR_NOT_FOUND</a>(0x80100023L, &quot;The identified directory does not exist in the smart card&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100023</code>: The identified directory does not exist in the smart card</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="445801814%2FClasslikes%2F788909594" anchor-label="E_ICC_CREATEORDER" id="445801814%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-c-c_-c-r-e-a-t-e-o-r-d-e-r/index.html">E_ICC_CREATEORDER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="445801814%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-c-c_-c-r-e-a-t-e-o-r-d-e-r/index.html">E_ICC_CREATEORDER</a>(0x80100021L, &quot;The requested order of object creation is not supported&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100021</code>: The requested order of object creation is not supported</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2129666688%2FClasslikes%2F788909594" anchor-label="E_ICC_INSTALLATION" id="-2129666688%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-c-c_-i-n-s-t-a-l-l-a-t-i-o-n/index.html">E_ICC_INSTALLATION</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129666688%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-c-c_-i-n-s-t-a-l-l-a-t-i-o-n/index.html">E_ICC_INSTALLATION</a>(0x80100020L, &quot;No primary provider can be found for the smart card&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100020</code>: No primary provider can be found for the smart card</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1853784838%2FClasslikes%2F788909594" anchor-label="E_UNSUPPORTED_FEATURE" id="1853784838%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-u-n-s-u-p-p-o-r-t-e-d_-f-e-a-t-u-r-e/index.html">E_UNSUPPORTED_FEATURE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1853784838%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-u-n-s-u-p-p-o-r-t-e-d_-f-e-a-t-u-r-e/index.html">E_UNSUPPORTED_FEATURE</a>(0x8010001FL, &quot;This smart card does not support the requested feature&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001F</code>: This smart card does not support the requested feature</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1386052641%2FClasslikes%2F788909594" anchor-label="E_UNEXPECTED" id="-1386052641%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-u-n-e-x-p-e-c-t-e-d/index.html">E_UNEXPECTED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1386052641%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-u-n-e-x-p-e-c-t-e-d/index.html">E_UNEXPECTED</a>(0x8010001FL, &quot;An unexpected card error has occurred&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001F</code>: An unexpected card error has occurred</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="394139663%2FClasslikes%2F788909594" anchor-label="E_SERVICE_STOPPED" id="394139663%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-s-e-r-v-i-c-e_-s-t-o-p-p-e-d/index.html">E_SERVICE_STOPPED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="394139663%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-s-e-r-v-i-c-e_-s-t-o-p-p-e-d/index.html">E_SERVICE_STOPPED</a>(0x8010001EL, &quot;The Smart card resource manager has shut down&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001E</code>: The Smart card resource manager has shut down</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1552231207%2FClasslikes%2F788909594" anchor-label="E_NO_SERVICE" id="-1552231207%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-s-e-r-v-i-c-e/index.html">E_NO_SERVICE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1552231207%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-s-e-r-v-i-c-e/index.html">E_NO_SERVICE</a>(0x8010001DL, &quot;The Smart card resource manager is not running&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001D</code>: The Smart card resource manager is not running</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1298531542%2FClasslikes%2F788909594" anchor-label="E_CARD_UNSUPPORTED" id="-1298531542%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-c-a-r-d_-u-n-s-u-p-p-o-r-t-e-d/index.html">E_CARD_UNSUPPORTED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298531542%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-c-a-r-d_-u-n-s-u-p-p-o-r-t-e-d/index.html">E_CARD_UNSUPPORTED</a>(0x8010001CL, &quot;The smart card does not meet minimal requirements for support&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001C</code>: The smart card does not meet minimal requirements for support</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1012045081%2FClasslikes%2F788909594" anchor-label="E_DUPLICATE_READER" id="1012045081%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-d-u-p-l-i-c-a-t-e_-r-e-a-d-e-r/index.html">E_DUPLICATE_READER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1012045081%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-d-u-p-l-i-c-a-t-e_-r-e-a-d-e-r/index.html">E_DUPLICATE_READER</a>(0x8010001BL, &quot;The reader driver did not produce a unique reader name&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001B</code>: The reader driver did not produce a unique reader name</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-235316841%2FClasslikes%2F788909594" anchor-label="E_READER_UNSUPPORTED" id="-235316841%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-r-e-a-d-e-r_-u-n-s-u-p-p-o-r-t-e-d/index.html">E_READER_UNSUPPORTED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-235316841%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-r-e-a-d-e-r_-u-n-s-u-p-p-o-r-t-e-d/index.html">E_READER_UNSUPPORTED</a>(0x8010001AL, &quot;The reader driver does not meet minimal requirements for support&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010001A</code>: The reader driver does not meet minimal requirements for support</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1268380033%2FClasslikes%2F788909594" anchor-label="E_PCI_TOO_SMALL" id="-1268380033%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-p-c-i_-t-o-o_-s-m-a-l-l/index.html">E_PCI_TOO_SMALL</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1268380033%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-p-c-i_-t-o-o_-s-m-a-l-l/index.html">E_PCI_TOO_SMALL</a>(0x80100019L, &quot;The PCI Receive buffer was too small&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100019</code>: The PCI Receive buffer was too small</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1474391685%2FClasslikes%2F788909594" anchor-label="P_SHUTDOWN" id="1474391685%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-p_-s-h-u-t-d-o-w-n/index.html">P_SHUTDOWN</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1474391685%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-p_-s-h-u-t-d-o-w-n/index.html">P_SHUTDOWN</a>(0x80100018L, &quot;The operation has been aborted to allow the server application to exit&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100018</code>: The operation has been aborted to allow the server application to exit</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2054039516%2FClasslikes%2F788909594" anchor-label="E_READER_UNAVAILABLE" id="2054039516%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-r-e-a-d-e-r_-u-n-a-v-a-i-l-a-b-l-e/index.html">E_READER_UNAVAILABLE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2054039516%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-r-e-a-d-e-r_-u-n-a-v-a-i-l-a-b-l-e/index.html">E_READER_UNAVAILABLE</a>(0x80100017L, &quot;The specified reader is not currently available for use&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100017</code>: The specified reader is not currently available for use</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1558873371%2FClasslikes%2F788909594" anchor-label="E_NOT_TRANSACTED" id="1558873371%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o-t_-t-r-a-n-s-a-c-t-e-d/index.html">E_NOT_TRANSACTED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1558873371%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o-t_-t-r-a-n-s-a-c-t-e-d/index.html">E_NOT_TRANSACTED</a>(0x80100016L, &quot;An attempt was made to end a non-existent transaction&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100016</code>: An attempt was made to end a non-existent transaction</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-693991173%2FClasslikes%2F788909594" anchor-label="E_INVALID_ATR" id="-693991173%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-v-a-l-i-d_-a-t-r/index.html">E_INVALID_ATR</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-693991173%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-v-a-l-i-d_-a-t-r/index.html">E_INVALID_ATR</a>(0x80100015L, &quot;An ATR obtained from the registry is not a valid ATR string&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100015</code>: An ATR obtained from the registry is not a valid ATR string</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1922409570%2FClasslikes%2F788909594" anchor-label="F_UNKNOWN_ERROR" id="-1922409570%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-f_-u-n-k-n-o-w-n_-e-r-r-o-r/index.html">F_UNKNOWN_ERROR</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1922409570%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-f_-u-n-k-n-o-w-n_-e-r-r-o-r/index.html">F_UNKNOWN_ERROR</a>(0x80100014L, &quot;An internal error has been detected, but the source is unknown&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100014</code>: An internal error has been detected, but the source is unknown</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-229309124%2FClasslikes%2F788909594" anchor-label="F_COMM_ERROR" id="-229309124%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-f_-c-o-m-m_-e-r-r-o-r/index.html">F_COMM_ERROR</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-229309124%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-f_-c-o-m-m_-e-r-r-o-r/index.html">F_COMM_ERROR</a>(0x80100013L, &quot;An internal communications error has been detected&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100013</code>: An internal communications error has been detected</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1824888783%2FClasslikes%2F788909594" anchor-label="E_SYSTEM_CANCELLED" id="1824888783%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-s-y-s-t-e-m_-c-a-n-c-e-l-l-e-d/index.html">E_SYSTEM_CANCELLED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1824888783%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-s-y-s-t-e-m_-c-a-n-c-e-l-l-e-d/index.html">E_SYSTEM_CANCELLED</a>(0x80100012L, &quot;The action was cancelled by the system, presumably to log off or shut down&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100012</code>: The action was cancelled by the system, presumably to log off or shut down</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1765074985%2FClasslikes%2F788909594" anchor-label="E_INVALID_VALUE" id="1765074985%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-v-a-l-i-d_-v-a-l-u-e/index.html">E_INVALID_VALUE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1765074985%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-v-a-l-i-d_-v-a-l-u-e/index.html">E_INVALID_VALUE</a>(0x80100011L, &quot;One or more of the supplied parameters values could not be properly interpreted&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100011</code>: One or more of the supplied parameters values could not be properly interpreted</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1963616165%2FClasslikes%2F788909594" anchor-label="E_NOT_READY" id="-1963616165%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o-t_-r-e-a-d-y/index.html">E_NOT_READY</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1963616165%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o-t_-r-e-a-d-y/index.html">E_NOT_READY</a>(0x80100010L, &quot;The reader or smart card is not ready to accept commands&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100010</code>: The reader or smart card is not ready to accept commands</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1370353867%2FClasslikes%2F788909594" anchor-label="E_PROTO_MISMATCH" id="1370353867%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-p-r-o-t-o_-m-i-s-m-a-t-c-h/index.html">E_PROTO_MISMATCH</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1370353867%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-p-r-o-t-o_-m-i-s-m-a-t-c-h/index.html">E_PROTO_MISMATCH</a>(0x8010000FL, &quot;The requested protocols are incompatible with the protocol currently in use with the smart card&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010000F</code>: The requested protocols are incompatible with the protocol currently in use with the smart card</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1733524372%2FClasslikes%2F788909594" anchor-label="E_CANT_DISPOSE" id="-1733524372%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-c-a-n-t_-d-i-s-p-o-s-e/index.html">E_CANT_DISPOSE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1733524372%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-c-a-n-t_-d-i-s-p-o-s-e/index.html">E_CANT_DISPOSE</a>(0x8010000EL, &quot;The system could not dispose of the media in the requested manner&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010000E</code>: The system could not dispose of the media in the requested manner</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1836840171%2FClasslikes%2F788909594" anchor-label="E_UNKNOWN_CARD" id="1836840171%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-u-n-k-n-o-w-n_-c-a-r-d/index.html">E_UNKNOWN_CARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1836840171%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-u-n-k-n-o-w-n_-c-a-r-d/index.html">E_UNKNOWN_CARD</a>(0x8010000DL, &quot;The specified smart card name is not recognized&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010000D</code>: The specified smart card name is not recognized</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="789905525%2FClasslikes%2F788909594" anchor-label="E_NO_SMARTCARD" id="789905525%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-s-m-a-r-t-c-a-r-d/index.html">E_NO_SMARTCARD</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="789905525%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-s-m-a-r-t-c-a-r-d/index.html">E_NO_SMARTCARD</a>(0x8010000CL, &quot;The operation requires a Smart Card, but no Smart Card is currently in the device&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010000C</code>: The operation requires a Smart Card, but no Smart Card is currently in the device</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-863939216%2FClasslikes%2F788909594" anchor-label="E_SHARING_VIOLATION" id="-863939216%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-s-h-a-r-i-n-g_-v-i-o-l-a-t-i-o-n/index.html">E_SHARING_VIOLATION</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-863939216%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-s-h-a-r-i-n-g_-v-i-o-l-a-t-i-o-n/index.html">E_SHARING_VIOLATION</a>(0x8010000BL, &quot;The smart card cannot be accessed because of other connections outstanding&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010000B</code>: The smart card cannot be accessed because of other connections outstanding</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1484061807%2FClasslikes%2F788909594" anchor-label="E_TIMEOUT" id="-1484061807%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-t-i-m-e-o-u-t/index.html">E_TIMEOUT</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1484061807%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-t-i-m-e-o-u-t/index.html">E_TIMEOUT</a>(0x8010000AL, &quot;The user-specified timeout value has expired&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x8010000A</code>: The user-specified timeout value has expired</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1477283864%2FClasslikes%2F788909594" anchor-label="E_UNKNOWN_READER" id="1477283864%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-u-n-k-n-o-w-n_-r-e-a-d-e-r/index.html">E_UNKNOWN_READER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1477283864%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-u-n-k-n-o-w-n_-r-e-a-d-e-r/index.html">E_UNKNOWN_READER</a>(0x80100009L, &quot;The specified reader name is not recognized&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100009</code>: The specified reader name is not recognized</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2089330762%2FClasslikes%2F788909594" anchor-label="E_INSUFFICIENT_BUFFER" id="-2089330762%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-s-u-f-f-i-c-i-e-n-t_-b-u-f-f-e-r/index.html">E_INSUFFICIENT_BUFFER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2089330762%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-s-u-f-f-i-c-i-e-n-t_-b-u-f-f-e-r/index.html">E_INSUFFICIENT_BUFFER</a>(0x80100008L, &quot;The data buffer to receive returned data is too small for the returned data&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100008</code>: The data buffer to receive returned data is too small for the returned data</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="465799263%2FClasslikes%2F788909594" anchor-label="F_WAITED_TOO_LONG" id="465799263%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-f_-w-a-i-t-e-d_-t-o-o_-l-o-n-g/index.html">F_WAITED_TOO_LONG</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="465799263%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-f_-w-a-i-t-e-d_-t-o-o_-l-o-n-g/index.html">F_WAITED_TOO_LONG</a>(0x80100007L, &quot;An internal consistency timer has expired&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100007</code>: An internal consistency timer has expired</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2084700435%2FClasslikes%2F788909594" anchor-label="E_NO_MEMORY" id="2084700435%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-n-o_-m-e-m-o-r-y/index.html">E_NO_MEMORY</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2084700435%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-n-o_-m-e-m-o-r-y/index.html">E_NO_MEMORY</a>(0x80100006L, &quot;Not enough memory available to complete this command&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100006</code>: Not enough memory available to complete this command</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="568372407%2FClasslikes%2F788909594" anchor-label="E_INVALID_TARGET" id="568372407%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-v-a-l-i-d_-t-a-r-g-e-t/index.html">E_INVALID_TARGET</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="568372407%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-v-a-l-i-d_-t-a-r-g-e-t/index.html">E_INVALID_TARGET</a>(0x80100005L, &quot;Registry startup information is missing or invalid&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100005</code>: Registry startup information is missing or invalid</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="341373041%2FClasslikes%2F788909594" anchor-label="E_INVALID_PARAMETER" id="341373041%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-v-a-l-i-d_-p-a-r-a-m-e-t-e-r/index.html">E_INVALID_PARAMETER</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="341373041%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-v-a-l-i-d_-p-a-r-a-m-e-t-e-r/index.html">E_INVALID_PARAMETER</a>(0x80100004L, &quot;One or more of the supplied parameters could not be properly interpreted&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100004</code>: One or more of the supplied parameters could not be properly interpreted</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="616577024%2FClasslikes%2F788909594" anchor-label="E_INVALID_HANDLE" id="616577024%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-i-n-v-a-l-i-d_-h-a-n-d-l-e/index.html">E_INVALID_HANDLE</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="616577024%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-i-n-v-a-l-i-d_-h-a-n-d-l-e/index.html">E_INVALID_HANDLE</a>(0x80100003L, &quot;The supplied handle was invalid&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100003</code>: The supplied handle was invalid</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="303535457%2FClasslikes%2F788909594" anchor-label="E_CANCELLED" id="303535457%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-e_-c-a-n-c-e-l-l-e-d/index.html">E_CANCELLED</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="303535457%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-e_-c-a-n-c-e-l-l-e-d/index.html">E_CANCELLED</a>(0x80100002L, &quot;The action was cancelled by an SCardCancel request&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100002</code>: The action was cancelled by an SCardCancel request</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-655618197%2FClasslikes%2F788909594" anchor-label="F_INTERNAL_ERROR" id="-655618197%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-f_-i-n-t-e-r-n-a-l_-e-r-r-o-r/index.html">F_INTERNAL_ERROR</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-655618197%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-f_-i-n-t-e-r-n-a-l_-e-r-r-o-r/index.html">F_INTERNAL_ERROR</a>(0x80100001L, &quot;An internal consistency check failed&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x80100001</code>: An internal consistency check failed</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1006413025%2FClasslikes%2F788909594" anchor-label="S_SUCCESS" id="1006413025%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-s_-s-u-c-c-e-s-s/index.html">S_SUCCESS</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1006413025%2FClasslikes%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><a href="-s_-s-u-c-c-e-s-s/index.html">S_SUCCESS</a>(0x00000000L, &quot;No error was encountered&quot;)</div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph"><code>0x00000000</code>: No error was encountered</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="774875880%2FProperties%2F788909594" anchor-label="code" id="774875880%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="code.html">code</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="774875880%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="774875880%2FProperties%2F788909594" anchor-label="code" id="774875880%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="code.html">code</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="774875880%2FProperties%2F788909594" anchor-label="code" id="774875880%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">Numeric error code</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-830850103%2FProperties%2F788909594" anchor-label="description" id="-830850103%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="description.html">description</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-830850103%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-830850103%2FProperties%2F788909594" anchor-label="description" id="-830850103%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="description.html">description</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-830850103%2FProperties%2F788909594" anchor-label="description" id="-830850103%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">Description of the error condition</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-258451938%2FProperties%2F788909594" anchor-label="message" id="-258451938%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="message.html">message</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-258451938%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-258451938%2FProperties%2F788909594" anchor-label="message" id="-258451938%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="message.html">message</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-258451938%2FProperties%2F788909594" anchor-label="message" id="-258451938%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><p class="paragraph">An error message for human consumption</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-372974862%2FProperties%2F788909594" anchor-label="name" id="-372974862%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-s_-s-u-c-c-e-s-s/index.html#-372974862%2FProperties%2F788909594">name</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-372974862%2FProperties%2F788909594" anchor-label="name" id="-372974862%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="-s_-s-u-c-c-e-s-s/index.html#-372974862%2FProperties%2F788909594">name</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-739389684%2FProperties%2F788909594" anchor-label="ordinal" id="-739389684%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-s_-s-u-c-c-e-s-s/index.html#-739389684%2FProperties%2F788909594">ordinal</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F788909594"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><a data-name="-739389684%2FProperties%2F788909594" anchor-label="ordinal" id="-739389684%2FProperties%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a><div class="symbol monospace">val <a href="-s_-s-u-c-c-e-s-s/index.html#-739389684%2FProperties%2F788909594">ordinal</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
