@@ -2,7 +2,7 @@
  * Types.kt
  * Platform-specific types used for JNA
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@
 package au.id.micolous.kotlin.pcsc.jna
 
 import com.sun.jna.IntegerType
+import com.sun.jna.Native
 import com.sun.jna.NativeLong
 import com.sun.jna.Platform
-import com.sun.jna.Pointer
 import com.sun.jna.ptr.ByReference
 
 
 val DWORD_SIZE = if (Platform.isWindows() || Platform.isMac()) { 4 } else { NativeLong.SIZE }
-val HANDLE_SIZE = if (Platform.isWindows()) { Pointer.SIZE } else { DWORD_SIZE }
+val HANDLE_SIZE = if (Platform.isWindows()) { Native.POINTER_SIZE } else { DWORD_SIZE }
 
 internal open class KIntegerType(size: Int, value: Long = 0, unsigned: Boolean = true) : IntegerType(size, value, unsigned) {
     // This is needed to fill in the gaps of IntegerType's implementation of Number for Kotlin.

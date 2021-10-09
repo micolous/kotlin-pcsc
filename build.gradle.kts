@@ -61,7 +61,7 @@ kotlin {
                         when (this) {
                             is KotlinJvmCompilation -> // Java
                                 dependencies {
-                                    api("net.java.dev.jna:jna:4.0.0")
+                                    api("net.java.dev.jna:jna:5.9.0")
                                 }
 
                             is KotlinNativeCompilation -> { // Native

@@ -56,5 +56,5 @@ internal val LIB = lazy {
         Platform.isWindows() -> options[Library.OPTION_FUNCTION_MAPPER] = WindowsFunctionMap
     }
 
-    Native.loadLibrary(LIB_NAME, WinscardLibrary::class.java, options) as WinscardLibrary
+    Native.load(LIB_NAME, WinscardLibrary::class.java, options) as WinscardLibrary
 }
