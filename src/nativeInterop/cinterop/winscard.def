@@ -7,7 +7,6 @@ compilerOpts.osx = -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/
 linkerOpts.osx = -framework PCSC
 
 # Other platforms work nicer...
-depends.linux = posix
 headers.linux = PCSC/wintypes.h PCSC/pcsclite.h PCSC/reader.h PCSC/winscard.h
 compilerOpts.linux = -pthread -I/usr/include/PCSC -I/usr/include -I/usr/include/x86_64-linux-gnu
 linkerOpts.linux = -L/usr/lib64 -L/usr/lib/x86_64-linux-gnu -lpcsclite
