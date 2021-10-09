@@ -28,7 +28,6 @@ kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
     linuxX64()
     macosX64()  // (no cross compiler)
-    mingwX86()  // Windows
     mingwX64()  // Windows (no cross compiler)
 
     jvm("jna")
@@ -43,14 +42,6 @@ kotlin {
         }
         val nativeWindowsMain by creating {
             dependsOn(nativeMain)
-        }
-
-        jvm("jna").apply {
-            compilations["main"].apply {
-                dependencies {
-                    api("net.java.dev.jna:jna:4.0.0")
-                }
-            }
         }
 
         // Setup common dependencies
@@ -70,7 +61,7 @@ kotlin {
                         when (this) {
                             is KotlinJvmCompilation -> // Java
                                 dependencies {
-                                    api(kotlin("stdlib-jdk8"))
+                                    api("net.java.dev.jna:jna:4.0.0")
                                 }
 
                             is KotlinNativeCompilation -> { // Native
