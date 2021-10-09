@@ -36,7 +36,7 @@ kotlin {
     }
 
     sourceSets.all {
-        languageSettings.useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
+        languageSettings.optIn("kotlin.ExperimentalUnsignedTypes")
     }
 }
 
