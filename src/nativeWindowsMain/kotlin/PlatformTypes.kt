@@ -2,7 +2,7 @@
  * PlatformTypes.kt
  * Type aliases for Windows on Kotlin/Native.
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ package au.id.micolous.kotlin.pcsc.internal
  */
 internal typealias DWORD = platform.windows.DWORD
 internal typealias DWORDVar = platform.windows.DWORDVar
-internal typealias SCARD_READERSTATE = platform.windows.SCARD_READERSTATE_A
+internal typealias SCARD_READERSTATE_A = platform.windows.SCARD_READERSTATEA
 
 /*
  * These are required because Kotlin/Native's windows.def massively overreaches across the Win32
@@ -58,6 +58,19 @@ internal const val SCARD_PRESENT = platform.windows.SCARD_PRESENT
 internal const val SCARD_ABSENT = platform.windows.SCARD_ABSENT
 internal const val SCARD_UNKNOWN = platform.windows.SCARD_UNKNOWN
 internal const val SCARD_SPECIFIC = platform.windows.SCARD_SPECIFIC
+
+internal const val SCARD_STATE_UNAWARE = platform.windows.SCARD_STATE_UNAWARE
+internal const val SCARD_STATE_IGNORE = platform.windows.SCARD_STATE_IGNORE
+internal const val SCARD_STATE_CHANGED = platform.windows.SCARD_STATE_CHANGED
+internal const val SCARD_STATE_UNKNOWN = platform.windows.SCARD_STATE_UNKNOWN
+internal const val SCARD_STATE_UNAVAILABLE = platform.windows.SCARD_STATE_UNAVAILABLE
+internal const val SCARD_STATE_EMPTY = platform.windows.SCARD_STATE_EMPTY
+internal const val SCARD_STATE_PRESENT = platform.windows.SCARD_STATE_PRESENT
+internal const val SCARD_STATE_ATRMATCH = platform.windows.SCARD_STATE_ATRMATCH
+internal const val SCARD_STATE_EXCLUSIVE = platform.windows.SCARD_STATE_EXCLUSIVE
+internal const val SCARD_STATE_INUSE = platform.windows.SCARD_STATE_INUSE
+internal const val SCARD_STATE_MUTE = platform.windows.SCARD_STATE_MUTE
+internal const val SCARD_STATE_UNPOWERED = platform.windows.SCARD_STATE_UNPOWERED
 
 /*
  * These are wrapped as properties.

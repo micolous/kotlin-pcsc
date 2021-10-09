@@ -14,7 +14,7 @@ Platform           | [PC/SC][] Implementation | [JNA][] (JRE) | [Native][]
 ------------------ | ------------------------ | ------------- | ----------
 Linux x86_64       | [pcsclite][]             | :o:           | :o:
 macOS 10.14 x86_64 | `PCSC.framework`         | :o:           | :o:
-Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
+Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :o:
 
 > :warning: Cross-compiling **Native** targets is not supported.
 
@@ -63,9 +63,9 @@ platform-specific JNI helpers.  You don't need any cross-compiling or special ma
 
 #### Windows
 
-**Note:** Not working yet.
-
-...
+```powershell
+.\gradlew :mingwX64MainKlibrary :mingwX64Test
+```
 
 ## Runtime notes
 

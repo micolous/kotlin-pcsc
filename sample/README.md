@@ -13,7 +13,7 @@ From the root of the `kotlin-pcsc` repository:
 * JNA: `./gradlew :sample:jnaFatJar; java -jar sample/build/libs/sample.jar`
 * Linux x86_64: `./gradlew :sample:runPcsc_sampleReleaseExecutableLinuxX64`
 * macOS x86_64: `./gradlew :sample:runPcsc_sampleReleaseExecutableMacosX64`
-* Windows x86_64: (not working yet)
+* Windows x86_64: `.\gradlew :sample:runPcsc_sampleReleaseExecutableMingwX64`
 
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 [Ludovic Rousseau]: https://ludovicrousseau.blogspot.com/
