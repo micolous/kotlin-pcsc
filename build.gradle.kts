@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
 
 plugins {
     kotlin("multiplatform") version "1.5.31"
-    id("org.jetbrains.dokka") version "0.10.0"
+    id("org.jetbrains.dokka") version "1.5.30"
     id("maven-publish")
 }
 
@@ -122,33 +122,28 @@ publishing {
     }
 }
 
-tasks {
-    val dokka by getting(DokkaTask::class) {
-        outputFormat = "html"
-        outputDirectory = "$buildDir/dokka"
+tasks.withType<DokkaTask>().configureEach {
+    outputDirectory.set(buildDir.resolve("dokka"))
 
-        configuration {
+    dokkaSourceSets {
+        named("commonMain") {
+            includeNonPublic.set(false)
+            reportUndocumented.set(true)
+            skipEmptyPackages.set(true)
+            includes.from("src/module.md")
+            sourceRoot(kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first())
+            platform.set(org.jetbrains.dokka.Platform.common)
             perPackageOption {
-                prefix = "au.id.micolous.kotlin.pcsc.jna"
-                suppress = true
+                matchingRegex.set("au\\.id\\.micolous\\.kotlin\\.pcsc\\.(jna|internal|native)(\$|\\\\.).*")
+                suppress.set(true)
             }
-            perPackageOption {
-                prefix = "au.id.micolous.kotlin.pcsc.native"
-                suppress = true
-            }
-            perPackageOption {
-                prefix = "au.id.micolous.kotlin.pcsc.internal"
-                suppress = true
-            }
+        }
 
-            platform = "common"
-            includeNonPublic = false
-            reportUndocumented = true
-            skipEmptyPackages = true
-            includes = listOf("src/module.md")
-            sourceRoot {
-                path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
-            }
+        // There are source sets for each platform-specific target. Our API is only the `common`
+        // source set, so we intentionally don't generate docs for the other targets. Also,
+        // building docs for those targets requires a working (cross-)compiler... which is hard. :)
+        configureEach {
+            suppress.set(name != "commonMain")
         }
     }
 }
