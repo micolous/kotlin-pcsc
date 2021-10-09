@@ -2,7 +2,7 @@
  * Card.kt
  * Interface for SCARDHANDLE PC/SC operations
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,10 @@ expect class Card {
     /**
      * The [Protocol] in use for communication with this [Card], or `null` if unknown.
      *
-     * This is equivalent to the `pdwActiveProtocol` return value from `SCardConnect`
-     * and `SCardReconnect`.
+     * This is equivalent to the `pdwActiveProtocol` return value from
+     * [SCardConnect](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardconnecta)
+     * and
+     * [SCardReconnect](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardreconnect).
      *
      * @see [Context.connect]
      * @see [reconnect]
@@ -38,7 +40,8 @@ expect class Card {
     /**
      * Disconnects from the given card.
      *
-     * Equivalent to `SCardDisconnect`.
+     * Equivalent to
+     * [SCardDisconnect](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scarddisconnect).
      *
      * @param disposition State to leave the card in when disconnecting.
      * Defaults to doing nothing ([DisconnectDisposition.Leave]).
@@ -48,9 +51,10 @@ expect class Card {
     /**
      * Disconnects and reconnects to the given card with new parameters.
      *
-     * The new protocol in use will be available as [protocol].
+     * The new protocol in use (`pdwActiveProtocol`) will be available as [protocol].
      *
-     * Equivalent to `SCardReconnect`.
+     * Equivalent to
+     * [SCardReconnect](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardreconnect).
      *
      * @param initialization An [Initialization] procedure to perform when
      * disconnecting from the card.
@@ -66,8 +70,9 @@ expect class Card {
     /**
      * Transmits an APDU to the card, and returns the response.
      *
-     * Equivalent to `SCardTransmit`. `pioSendPci` is automatically populated
-     * based on [protocol].
+     * Equivalent to
+     * [SCardTransmit](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardtransmit).
+     * The `pioSendPci` parameter is automatically populated based on [protocol].
      *
      * @param buffer APDU bytes to send to the card.
      * @returns APDU bytes received from the card.
@@ -79,7 +84,8 @@ expect class Card {
     /**
      * Starts a new transaction on the card.
      *
-     * Equivalent to `SCardBeginTransaction`.
+     * Equivalent to
+     * [SCardBeginTransaction](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardbegintransaction).
      * @throws PCSCError
      */
     fun beginTransaction()
@@ -87,7 +93,8 @@ expect class Card {
     /**
      * Ends a previously declared transaction.
      *
-     * Equivalent to `SCardEndTransaction`.
+     * Equivalent to
+     * [SCardEndTransaction](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardendtransaction).
      *
      * @param disposition State to leave the card in when disconnecting.
      * Defaults to doing nothing ([DisconnectDisposition.Leave]).
@@ -98,7 +105,8 @@ expect class Card {
     /**
      * Gets the current status of a smart card in this reader.
      *
-     * Equivalent to `SCardStatus`.
+     * Equivalent to
+     * [SCardStatus](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardstatusa).
      *
      * @see CardStatus
      * @throws PCSCError
@@ -108,7 +116,9 @@ expect class Card {
     /**
      * Direct control commands for a connected reader.
      *
-     * Equivalent to `SCardControl132` on macOS, or `SCardControl` on other platforms.
+     * Equivalent to `SCardControl132` on macOS, or
+     * [SCardControl](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardcontrol)
+     * on other platforms.
      *
      * @param controlCode Control code for the operation
      * @param sendBuffer Data required to perform the operation
@@ -122,9 +132,11 @@ expect class Card {
     /**
      * Gets an attribute from the device.
      *
-     * Equivalent to `SCardGetAttrib`.
+     * Equivalent to
+     * [SCardGetAttrib](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardgetattrib).
      *
      * @return Attribute data, or `null` if the attribute is not supported.
+     * @throws PCSCError
      */
     fun getAttrib(attribute: Long): ByteArray?
 }

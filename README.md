@@ -22,6 +22,8 @@ Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :x:
 
 [API documentation can be viewed online][api-docs], or built locally with: `./gradlew dokkaHtml`
 
+The online version of the documentation can be updated with `./update_online_docs.sh`.
+
 ## Build and test
 
 **Note:** Running tests requires a connected [PC/SC][]-compatible smart card reader, and a card

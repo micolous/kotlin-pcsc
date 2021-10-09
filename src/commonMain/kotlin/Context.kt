@@ -2,7 +2,7 @@
  * Context.kt
  * Interface for SCARDCONTEXT PC/SC operations
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,21 +29,24 @@ expect class Context {
     /**
      * Releases the given context, and renders it unusable.
      *
-     * Equivalent to `SCardReleaseContext`.
+     * Equivalent to
+     * [SCardReleaseContext](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardreleasecontext).
      */
     fun release()
 
     /**
      * Returns `true` if this class represents a valid context.
      *
-     * Equivalent to `SCardIsValidContext`.
+     * Equivalent to
+     * [SCardIsValidContext](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardisvalidcontext).
      */
     fun isValid() : Boolean
 
     /**
      * Terminates all outstanding actions within this [Context].
      *
-     * Equivalent to `SCardCancel`.
+     * Equivalent to
+     * [SCardCancel](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardcancel).
      *
      * @throws PCSCError
      */
@@ -52,7 +55,8 @@ expect class Context {
     /**
      * Lists all readers available in this [Context].
      *
-     * Equivalent to `SCardListReaders`.
+     * Equivalent to
+     * [SCardListReaders](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardlistreadersa).
      *
      * @param groups If specified, a list of group names to search within.
      * @return [List] of reader names, as [String], which can be used with [connect].
@@ -63,7 +67,8 @@ expect class Context {
     /**
      * Connects to a given reader.
      *
-     * Equivalent to `SCardConnect`.
+     * Equivalent to
+     * [SCardConnect](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardconnecta).
      *
      * @param reader Reader name from [listReaders]
      * @param shareMode Flag to indicate if other applications may form connections to the card
@@ -78,7 +83,8 @@ expect class Context {
     /**
      * Waits for status changes in the given list of readers.
      *
-     * Equivalent to `SCardGetStatusChange`.
+     * Equivalent to
+     * [SCardGetStatusChange](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardgetstatuschangea).
      *
      * @param timeout Number of seconds to wait. To wait for a long time, use [LONG_TIMEOUT].
      */
@@ -88,7 +94,8 @@ expect class Context {
         /**
          * Establishes a new PC/SC context.
          *
-         * Equivalent to `SCardEstablishContext`.
+         * Equivalent to
+         * [SCardEstablishContext](https://docs.microsoft.com/en-us/windows/win32/api/winscard/nf-winscard-scardestablishcontext).
          *
          * @param scope Scope to use. Defaults to [Scope.User]
          * @return [Context] for working with PC/SC API

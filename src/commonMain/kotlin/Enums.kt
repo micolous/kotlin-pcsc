@@ -2,7 +2,7 @@
  * Enums.kt
  * Enumerations used by PC/SC API
  *
- * Copyright 2019 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,17 +33,27 @@ expect enum class ShareMode {
 expect enum class Protocol {
     Unset,
     Any,
+    /** T=0 protocol */
     T0,
+    /** T=1 protocol */
     T1,
     T15,
     Raw,
     Undefined
 }
 
+/**
+ * Action to take on the card when closing the connection.
+ * @see [Card.disconnect]
+ */
 expect enum class DisconnectDisposition {
+    /** Do not do anything special when disconnecting. */
     Leave,
+    /** Reset the card when disconnecting. */
     Reset,
+    /** Power down the card when disconnecting. */
     Unpower,
+    /** Physically eject the card when disconnecting. This may not be possible on all readers. */
     Eject
 }
 
