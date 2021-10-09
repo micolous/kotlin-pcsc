@@ -116,7 +116,7 @@ level interface, and you'll be sending `ByteArray` to the ICC and getting `ByteA
 
 We don't even parse the APDUs for you...
 
-[api-docs]: https://micolous.github.io/kotlin-pcsc/kotlin-pcsc/index.html
+[api-docs]: https://micolous.github.io/kotlin-pcsc/index.html
 [JNA]: https://github.com/java-native-access/jna
 [jnasmartcardio]: https://github.com/jnasmartcardio/jnasmartcardio
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
