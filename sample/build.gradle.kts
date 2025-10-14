@@ -21,6 +21,8 @@ kotlin {
     mingwX64()
     jvm("jna")
 
+    applyDefaultHierarchyTemplate()
+
     targets.filterIsInstance<KotlinNativeTarget>().forEach {
         it.binaries {
             executable("pcsc_sample")
@@ -34,28 +36,9 @@ kotlin {
             }
         }
     }
-
-    sourceSets.all {
-        languageSettings.optIn("kotlin.ExperimentalUnsignedTypes")
-    }
 }
 
 afterEvaluate {
-    val jnaFatJar by tasks.creating(Jar::class) {
-        dependsOn("jnaJar")
-        group = "jar"
-        manifest.attributes["Main-Class"] = "SampleKt"
-        val deps = configurations["jnaRuntimeClasspath"].filter {
-            it.name.endsWith(".jar") } +
-                project.tasks["jnaJar"].outputs.files
-        deps.forEach { from(zipTree(it)) }
-        exclude(
-            // Added by JDK9, and exists in multiple dependency JARs (which conflict).
-            // Fat executable JARs don't need modules support anyway.
-            "META-INF/versions/9/module-info.class",
-        )
-    }
-
     tasks.filterIsInstance<AbstractArchiveTask>().forEach {
         it.isPreserveFileTimestamps = false
         it.isReproducibleFileOrder = true

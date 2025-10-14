@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
 
 plugins {
-    kotlin("multiplatform") version "1.5.31"
+    kotlin("multiplatform") version "2.0.0"
     id("org.jetbrains.dokka") version "1.5.30"
     id("maven-publish")
 }
@@ -36,7 +36,7 @@ kotlin {
         val commonMain by getting {}
         val commonTest by getting {}
 
-        val nativeMain by creating {}
+        val nativeMain by creating { dependsOn(commonMain) }
         val nativeMacosMain by creating {
             dependsOn(nativeMain)
         }
@@ -98,10 +98,6 @@ kotlin {
                 }
             }
         }
-    }
-
-    sourceSets.all {
-        languageSettings.optIn("kotlin.ExperimentalStdlibApi")
     }
 }
 
