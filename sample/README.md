@@ -12,6 +12,7 @@ From the root of the `kotlin-pcsc` repository:
 
 * JVM: `./gradlew :sample:shadowJar; java -jar sample/build/libs/sample-all.jar`
 * Linux x86_64: `./gradlew :sample:runPcsc_sampleReleaseExecutableLinuxX64`
+* macOS aarch64: `./gradlew :sample:runPcsc_sampleReleaseExecutableMacosArm64`
 * macOS x86_64: `./gradlew :sample:runPcsc_sampleReleaseExecutableMacosX64`
 * Windows x86_64: `.\gradlew :sample:runPcsc_sampleReleaseExecutableMingwX64`
 

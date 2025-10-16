@@ -16,7 +16,8 @@ card reader).
 Platform           | [PC/SC][] Implementation | JVM ([JNA][]) | [Native][]
 ------------------ | ------------------------ | ------------- | ----------
 Linux x86_64       | [pcsclite][]             | :o:           | :o:
-macOS 10.14 x86_64 | `PCSC.framework`         | :o:           | :o:
+macOS 15.7 aarch64 | `PCSC.framework`         | :o:           | :o:
+macOS 15.7 x86_64  | `PCSC.framework`         | :o:           | :o:
 Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :o:
 
 ## API
@@ -56,9 +57,10 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 
 ### Native targets
 
-**Note:** Only `x86_64` targets are currently supported.
-
 #### Linux
+
+> [!NOTE]
+> Only `x86_64` Linux targets are currently supported.
 
 * Build dependencies: `libpcsclite1 libpcsclite-dev`
 * Run-time dependencies: `libpcsclite1`
@@ -72,10 +74,17 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 * Build dependencies: Xcode 11 or later
 
 ```sh
+# For Apple Silicon (aarch64):
+./gradlew :macosArm64MainKlibrary :macosArm64Test
+
+# For Intel (x86_64):
 ./gradlew :macosX64MainKlibrary :macosX64Test
 ```
 
 #### Windows
+
+> [!NOTE]
+> Only `x86_64` Windows targets are currently supported.
 
 ```powershell
 .\gradlew :mingwX64MainKlibrary :mingwX64Test

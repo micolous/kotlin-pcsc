@@ -34,6 +34,15 @@ kotlin {
         }
     }
 
+    macosArm64 {
+        // macOS on Apple Silicon (no cross-OS compiler)
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
+
     macosX64 {
         // macOS on Intel (no cross-OS compiler)
         compilations.getByName("main") {
@@ -42,6 +51,7 @@ kotlin {
             }
         }
     }
+
     mingwX64 {
         // Windows (no cross compiler)
         compilations.getByName("main") {
