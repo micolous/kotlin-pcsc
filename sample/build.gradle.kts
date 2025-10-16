@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 plugins {
     kotlin("multiplatform")
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 repositories {
@@ -19,7 +20,11 @@ kotlin {
     linuxX64()
     macosX64()
     mingwX64()
-    jvm("jna")
+    jvm {
+        mainRun {
+            mainClass = "SampleKt"
+        }
+    }
 
     applyDefaultHierarchyTemplate()
 

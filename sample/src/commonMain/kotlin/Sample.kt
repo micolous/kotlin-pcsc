@@ -48,7 +48,7 @@ val cmd2 = byteArrayOf(0x00, 0x00, 0x00, 0x00)
  * 4. Sends [cmd2] APDU: `00 00 00 00`
  * 5. Displays result
  *
- * Reference: https://ludovicrousseau.blogspot.com/2010/04/pcsc-sample-in-different-languages.html
+ * Reference: https://blog.apdu.fr/posts/2010/04/pcsc-sample-in-different-languages/
  */
 fun main() {
     println("Sample for using PC/SC with kotlin-pcsc")
