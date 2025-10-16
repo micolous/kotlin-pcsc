@@ -11,13 +11,16 @@ card reader).
 
 ## Supported platforms
 
-**Note:** Cross-compiling **Native** targets is not supported.
+> [!NOTE]
+> Cross-compiling **Native** targets is not supported, except to a macOS target
+> from a macOS host.
 
 Platform           | [PC/SC][] Implementation | JVM ([JNA][]) | [Native][]
 ------------------ | ------------------------ | ------------- | ----------
 Linux x86_64       | [pcsclite][]             | :o:           | :o:
 macOS 15.7 aarch64 | `PCSC.framework`         | :o:           | :o:
 macOS 15.7 x86_64  | `PCSC.framework`         | :o:           | :o:
+Windows 11 aarch64 | [WinSCard.dll][winscard] | :o:           | [:x:](#windows)
 Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :o:
 
 ## API
@@ -84,11 +87,25 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 #### Windows
 
 > [!NOTE]
-> Only `x86_64` Windows targets are currently supported.
+> Only `x86_64` Windows hosts and targets are supported.
+>
+> Kotlin/Native
+> [does not support building on Windows `aarch64` hosts][kotlin-win-aarch64-host]
+> (even when targeting `x86_64`) and
+> [does not support building for `mingwArm64` targets][kotlin-win-aarch64-target].
+>
+> It is possible to build the library for Windows `x86_64` on a Windows `x86_64`
+> host, and run it on a Windows _11_ ARM system [through emulation][win-emu].
+> Windows _10_ on ARM
+> [_does not_ support running `x86_64` binaries in emulation][win-emu].
 
 ```powershell
 .\gradlew :mingwX64MainKlibrary :mingwX64Test
 ```
+
+[kotlin-win-aarch64-host]: https://youtrack.jetbrains.com/issue/KT-48420/
+[kotlin-win-aarch64-target]: https://youtrack.jetbrains.com/issue/KT-68504/
+[win-emu]: https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation
 
 ## Runtime notes
 
