@@ -26,7 +26,10 @@ Windows 10 `x86_64`  | [WinSCard.dll][winscard] | ✅            | ✅
 ## API
 
 [API documentation can be viewed online][api-docs], or built locally with:
-`./gradlew dokkaHtml`
+
+```sh
+./gradlew dokkaHtml
+```
 
 This library _mostly_ follows the PC/SC API, but takes some liberties to make it
 easier to use in Kotlin, such as using object orientation, providing helper
