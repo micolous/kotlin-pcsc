@@ -22,7 +22,10 @@ import au.id.micolous.kotlin.pcsc.internal.*
 import kotlin.native.Platform
 import kotlinx.cinterop.*
 
+@OptIn(kotlin.experimental.ExperimentalNativeApi::class)
 internal actual val isLittleEndian = Platform.isLittleEndian
+
+@OptIn(ExperimentalForeignApi::class)
 internal val DWORD_ZERO = 0.convert<DWORD>()
 
 @Suppress("NOTHING_TO_INLINE")

@@ -26,77 +26,40 @@ version = "0.0.1"
 
 kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
-    linuxX64()
-    macosX64()  // (no cross compiler)
-    mingwX64()  // Windows (no cross compiler)
+    linuxX64 {
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
 
-    jvm("jna")
+    macosX64 {
+        // macOS on Intel (no cross-OS compiler)
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
+    mingwX64 {
+        // Windows (no cross compiler)
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
+
+    jvm()
 
     sourceSets {
-        val commonMain by getting {}
-        val commonTest by getting {}
-
-        val nativeMain by creating { dependsOn(commonMain) }
-        val nativeMacosMain by creating {
-            dependsOn(nativeMain)
-        }
-        val nativeWindowsMain by creating {
-            dependsOn(nativeMain)
+        jvmMain.dependencies {
+            api("net.java.dev.jna:jna:5.9.0")
         }
 
-        // Setup common dependencies
-        targets.forEach {
-            val macTarget = it.preset?.name?.startsWith("macos") ?: false
-            val winTarget = it.preset?.name?.startsWith("mingw") ?: false
-
-            it.compilations.forEach { compilation ->
-                when (compilation.name) {
-                    "main" -> compilation.apply {
-                        defaultSourceSet {
-                            if (this != commonMain) {
-                                dependsOn(commonMain)
-                            }
-                        }
-
-                        when (this) {
-                            is KotlinJvmCompilation -> // Java
-                                dependencies {
-                                    api("net.java.dev.jna:jna:5.9.0")
-                                }
-
-                            is KotlinNativeCompilation -> { // Native
-                                defaultSourceSet {
-                                    dependsOn(
-                                        when {
-                                            macTarget -> nativeMacosMain
-                                            winTarget -> nativeWindowsMain
-                                            else -> nativeMain
-                                        }
-                                    )
-                                }
-
-                                cinterops {
-                                    create("winscard")
-                                }
-                            }
-                        }
-                    }
-
-
-                    "test" -> compilation.apply {
-                        defaultSourceSet {
-                            dependsOn(commonTest)
-                        }
-
-                        if (this is KotlinJvmCompilation) {
-                            // common
-                            dependencies {
-                                implementation(kotlin("test-junit"))
-                            }
-                        }
-                    }
-                }
-            }
+        jvmTest.dependencies {
+            implementation(kotlin("test-junit"))
         }
     }
 }

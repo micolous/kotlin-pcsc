@@ -22,18 +22,21 @@ import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
 import platform.posix.*
 
+@OptIn(ExperimentalForeignApi::class)
 actual enum class Scope(internal val v: DWORD) {
     User(SCARD_SCOPE_USER.convert<DWORD>()),
     Terminal(SCARD_SCOPE_TERMINAL.convert<DWORD>()),
     System(SCARD_SCOPE_SYSTEM.convert<DWORD>())
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual enum class ShareMode(internal val v: DWORD) {
     Shared(SCARD_SHARE_SHARED.convert<DWORD>()),
     Exclusive(SCARD_SHARE_EXCLUSIVE.convert<DWORD>()),
     Direct(SCARD_SHARE_DIRECT.convert<DWORD>())
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual enum class Protocol(internal val v: DWORD) {
     Unset(SCARD_PROTOCOL_UNSET.convert<DWORD>()),
     Any(SCARD_PROTOCOL_ANY.convert<DWORD>()),
@@ -52,6 +55,7 @@ internal fun Set<Protocol>.toDWord(): DWORD {
     return map { it.v }.reduce { acc, it -> acc or it }
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual enum class DisconnectDisposition(internal val v: DWORD) {
     Leave(SCARD_LEAVE_CARD.convert<DWORD>()),
     Reset(SCARD_RESET_CARD.convert<DWORD>()),
@@ -59,6 +63,7 @@ actual enum class DisconnectDisposition(internal val v: DWORD) {
     Eject(SCARD_EJECT_CARD.convert<DWORD>())
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual enum class Initialization(internal val v: DWORD) {
     Leave(SCARD_LEAVE_CARD.convert<DWORD>()),
     Reset(SCARD_RESET_CARD.convert<DWORD>()),

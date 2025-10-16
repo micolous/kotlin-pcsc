@@ -24,6 +24,7 @@ import kotlinx.cinterop.*
 import platform.posix.int32_t
 import platform.posix.uint32_t
 
+@OptIn(ExperimentalForeignApi::class)
 internal fun wrapPCSCErrors(
     trueValue: SCARDSTATUS = SCARD_S_SUCCESS.convert(),
     falseValue: SCARDSTATUS? = null,
@@ -43,16 +44,17 @@ internal fun wrapPCSCErrors(
  *
  * So we convert all error constants to their "signed" form...
  */
-inline internal fun wrapPCSCErrors(
+@OptIn(ExperimentalForeignApi::class)
+internal fun wrapPCSCErrors(
     trueValue: SCARDSTATUS = SCARD_S_SUCCESS.convert(),
     falseValue: UInt? = null,
-    noinline f: () -> SCARDSTATUS): Boolean =
+    f: () -> SCARDSTATUS): Boolean =
     wrapPCSCErrors(trueValue, falseValue?.convert<SCARDSTATUS>(), f)
 
 /*
  * This definition of `wrapPCSCErrors` is needed to work around overload resolution ambigity for
  * bare calls with only a `f` parameter introduced by the (previous) macOS work-around.
  */
-inline internal fun wrapPCSCErrors(
-    noinline f: () -> SCARDSTATUS): Boolean =
+internal fun wrapPCSCErrors(
+    f: () -> SCARDSTATUS): Boolean =
     wrapPCSCErrors(falseValue = (null as SCARDSTATUS?), f = f)
