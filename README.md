@@ -15,13 +15,13 @@ card reader).
 > Cross-compiling **Native** targets is not supported, except to a macOS target
 > from a macOS host.
 
-Platform           | [PC/SC][] Implementation | JVM ([JNA][]) | [Native][]
------------------- | ------------------------ | ------------- | ----------
-Linux x86_64       | [pcsclite][]             | :o:           | :o:
-macOS 15.7 aarch64 | `PCSC.framework`         | :o:           | :o:
-macOS 15.7 x86_64  | `PCSC.framework`         | :o:           | :o:
-Windows 11 aarch64 | [WinSCard.dll][winscard] | :o:           | [:x:](#windows)
-Windows 10 x86_64  | [WinSCard.dll][winscard] | :o:           | :o:
+Platform             | [PC/SC][] Implementation | JVM ([JNA][]) | [Native][]
+-------------------- | ------------------------ | ------------- | ----------
+Linux `x86_64`       | [pcsclite][]             | ✅            | ✅
+macOS 15.7 `aarch64` | `PCSC.framework`         | ✅            | ✅
+macOS 15.7 `x86_64`  | `PCSC.framework`         | ✅            | ✅
+Windows 11 `aarch64` | [WinSCard.dll][winscard] | ✅            | [❌](#windows)
+Windows 10 `x86_64`  | [WinSCard.dll][winscard] | ✅            | ✅
 
 ## API
 
