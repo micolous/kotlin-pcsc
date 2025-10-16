@@ -13,7 +13,7 @@ card reader).
 
 **Note:** Cross-compiling **Native** targets is not supported.
 
-Platform           | [PC/SC][] Implementation | [JNA][] (JRE) | [Native][]
+Platform           | [PC/SC][] Implementation | JVM ([JNA][]) | [Native][]
 ------------------ | ------------------------ | ------------- | ----------
 Linux x86_64       | [pcsclite][]             | :o:           | :o:
 macOS 10.14 x86_64 | `PCSC.framework`         | :o:           | :o:
@@ -43,14 +43,16 @@ To run the tests, you need:
 * a working [PC/SC][]-compatible smart card reader
 * a card inserted into the reader
 
-### JNA (all platforms)
+### JVM/JNA (all platforms)
+
+To build the library to run on a regular JVM, and run tests:
 
 ```sh
-./gradlew :jnaMainClasses :jnaTest
+./gradlew :jvmMainClasses :jvmTest
 ```
 
 This builds for all platforms, as the prebuilt `net.java.dev.jna` package already includes
-platform-specific JNI helpers.  You don't need any cross-compiling or special machine for that.
+platform-specific JNI helpers. You don't need any cross-compiling or special machine for that.
 
 ### Native targets
 
@@ -81,7 +83,7 @@ platform-specific JNI helpers.  You don't need any cross-compiling or special ma
 
 ## Runtime notes
 
-### Linux (JNA and Native)
+### Linux (JVM and Native)
 
 Install `libpcsclite1` and `pcscd` packages.
 
