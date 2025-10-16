@@ -63,7 +63,7 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 #### Linux
 
 > [!NOTE]
-> Only `x86_64` Linux targets are currently supported.
+> Only `x86_64` Linux targets are currently supported for native builds.
 
 * Build dependencies: `libpcsclite1 libpcsclite-dev`
 * Run-time dependencies: `libpcsclite1`
@@ -91,7 +91,7 @@ To build the native library and run tests:
 #### Windows
 
 > [!NOTE]
-> Only `x86_64` Windows hosts and targets are supported.
+> Only `x86_64` Windows hosts and targets are supported for native builds.
 >
 > Kotlin/Native
 > [does not support building on Windows `aarch64` hosts][kotlin-win-aarch64-host]
@@ -146,8 +146,8 @@ subsystem, which is **incompatible with all existing software**, including
 
 Yes!  See [the `sample` directory of this repository](./sample/).
 
-This supports building on all target platforms, and includes a `jnaFatJar` task, which pulls in all
-dependencies to a single JAR file.
+This supports building on all target platforms, and includes a `shadowJar` task,
+which pulls in all dependencies to a single JAR file.
 
 ### How does this relate or compare to...
 
@@ -174,12 +174,14 @@ Most mobile devices do not offer a [PC/SC][]-compatible API. The few devices
 that _do_ run a regular enough Linux userland that you should be able to build
 using that.
 
-### How do I use this to connect to FeliCa / MIFARE / etc?
+### How do I use this to connect to FeliCa / JCOP / MIFARE / etc.?
 
-You'll need to provide your own implementation of those protocols. PC/SC only provides a very low
-level interface, and you'll be sending `ByteArray` to the ICC and getting `ByteArray` back.
+You'll need to provide your own implementation of those protocols.
 
-We don't even parse the APDUs for you...
+PC/SC only provides a very low level interface. Your application will be sending
+a `ByteArray` to the ICC and getting a `ByteArray` back.
+
+It doesn't even parse the APDU fields (`CLA`, `INS`, etc.) for you...
 
 [api-docs]: https://micolous.github.io/kotlin-pcsc/index.html
 [intarsys]: https://github.com/intarsys/smartcard-io
