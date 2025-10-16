@@ -1,39 +1,53 @@
 # Module kotlin-pcsc
 
-This is documentation for [kotlin-pcsc][], a Kotlin Multiplatform library for using the PC/SC API.
+[kotlin-pcsc][] is a Kotlin Multiplatform library for accessing smart cards via
+the PC/SC API on the Java JVM and native applications (on Linux, macOS and
+Windows).
 
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 
 # Package au.id.micolous.kotlin.pcsc
 
-A PC/SC API implementation for Kotlin Multiplatform.
+[kotlin-pcsc][] is a Kotlin Multiplatform library for accessing smart cards via
+the PC/SC API on the Java JVM and native applications (on Linux, macOS and
+Windows).
 
-This takes some small liberties with the PC/SC API to make it object oriented, and easier to use:
+[kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 
-PC/SC function name     | Object      | Equivalent function         | Additional helper functions
------------------------ | ----------- | --------------------------- | ---------------------------
-`SCardBeginTransaction` | [Card][]    | [Card.beginTransaction][]
-`SCardCancel`           | [Context][] | [Context.cancel][]
-`SCardConnect`          | [Context][] | [Context.connect][]
-`SCardControl`          | [Card][]    | [Card.control][]
-`SCardDisconnect`       | [Card][]    | [Card.disconnect][]
-`SCardEndTransaction`   | [Card][]    | [Card.endTransaction][]
-`SCardEstablishContext` | [Context][] | [Context.establish][]
-`SCardGetAttrib`        | [Card][]    | [Card.getAttrib][]          | [Card.getIfdSerial][], [Card.getIfdType][], [Card.getIfdVersion][], [Card.getMechanicalCharacteristics][], [Card.getVendorName][]
-`SCardGetStatusChange`  | [Context][] | [Context.getStatusChange][] | [Context.getAllReaderStatus][], [Context.getStatus][]
-`SCardIsValidContext`   | [Context][] | [Context.isValid][]
-`SCardListReaders`      | [Context][] | [Context.listReaders][]
-`SCardReconnect`        | [Card][]    | [Card.reconnect][]
-`SCardReleaseContext`   | [Context][] | [Context.release][]
-`SCardStatus`           | [Card][]    | [Card.status][]
-`SCardTransmit`         | [Card][]    | [Card.transmit][]
+It takes some small liberties with the PC/SC API to make it object oriented, and
+easier to use:
+
+PC/SC function          | `kotlin-pcsc` function(s)
+----------------------- | -------------------------
+`SCardBeginTransaction` | [Card.beginTransaction][]
+`SCardCancel`           | [Context.cancel][]
+`SCardConnect`          | [Context.connect][]
+`SCardControl`          | [Card.control][]
+`SCardDisconnect`       | [Card.disconnect][]
+`SCardEndTransaction`   | [Card.endTransaction][]
+`SCardEstablishContext` | [Context.establish][]
+`SCardGetAttrib`        | [Card.getAttrib][]; plus [Card.getIfdSerial][], [Card.getIfdType][], [Card.getIfdVersion][], [Card.getMechanicalCharacteristics][], [Card.getVendorName][]
+`SCardGetStatusChange`  | [Context.getStatusChange][]; plus [Context.getAllReaderStatus][], [Context.getStatus][]
+`SCardIsValidContext`   | [Context.isValid][]
+`SCardListReaders`      | [Context.listReaders][]
+`SCardReconnect`        | [Card.reconnect][]
+`SCardReleaseContext`   | [Context.release][]
+`SCardStatus`           | [Card.status][]
+`SCardTransmit`         | [Card.transmit][]
 
 ### Unimplemented functions
+
+These functions aren't available in `kotlin-pcsc`:
 
 * `SCardCancelTransaction` (on Windows, this is "reserved for future use")
 * `SCardListReaderGroups`
 * `SCardSetAttrib`
 * `SCardSetTimeout`
+
+Pull requests are welcome!
+
+Windows defines a number of extra APIs which do not have equivalents on other
+platforms. Supporting these is not a priority.
 
 ### Public API
 

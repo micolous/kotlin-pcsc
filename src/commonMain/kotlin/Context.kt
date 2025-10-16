@@ -150,7 +150,8 @@ fun Context.getStatus(reader: String): ReaderState
  *
  * @param groups If specified, a list of group names to search within.
  * @returns [List] of all connected readers
- * @see [Context.getStatus], [Context.listReaders]
+ * @see [Context.getStatus]
+ * @see [Context.listReaders]
  */
 fun Context.getAllReaderStatus(groups: List<String>? = null): List<ReaderState>
         = listReaders(groups).takeUnless { it.isEmpty() }?.let(::getStatus).orEmpty()
