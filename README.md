@@ -68,6 +68,8 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 * Build dependencies: `libpcsclite1 libpcsclite-dev`
 * Run-time dependencies: `libpcsclite1`
 
+To build the native library and run tests:
+
 ```sh
 ./gradlew :linuxX64MainKlibrary :linuxX64Test
 ```
@@ -75,6 +77,8 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 #### macOS
 
 * Build dependencies: Xcode 11 or later
+
+To build the native library and run tests:
 
 ```sh
 # For Apple Silicon (aarch64):
@@ -98,6 +102,8 @@ platform-specific JNI helpers. You don't need any cross-compiling or special mac
 > host, and run it on a Windows _11_ ARM system [through emulation][win-emu].
 > Windows _10_ on ARM
 > [_does not_ support running `x86_64` binaries in emulation][win-emu].
+
+To build the native library and run tests:
 
 ```powershell
 .\gradlew :mingwX64MainKlibrary :mingwX64Test
