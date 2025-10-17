@@ -106,9 +106,7 @@ To build the native library and run tests:
 > [does not support building for `mingwArm64` targets][kotlin-win-aarch64-target].
 >
 > It is possible to build the library for Windows `x86_64` on a Windows `x86_64`
-> host, and run it on a Windows _11_ ARM system [through emulation][win-emu].
-> Windows _10_ on ARM
-> [_does not_ support running `x86_64` binaries in emulation][win-emu].
+> host, and [run it on a Windows _11_ ARM system through emulation][win-emu].
 
 To build the native library and run tests:
 
