@@ -31,10 +31,10 @@ Windows 10 `x86_64`  | [WinSCard.dll][winscard] | ✅            | ✅
 ./gradlew dokkaHtml
 ```
 
-This library _mostly_ follows the PC/SC API, but takes some liberties to make it
-easier to use in Kotlin, such as using object orientation, providing helper
-methods for common patterns, parsing bitfields into properties, and abstracting
-away the small platform-specific API differences.
+This library _mostly_ follows [the PC/SC API][winscard], but takes some
+liberties to make it easier to use in Kotlin, such as using object orientation,
+providing helper methods for common patterns, parsing bitfields into properties,
+and abstracting away some small platform-specific API differences.
 
 The result is that the same "common" API can be used on _all_ platforms: see
 [the `sample` directory](./sample/) for an example.
@@ -45,8 +45,8 @@ All targets, even native ones, require JDK 17 or later to be installed (for Grad
 
 To run the tests, you need:
 
-* a working [PC/SC][]-compatible smart card reader
-* a card inserted into the reader
+* a working [PC/SC][]-compatible smart card reader (IFD)
+* a card inserted into the reader (ICC)
 
 If you _don't_, the tests will fail with `AssertionError` or
 `IndexOutOfBoundsException` (when there is no reader), or `PCSCError` (when
