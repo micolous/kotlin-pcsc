@@ -43,12 +43,16 @@ The online version of the documentation can be updated with `./update_online_doc
 
 ## Build and test
 
-All targets, even native ones, require JDK 9 or later to be installed (for Gradle).
+All targets, even native ones, require JDK 17 or later to be installed (for Gradle).
 
 To run the tests, you need:
 
 * a working [PC/SC][]-compatible smart card reader
 * a card inserted into the reader
+
+If you _don't_, the tests will fail with `AssertionError` or
+`IndexOutOfBoundsException` (when there is no reader), or `PCSCError` (when
+there is no card inserted).
 
 ### JVM/JNA (all platforms)
 
