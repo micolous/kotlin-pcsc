@@ -39,8 +39,6 @@ away the small platform-specific API differences.
 The result is that the same "common" API can be used on _all_ platforms: see
 [the `sample` directory](./sample/) for an example.
 
-The online version of the documentation can be updated with `./update_online_docs.sh`.
-
 ## Build and test
 
 All targets, even native ones, require JDK 17 or later to be installed (for Gradle).
