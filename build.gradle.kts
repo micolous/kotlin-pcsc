@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = "au.id.micolous.kotlin.pcsc"
-version = "0.0.1"
+version = "0.0.2"
 
 kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
