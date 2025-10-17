@@ -1,4 +1,0 @@
-[submodule "build/dokka"]
-	path = build/dokka
-	url = https://github.com/micolous/kotlin-pcsc.git
-	branch = gh-pages
