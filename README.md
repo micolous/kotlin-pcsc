@@ -12,8 +12,8 @@ card reader).
 ## Supported platforms
 
 > [!NOTE]
-> Cross-compiling **Native** targets is not supported, except to a macOS target
-> from a macOS host.
+> Due to functional limitations in Kotlin/Native, cross-compiling **Native**
+> targets is not supported, except from a macOS host to a macOS target.
 
 Platform             | [PC/SC][] Implementation | JVM ([JNA][]) | [Native][]
 -------------------- | ------------------------ | ------------- | ----------
@@ -123,7 +123,7 @@ To build the native library and run tests:
 Install `libpcsclite1` and `pcscd` packages.
 
 If you're using a reader with NXP PN53x series chipset (eg: ACS ARC122U), you
-need to disable the `pn533` and `pn533_usb` modules:
+need to _disable_ the `pn533` and `pn533_usb` kernel modules:
 
 ```sh
 # First, unplug the card reader.
@@ -143,6 +143,51 @@ The `pn533`/`pn533_usb` module is a driver for a new Linux-kernel-specific NFC
 subsystem, which is **incompatible with all existing software**, including
 `libacsccid1` (its PC/SC IFD handler).
 
+## Alternatives to this library
+
+### JSR 268 / `javax.smartcardio`
+
+JSR 268 defines a standard API for smart cards for Java applications. It will
+only work on JVM targets.
+
+The API design is entirely different, and is only available out-of-the-box on
+Java 8 and earlier.
+
+[jnasmartcardio][] provides a JNA-based implementation of these APIs with
+numerous bug fixes. This inspired `kotlin-pcsc`'s JVM implementation.
+
+### Kotlin/Native `platform` bindings
+
+#### ...on macOS
+
+Kotlin/Native on macOS has a disabled and partially-implemented
+[`platform.PCSC` / `PCSC.def`][mac-pcsc.def].
+
+This isn't actually usable, but because it's disabled, it doesn't cause any
+troubles.
+
+#### ...on Windows
+
+Kotlin/Native on Windows includes bindings for the entire Win32 API
+via [`platform.windows` / `windows.def`][windows.def], including `winscard.h`
+(via `windows.h`).
+
+However, [these bindings _don't actually work_][windows-kotlin-broken]:
+
+* `windows.def` doesn't link binaries to `WinSCard.dll`
+* `windows.def` doesn't handle multi-string types correctly (needed for
+  `SCardListReaders`).
+
+To make matters worse, `windows.def` doesn't use `headerFilter`, which makes it
+harder to provide _working_ bindings on Windows.
+
+### intarsys smartcard-io
+
+[intarsys smartcard-io][intarsys] is a Java/JVM library which provides a
+Java-friendly PC/SC API (and a `javax.smartcardio` wrapper).
+
+While it _can_ be used with Kotlin, it only targets the JVM (not Native).
+
 ## FAQ
 
 ### Is there sample code?
@@ -151,23 +196,6 @@ Yes!  See [the `sample` directory of this repository](./sample/).
 
 This supports building on all target platforms, and includes a `shadowJar` task,
 which pulls in all dependencies to a single JAR file.
-
-### How does this relate or compare to...
-
-#### `javax.smartcardio`?
-
-This is _entirely different_, and does not support these APIs at all, even when
-they are available (on Java 8 and earlier).
-
-If you want to use that API, take a look at [jnasmartcardio][]. `kotlin-pcsc`'s
-JNA implementation was inspired by it.
-
-#### intarsys smartcard-io?
-
-[intarsys smartcard-io][intarsys] is a Java/JRE library which provides a
-Java-friendly PC/SC API (and a `javax.smartcardio` wrapper).
-
-While it _can_ be used with Kotlin, it only targets the JRE (not Native).
 
 ### What about mobile (Android / iOS) support?
 
@@ -191,9 +219,12 @@ It doesn't even parse the APDU fields (`CLA`, `INS`, etc.) for you...
 [JNA]: https://github.com/java-native-access/jna
 [jnasmartcardio]: https://github.com/jnasmartcardio/jnasmartcardio
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
+[mac-pcsc.def]: https://github.com/JetBrains/kotlin/blob/master/kotlin-native/platformLibs/src/platform/osx/PCSC.def.disabled
 [Metrodroid]: https://github.com/metrodroid/metrodroid
 [multi]: https://kotlinlang.org/docs/reference/multiplatform.html
 [native]: https://kotlinlang.org/docs/reference/native-overview.html
 [PC/SC]: https://www.pcscworkgroup.com/
 [pcsclite]: https://pcsclite.apdu.fr/
+[windows.def]: https://github.com/JetBrains/kotlin/blob/master/kotlin-native/platformLibs/src/platform/mingw/windows.def
+[windows-kotlin-broken]: https://github.com/JetBrains/kotlin-native/issues/3483
 [winscard]: https://docs.microsoft.com/en-us/windows/win32/api/winscard/

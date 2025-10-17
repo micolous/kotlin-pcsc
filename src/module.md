@@ -49,10 +49,30 @@ Pull requests are welcome!
 Windows defines a number of extra APIs which do not have equivalents on other
 platforms. Supporting these is not a priority.
 
-### Public API
+### Source sets
 
-Only the `commonMain` module is part of the public API.
+Only the `commonMain` source set is part of the public API.
 
-Anything that **only** appears in `jnaMain`, `nativeMain`, `nativeInterop` or
-`mingwMain` is an internal implementation detail, and is subject to change
-without warning.
+Other source sets are an internal implementation detail, and subject to change
+without warning:
+
+* `jvmMain`: JVM / JNA-based bindings
+
+* `nativeAnyMain`: Native bindings.
+
+  Because `cinterop` can't use the usual Kotlin `actual`/`expect` for its definitions, and
+  restrictions about how Gradle evaluates source sets at build time, we need to symlink to this
+  from:
+
+  * `linuxMain`: Linux bindings, symlink to `nativeAnyMain`
+
+  * `macosMain`: macOS bindings, symlink to `nativeAnyMain`
+
+  * `mingwMain`: Windows bindings.
+
+    This has symlinks to `nativeAnyMain` as well, but contains a work-around for
+    [Kotlin/Native's `windows.def` including the **entire** Win32 API without a `headerFilter`][1].
+    
+    That wouldn't be a problem if it wasn't _broken_.
+
+[1]: https://youtrack.jetbrains.com/issue/KT-45071
