@@ -21,6 +21,7 @@ package au.id.micolous.kotlin.pcsc
 import au.id.micolous.kotlin.pcsc.internal.*
 import kotlinx.cinterop.*
 
+@OptIn(ExperimentalForeignApi::class)
 private fun State.toDword() = (
     if (ignore) SCARD_STATE_IGNORE.convert() else DWORD_ZERO or
     if (changed) SCARD_STATE_CHANGED.convert() else DWORD_ZERO or
@@ -35,6 +36,7 @@ private fun State.toDword() = (
     if (unpowered) SCARD_STATE_UNPOWERED.convert() else DWORD_ZERO
 )
 
+@OptIn(ExperimentalForeignApi::class)
 private fun DWORD.toState(): State {
     return State(
         ignore = hasBits(SCARD_STATE_IGNORE.convert()),
@@ -54,6 +56,7 @@ private fun DWORD.toState(): State {
 /**
  * Copies a [ReaderState] into a native [SCARD_READERSTATE_A] structure.
  */
+@OptIn(ExperimentalForeignApi::class)
 internal fun SCARD_READERSTATE_A.copyFrom(memScope: MemScope, state: ReaderState) {
     szReader = state.reader.cstr.getPointer(memScope)
     dwCurrentState = state.currentState.toDword()
@@ -66,6 +69,7 @@ internal fun SCARD_READERSTATE_A.copyFrom(memScope: MemScope, state: ReaderState
 /**
  * Unwraps a native [SCARD_READERSTATE_A] structure into a [ReaderState].
  */
+@OptIn(ExperimentalForeignApi::class)
 internal fun SCARD_READERSTATE_A.unwrap() = ReaderState(
     reader = szReader?.toKString() ?: "",
     currentState = dwCurrentState.toState(),

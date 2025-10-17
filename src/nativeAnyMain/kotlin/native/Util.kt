@@ -29,6 +29,7 @@ import kotlinx.cinterop.*
  *
  * If [this] is non-`null`, then [block] will be executed with a [Pinned] version of [this].
  */
+@OptIn(ExperimentalForeignApi::class)
 internal inline fun <T : Any, R> T?.useNullablePinned(block: (Pinned<T>?) -> R): R {
     if (this == null) {
         return block(null)
@@ -48,8 +49,10 @@ internal fun maybeByteArray(length: Int): ByteArray? {
     }
 }
 
-internal inline fun maybeByteArray(length: DWORD) = maybeByteArray(length.toInt())
-internal inline fun maybeByteArray(length: DWORDVar) = maybeByteArray(length.value.toInt())
+internal fun maybeByteArray(length: DWORD) = maybeByteArray(length.toInt())
+
+@OptIn(ExperimentalForeignApi::class)
+internal fun maybeByteArray(length: DWORDVar) = maybeByteArray(length.value.toInt())
 
 /**
  * Creates a new [UByteArray], or returns `null` if [length] is 0.
@@ -62,5 +65,8 @@ internal fun maybeUByteArray(length: Int): UByteArray? {
     }
 }
 
-internal inline fun maybeUByteArray(length: DWORD) = maybeUByteArray(length.toInt())
-internal inline fun maybeUByteArray(length: DWORDVar) = maybeUByteArray(length.value.toInt())
+@OptIn(ExperimentalForeignApi::class)
+internal fun maybeUByteArray(length: DWORD) = maybeUByteArray(length.toInt())
+
+@OptIn(ExperimentalForeignApi::class)
+internal fun maybeUByteArray(length: DWORDVar) = maybeUByteArray(length.value.toInt())

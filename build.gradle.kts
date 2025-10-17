@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCompilation
 
 plugins {
-    kotlin("multiplatform") version "1.5.31"
-    id("org.jetbrains.dokka") version "1.5.30"
+    kotlin("multiplatform") version "2.0.0"
+    id("org.jetbrains.dokka") version "2.0.0"
     id("maven-publish")
 }
 
@@ -22,86 +22,67 @@ dependencies {
 }
 
 group = "au.id.micolous.kotlin.pcsc"
-version = "0.0.1"
+version = "0.0.2"
 
 kotlin {
     // linuxArm32Hfp()  // Raspberry Pi
-    linuxX64()
-    macosX64()  // (no cross compiler)
-    mingwX64()  // Windows (no cross compiler)
+    linuxX64 {
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
 
-    jvm("jna")
-
-    sourceSets {
-        val commonMain by getting {}
-        val commonTest by getting {}
-
-        val nativeMain by creating {}
-        val nativeMacosMain by creating {
-            dependsOn(nativeMain)
-        }
-        val nativeWindowsMain by creating {
-            dependsOn(nativeMain)
+            kotlinOptions {
+                // Workaround https://youtrack.jetbrains.com/issue/KT-65217/
+                freeCompilerArgs += listOf("-linker-option", "--allow-shlib-undefined")
+            }
         }
 
-        // Setup common dependencies
-        targets.forEach {
-            val macTarget = it.preset?.name?.startsWith("macos") ?: false
-            val winTarget = it.preset?.name?.startsWith("mingw") ?: false
-
-            it.compilations.forEach { compilation ->
-                when (compilation.name) {
-                    "main" -> compilation.apply {
-                        defaultSourceSet {
-                            if (this != commonMain) {
-                                dependsOn(commonMain)
-                            }
-                        }
-
-                        when (this) {
-                            is KotlinJvmCompilation -> // Java
-                                dependencies {
-                                    api("net.java.dev.jna:jna:5.9.0")
-                                }
-
-                            is KotlinNativeCompilation -> { // Native
-                                defaultSourceSet {
-                                    dependsOn(
-                                        when {
-                                            macTarget -> nativeMacosMain
-                                            winTarget -> nativeWindowsMain
-                                            else -> nativeMain
-                                        }
-                                    )
-                                }
-
-                                cinterops {
-                                    create("winscard")
-                                }
-                            }
-                        }
-                    }
-
-
-                    "test" -> compilation.apply {
-                        defaultSourceSet {
-                            dependsOn(commonTest)
-                        }
-
-                        if (this is KotlinJvmCompilation) {
-                            // common
-                            dependencies {
-                                implementation(kotlin("test-junit"))
-                            }
-                        }
-                    }
-                }
+        compilations.getByName("test") {
+            kotlinOptions {
+                // Workaround https://youtrack.jetbrains.com/issue/KT-65217/
+                freeCompilerArgs += listOf("-linker-option", "--allow-shlib-undefined")
             }
         }
     }
 
-    sourceSets.all {
-        languageSettings.optIn("kotlin.ExperimentalStdlibApi")
+    macosArm64 {
+        // macOS on Apple Silicon (no cross-OS compiler)
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
+
+    macosX64 {
+        // macOS on Intel (no cross-OS compiler)
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
+
+    mingwX64 {
+        // Windows (no cross compiler)
+        compilations.getByName("main") {
+            cinterops {
+                val winscard by creating
+            }
+        }
+    }
+
+    jvm()
+
+    sourceSets {
+        jvmMain.dependencies {
+            api("net.java.dev.jna:jna:5.9.0")
+        }
+
+        jvmTest.dependencies {
+            implementation(kotlin("test-junit"))
+        }
     }
 }
 

@@ -2,7 +2,7 @@
  * Enums.kt
  * Enumerations used by PC/SC API
  *
- * Copyright 2019-2021 Michael Farrell <micolous+git@gmail.com>
+ * Copyright 2019-2025 Michael Farrell <micolous+git@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,27 +18,51 @@
  */
 package au.id.micolous.kotlin.pcsc
 
+/**
+ * [Resource manager context][Context] scope.
+ */
 expect enum class Scope {
+    /** Operations are performed in the domain of the user. */
     User,
+    /**
+     * Operations are performed in the domain of the terminal.
+     *
+     * This is not available on Windows.
+     */
     Terminal,
+    /** Operations are performed in the domain of the system. */
     System
 }
 
+/**
+ * Smart card sharing mode.
+ */
 expect enum class ShareMode {
+    /** Shared access mode */
     Shared,
+    /** Exclusive access mode */
     Exclusive,
+    /** Raw mode */
     Direct
 }
 
+/**
+ * Smart card connection protocol.
+ */
 expect enum class Protocol {
+    /** Unset protocol */
     Unset,
+    /** Any protocol */
     Any,
     /** T=0 protocol */
     T0,
     /** T=1 protocol */
     T1,
+    /** T=15 protocol */
     T15,
+    /** Raw active protocol */
     Raw,
+    /** Undefined protocol */
     Undefined
 }
 
@@ -57,8 +81,15 @@ expect enum class DisconnectDisposition {
     Eject
 }
 
+/**
+ * Action to take on the card when disconnecting and reconnecting to a card.
+ * @see [Card.reconnect]
+ */
 expect enum class Initialization {
+    /** Do not do anything special when reconnecting. */
     Leave,
+    /** Reset the card when reconnecting. */
     Reset,
+    /** Power down the card and reset it when reconnecting. */
     Unpower
 }

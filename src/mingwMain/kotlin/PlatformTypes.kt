@@ -18,11 +18,16 @@
  */
 package au.id.micolous.kotlin.pcsc.internal
 
+import kotlinx.cinterop.*
+
 /*
  * This makes common Windows types (also used in pcsclite) look like what we get out of pcsclite.
  */
 internal typealias DWORD = platform.windows.DWORD
+
+@OptIn(ExperimentalForeignApi::class)
 internal typealias DWORDVar = platform.windows.DWORDVar
+
 internal typealias SCARD_READERSTATE_A = platform.windows.SCARD_READERSTATEA
 
 /*
@@ -30,8 +35,10 @@ internal typealias SCARD_READERSTATE_A = platform.windows.SCARD_READERSTATEA
  * API, by inclusion of windows.h without any headerFilter.
  */
 internal typealias SCARDHANDLE = platform.windows.SCARDHANDLE
+@OptIn(ExperimentalForeignApi::class)
 internal typealias SCARDHANDLEVar = platform.windows.SCARDHANDLEVar
 internal typealias SCARDCONTEXT = platform.windows.SCARDCONTEXT
+@OptIn(ExperimentalForeignApi::class)
 internal typealias SCARDCONTEXTVar = platform.windows.SCARDCONTEXTVar
 
 internal const val SCARD_PROTOCOL_T0 = platform.windows.SCARD_PROTOCOL_T0
@@ -75,24 +82,54 @@ internal const val SCARD_STATE_UNPOWERED = platform.windows.SCARD_STATE_UNPOWERE
 /*
  * These are wrapped as properties.
  */
+@OptIn(ExperimentalForeignApi::class)
 internal val SCARD_PCI_T0 = platform.windows.SCARD_PCI_T0!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCARD_PCI_T1 = platform.windows.SCARD_PCI_T1!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCARD_PCI_RAW = platform.windows.SCARD_PCI_RAW!!
 
 /*
  * These are also properties that point to functions. SCardConnect isn't here, because it doesn't
  * work right unless it's an actual function (due to string conversion).
  */
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardDisconnect = WCardDisconnect!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardGetAttrib = WCardGetAttrib!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardReconnect = WCardReconnect!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardTransmit = WCardTransmit!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardBeginTransaction = WCardBeginTransaction!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardEndTransaction = WCardEndTransaction!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardStatus = WCardStatus!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardReleaseContext = WCardReleaseContext!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardIsValidContext = WCardIsValidContext!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardCancel = WCardCancel!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardListReaders = WCardListReaders!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardEstablishContext = WCardEstablishContext!!
+
+@OptIn(ExperimentalForeignApi::class)
 internal val SCardGetStatusChange = WCardGetStatusChange!!

@@ -1,43 +1,78 @@
 # Module kotlin-pcsc
 
-This is documentation for [kotlin-pcsc][], a Kotlin Multiplatform library for using the PC/SC API.
+[kotlin-pcsc][] is a Kotlin Multiplatform library for accessing smart cards via
+the PC/SC API on the Java JVM and native applications (on Linux, macOS and
+Windows).
 
 [kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 
 # Package au.id.micolous.kotlin.pcsc
 
-A PC/SC API implementation for Kotlin Multiplatform.
+[kotlin-pcsc][] is a Kotlin Multiplatform library for accessing smart cards via
+the PC/SC API on the Java JVM and native applications (on Linux, macOS and
+Windows).
 
-This takes some small liberties with the PC/SC API to make it object oriented, and easier to use:
+[kotlin-pcsc]: https://github.com/micolous/kotlin-pcsc
 
-PC/SC function name     | Object      | Equivalent function         | Additional helper functions
------------------------ | ----------- | --------------------------- | ---------------------------
-`SCardBeginTransaction` | [Card][]    | [Card.beginTransaction][]
-`SCardCancel`           | [Context][] | [Context.cancel][]
-`SCardConnect`          | [Context][] | [Context.connect][]
-`SCardControl`          | [Card][]    | [Card.control][]
-`SCardDisconnect`       | [Card][]    | [Card.disconnect][]
-`SCardEndTransaction`   | [Card][]    | [Card.endTransaction][]
-`SCardEstablishContext` | [Context][] | [Context.establish][]
-`SCardGetAttrib`        | [Card][]    | [Card.getAttrib][]          | [Card.getIfdSerial][], [Card.getIfdType][], [Card.getIfdVersion][], [Card.getMechanicalCharacteristics][], [Card.getVendorName][]
-`SCardGetStatusChange`  | [Context][] | [Context.getStatusChange][] | [Context.getAllReaderStatus][], [Context.getStatus][]
-`SCardIsValidContext`   | [Context][] | [Context.isValid][]
-`SCardListReaders`      | [Context][] | [Context.listReaders][]
-`SCardReconnect`        | [Card][]    | [Card.reconnect][]
-`SCardReleaseContext`   | [Context][] | [Context.release][]
-`SCardStatus`           | [Card][]    | [Card.status][]
-`SCardTransmit`         | [Card][]    | [Card.transmit][]
+It takes some small liberties with the PC/SC API to make it object oriented, and
+easier to use:
+
+PC/SC function          | `kotlin-pcsc` function(s)
+----------------------- | -------------------------
+`SCardBeginTransaction` | [Card.beginTransaction][]
+`SCardCancel`           | [Context.cancel][]
+`SCardConnect`          | [Context.connect][]
+`SCardControl`          | [Card.control][]
+`SCardDisconnect`       | [Card.disconnect][]
+`SCardEndTransaction`   | [Card.endTransaction][]
+`SCardEstablishContext` | [Context.establish][]
+`SCardGetAttrib`        | [Card.getAttrib][]; plus [Card.getIfdSerial][], [Card.getIfdType][], [Card.getIfdVersion][], [Card.getMechanicalCharacteristics][], [Card.getVendorName][]
+`SCardGetStatusChange`  | [Context.getStatusChange][]; plus [Context.getAllReaderStatus][], [Context.getStatus][]
+`SCardIsValidContext`   | [Context.isValid][]
+`SCardListReaders`      | [Context.listReaders][]
+`SCardReconnect`        | [Card.reconnect][]
+`SCardReleaseContext`   | [Context.release][]
+`SCardStatus`           | [Card.status][]
+`SCardTransmit`         | [Card.transmit][]
 
 ### Unimplemented functions
+
+These functions aren't available in `kotlin-pcsc`:
 
 * `SCardCancelTransaction` (on Windows, this is "reserved for future use")
 * `SCardListReaderGroups`
 * `SCardSetAttrib`
 * `SCardSetTimeout`
 
-### Public API
+Pull requests are welcome!
 
-Only the `commonMain` module is part of the public API.
+Windows defines a number of extra APIs which do not have equivalents on other
+platforms. Supporting these is not a priority.
 
-Anything that **only** appears in `jnaMain`, `nativeMain`, `nativeMacosMain` or `nativeWindowsMain`
-is an internal implementation detail, and is subject to change without warning.
+### Source sets
+
+Only the `commonMain` source set is part of the public API.
+
+Other source sets are an internal implementation detail, and subject to change
+without warning:
+
+* `jvmMain`: JVM / JNA-based bindings
+
+* `nativeAnyMain`: Native bindings.
+
+  Because `cinterop` can't use the usual Kotlin `actual`/`expect` for its definitions, and
+  restrictions about how Gradle evaluates source sets at build time, we need to symlink to this
+  from:
+
+  * `linuxMain`: Linux bindings, symlink to `nativeAnyMain`
+
+  * `macosMain`: macOS bindings, symlink to `nativeAnyMain`
+
+  * `mingwMain`: Windows bindings.
+
+    This has symlinks to `nativeAnyMain` as well, but contains a work-around for
+    [Kotlin/Native's `windows.def` including the **entire** Win32 API without a `headerFilter`][1].
+    
+    That wouldn't be a problem if it wasn't _broken_.
+
+[1]: https://youtrack.jetbrains.com/issue/KT-45071

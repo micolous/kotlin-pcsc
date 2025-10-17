@@ -23,6 +23,7 @@ import au.id.micolous.kotlin.pcsc.native.*
 import kotlinx.cinterop.*
 import platform.posix.*
 
+@OptIn(ExperimentalForeignApi::class)
 actual class Card internal constructor(
     private val handle: SCARDHANDLE,
     actual var protocol: Protocol?) {
