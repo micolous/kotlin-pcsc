@@ -31,6 +31,18 @@ kotlin {
             cinterops {
                 val winscard by creating
             }
+
+            kotlinOptions {
+                // Workaround https://youtrack.jetbrains.com/issue/KT-65217/
+                freeCompilerArgs += listOf("-linker-option", "--allow-shlib-undefined")
+            }
+        }
+
+        compilations.getByName("test") {
+            kotlinOptions {
+                // Workaround https://youtrack.jetbrains.com/issue/KT-65217/
+                freeCompilerArgs += listOf("-linker-option", "--allow-shlib-undefined")
+            }
         }
     }
 
