@@ -1,0 +1,42 @@
+# This builds the library on GitHub CI.
+#
+# Unfortunately, we can't actually _test_ the library, because GitHub runners
+# don't have an available smart card.
+
+name: build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Linux dependencies
+        if: runner.os == 'linux'
+        run: sudo apt-get update && sudo apt-get -y install libpcsclite-dev
+
+      - name: JVM build
+        run: ./gradlew :jvmMainClasses
+
+      - name: Linux build
+        if: runner.os == 'linux'
+        run: ./gradlew :linuxX64MainKlibrary
+
+      - name: macOS build
+        if: runner.os == 'macOS'
+        run: ./gradlew :macosArm64MainKlibrary :macosX64MainKlibrary
+
+      - name: Windows build
+        if: runner.os == 'windows'
+        run: ./gradlew :mingwX64MainKlibrary
