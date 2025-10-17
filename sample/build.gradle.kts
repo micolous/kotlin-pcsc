@@ -17,7 +17,15 @@ dependencies {
 }
 
 kotlin {
-    linuxX64()
+    linuxX64 {
+        compilations.getByName("main") {
+            kotlinOptions {
+                // Workaround https://youtrack.jetbrains.com/issue/KT-65217/
+                freeCompilerArgs += listOf("-linker-option", "--allow-shlib-undefined")
+            }
+        }
+    }
+
     macosArm64()
     macosX64()
     mingwX64()
