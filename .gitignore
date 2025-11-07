@@ -13,6 +13,7 @@ local.properties
 *.iws
 projectFilesBackup/
 project.properties
+.kotlin/
 
 xcuserdata/
 
